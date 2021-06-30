@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.gif">
+  <link rel="mask-icon" href="/images/aaa.gif" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w2216.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="史上最强 搭建邮件服务器docker-mailserver&#x2F;docker-mailserver 参考: https:&#x2F;&#x2F;www.itmanbu.com&#x2F;docker-mail-server.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hxpjava1&#x2F;article&#x2F;details&#x2F;80669355 1234注意!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!以下示例是在a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="史上最强 搭建邮件服务器">
+<meta property="og:url" content="http://w2216.github.io/projects/1243066710/index.html">
+<meta property="og:site_name" content="王站站">
+<meta property="og:description" content="史上最强 搭建邮件服务器docker-mailserver&#x2F;docker-mailserver 参考: https:&#x2F;&#x2F;www.itmanbu.com&#x2F;docker-mail-server.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hxpjava1&#x2F;article&#x2F;details&#x2F;80669355 1234注意!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!以下示例是在a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-24T11:21:27.000Z">
+<meta property="article:modified_time" content="2021-06-27T05:02:17.259Z">
+<meta property="article:author" content="Walsh Su">
+<meta property="article:tag" content="boke,博客,php,linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://w2216.github.io/projects/1243066710/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>史上最强 搭建邮件服务器 | 王站站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王站站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w2216.github.io/projects/1243066710/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="Walsh Su">
+      <meta itemprop="description" content="未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王站站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          史上最强 搭建邮件服务器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-24 19:21:27" itemprop="dateCreated datePublished" datetime="2021-06-24T19:21:27+08:00">2021-06-24</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="史上最强-搭建邮件服务器"><a href="#史上最强-搭建邮件服务器" class="headerlink" title="史上最强 搭建邮件服务器"></a>史上最强 搭建邮件服务器</h1><p><a target="_blank" rel="noopener" href="https://github.com/docker-mailserver/docker-mailserver">docker-mailserver/docker-mailserver</a></p>
+<p>参考: <a target="_blank" rel="noopener" href="https://www.itmanbu.com/docker-mail-server.html">https://www.itmanbu.com/docker-mail-server.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hxpjava1/article/details/80669355">https://blog.csdn.net/hxpjava1/article/details/80669355</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">注意!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span><br><span class="line">以下示例是在arm64平台上搭建的, 机器是x96max+刷了armbian(基于debian)系统</span><br><span class="line">如果是直接在云服务器上是用不到端口映射的</span><br><span class="line">最后的结论可能就是因为端口映射导致不能收其他域名邮件</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/docker/mail &amp;&amp; cd ~/docker/mail</span><br><span class="line">vim docker-compose.yml # docker-compose</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;2&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  mailserver:</span><br><span class="line">    image: docker.io/mailserver/docker-mailserver:9.1.0</span><br><span class="line">    hostname: mail # 名称</span><br><span class="line">    domainname: sddphp.cn # 域名</span><br><span class="line">    container_name: mailserver</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;25:25&quot;</span><br><span class="line">      - &quot;143:143&quot;</span><br><span class="line">      - &quot;587:587&quot;</span><br><span class="line">      - &quot;993:993&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - maildata:/var/mail</span><br><span class="line">      - mailstate:/var/mail-state</span><br><span class="line">      - maillogs:/var/log/mail</span><br><span class="line">      - ./config/:/tmp/docker-mailserver/</span><br><span class="line">      - /etc/ssl:/tmp/ssl:ro</span><br><span class="line">    environment:</span><br><span class="line">      - PERMIT_DOCKER=network # 内网端口转发, 一定要加这个</span><br><span class="line">      - ENABLE_SPAMASSASSIN=0</span><br><span class="line">      - ENABLE_CLAMAV=0</span><br><span class="line">      - ENABLE_FAIL2BAN=1</span><br><span class="line">      - ONE_DIR=1</span><br><span class="line">      - DMS_DEBUG=0</span><br><span class="line">      - SSL_TYPE=manual</span><br><span class="line">      - SSL_CERT_PATH=/tmp/ssl/fullchain.cer</span><br><span class="line">      - SSL_KEY_PATH=/tmp/ssl/sddphp.cn.key</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    cap_add:</span><br><span class="line">      - NET_ADMIN</span><br><span class="line">      - SYS_PTRACE</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line">  maildata:</span><br><span class="line">  mailstate:</span><br><span class="line">  maillogs:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/master/mailserver.env # 环境配置</span><br><span class="line">wget https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v10.0.0/setup.sh # 脚本, 用于设置用户和DKIM</span><br><span class="line">chmod a+x ./setup.sh</span><br><span class="line">./setup.sh help</span><br><span class="line">docker-compose up -d mailserver</span><br><span class="line">./setup.sh email add admin@sddphp.cn [&lt;password&gt;]</span><br><span class="line">./setup.sh config dkim keysize 1024 domain sddphp.cn</span><br><span class="line">docker-compose pull</span><br><span class="line">docker-compose down</span><br><span class="line">docker-compose up -d mailserver</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim update.sh # 更新脚本</span><br><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span><br><span class="line">docker-compose down</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<h2 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[993mail]</span><br><span class="line"><span class="meta">#</span><span class="bash"> mail</span></span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 993</span><br><span class="line">remote_port = 993</span><br><span class="line"></span><br><span class="line">[587mail]</span><br><span class="line"><span class="meta">#</span><span class="bash"> mail</span></span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 587</span><br><span class="line">remote_port = 587</span><br></pre></td></tr></table></figure>
+
+<h2 id="复制证书"><a href="#复制证书" class="headerlink" title="复制证书"></a>复制证书</h2><p> 复制到<code>/etc/ssl</code>目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/ssl/</span><br><span class="line">├── fullchain.cer</span><br><span class="line">└── sddphp.cn.key</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置DKIM"><a href="#配置DKIM" class="headerlink" title="配置DKIM"></a>配置DKIM</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat config/opendkim/keys/sddphp.cn/mail.txt </span><br><span class="line">mail._domainkey IN  TXT ( &quot;v=DKIM1; h=sha256; k=rsa; &quot;</span><br><span class="line">      &quot;p=XXXXXXXXXXXX&quot; )  ; ----- DKIM key mail for sddphp.cn</span><br></pre></td></tr></table></figure>
+
+<h2 id="阿里云解析"><a href="#阿里云解析" class="headerlink" title="阿里云解析"></a>阿里云解析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mail._domainkey	TXT	默认	v=DKIM1;h=sha256;k=rsa;p=XXXXXX</span><br><span class="line">@				MX	默认	mail.sddphp.cn | 10</span><br><span class="line">_dmarc			TXT	默认	v=DMARC1; p=none</span><br><span class="line">@				TXT	默认	v=spf1 mx ~all</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker exec mailserver openssl s_client -connect 0.0.0.0:587 -starttls smtp -CApath /etc/ssl/</span><br><span class="line">docker exec mailserver openssl s_client -connect 0.0.0.0:993 -starttls smtp -CApath /etc/ssl/</span><br><span class="line">通过: </span><br><span class="line">Verify return code: 0 (ok)</span><br></pre></td></tr></table></figure>
+
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>配置后可以发邮件正常, 可以收内网邮件, 不能收其他域名发来的邮件, 正在解决中…</p>
+<p>20210624 已解决</p>
+<p><code>- PERMIT_DOCKER=network # 内网端口转发, 一定要加这个</code></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/docker-mailserver/docker-mailserver/issues/1405">https://github.com/docker-mailserver/docker-mailserver/issues/1405</a></p>
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f mailserver</span><br><span class="line">tail -f /var/lib/docker/volumes/mail_maillogs/_data/mail.log</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/projects/234786234/" rel="prev" title="1天掌握docker -- B站阿良">
+      <i class="fa fa-chevron-left"></i> 1天掌握docker -- B站阿良
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/projects/4537645869/" rel="next" title="面试汇总">
+      面试汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%BC%BA-%E6%90%AD%E5%BB%BA%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">史上最强 搭建邮件服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">创建目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="nav-number">1.2.</span> <span class="nav-text">端口映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E8%AF%81%E4%B9%A6"><span class="nav-number">1.3.</span> <span class="nav-text">复制证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEDKIM"><span class="nav-number">1.4.</span> <span class="nav-text">配置DKIM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91%E8%A7%A3%E6%9E%90"><span class="nav-number">1.5.</span> <span class="nav-text">阿里云解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.6.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">1.7.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="nav-number">1.8.</span> <span class="nav-text">查看日志</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Walsh Su"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">Walsh Su</p>
+  <div class="site-description" itemprop="description">未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Walsh Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">123k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

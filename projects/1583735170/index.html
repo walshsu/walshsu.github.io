@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.gif">
+  <link rel="mask-icon" href="/images/aaa.gif" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w2216.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JS复习第一天1. javascript 简介1.1 什么是javascript 1.1.1 概念： javascript是 基于对象 和 事件驱动 并具有相对安全性的 客户端 脚本语言 1.1.2 发展简史：     ① Nombas公司1992年开发 嵌入式脚本语言 C-- 后改名 ScriptEase     ② Netscape公司 1995年发布LiveScript 后改名javascr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS复习">
+<meta property="og:url" content="http://w2216.github.io/projects/1583735170/index.html">
+<meta property="og:site_name" content="王站站">
+<meta property="og:description" content="JS复习第一天1. javascript 简介1.1 什么是javascript 1.1.1 概念： javascript是 基于对象 和 事件驱动 并具有相对安全性的 客户端 脚本语言 1.1.2 发展简史：     ① Nombas公司1992年开发 嵌入式脚本语言 C-- 后改名 ScriptEase     ② Netscape公司 1995年发布LiveScript 后改名javascr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-08T10:10:19.000Z">
+<meta property="article:modified_time" content="2021-06-27T05:02:17.165Z">
+<meta property="article:author" content="Walsh Su">
+<meta property="article:tag" content="boke,博客,php,linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://w2216.github.io/projects/1583735170/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JS复习 | 王站站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王站站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w2216.github.io/projects/1583735170/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="Walsh Su">
+      <meta itemprop="description" content="未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王站站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS复习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-08 18:10:19" itemprop="dateCreated datePublished" datetime="2018-08-08T18:10:19+08:00">2018-08-08</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JS复习"><a href="#JS复习" class="headerlink" title="JS复习"></a>JS复习</h1><h2 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h2><h4 id="1-javascript-简介"><a href="#1-javascript-简介" class="headerlink" title="1. javascript 简介"></a>1. javascript 简介</h4><p>1.1 什么是javascript</p>
+<pre><code>1.1.1 概念： javascript是 基于对象 和 事件驱动 并具有相对安全性的 客户端 脚本语言
+1.1.2 发展简史：
+    ① Nombas公司1992年开发 嵌入式脚本语言 C-- 后改名 ScriptEase
+    ② Netscape公司 1995年发布LiveScript 后改名javascript1.0
+    ③ 三足鼎立  NetScape推出javascript1.1后，Microsoft推出Jscript, 加上 ScriptEase
+    ④ 标准化 1997javascript1.1 作为草案 提交给 ECMA（欧洲计算机制造商协会） 。由来自 Netscape、Sun、
+        微软、Borland 和其他一些对脚本编程感兴趣的公司的程序员组成的 TC39 锤炼出了 ECMA-262，该标准
+        定义了名为 ECMAScript 的全新脚本语言.
+1.1.3 组成： 核心（ECMAScript） 文档对象模型（DOM）  浏览器对象模型（BOM）
+1.1.4 客户端浏览器上执行的脚本 JavaScript   VBScript    applet（需要安装JDK）
+1.1.5 ECMAScript核心: JavaScript   ActionScript  ScriptEase
+1.1.6 扩展：node.js  服务端开发（apache+php）手机app：  phonegap框架
+1.1.7 课程 内容：
+    JS 基本语法
+    JS 函数/对象/数组
+    JS 内置对象
+    JS 事件
+    BOM
+    DOM
+        HTML XML
+    Ajax
+    Jquery类库
+    Bootstrap
+
+
+1.1.8 浏览器
+    IE    IE6  7  8     /  IE9+  EDGE
+    非IE  Chrome firefox  opera  Safari ...
+</code></pre>
+<p>1.2 javascript的特点</p>
+<pre><code>①.javascript是一种脚本编程语言，也是一种解释性语言
+②.javascript的语法结构与C++、java十分类似
+③.javascript是一种基于对象的语言
+④.javascript具有跨平台性。
+⑤.安全性与简单性
+⑥ 基于对象（真正的对象 封装 继承 多态）
+</code></pre>
+<p>1.3 javascript 和 java的区别</p>
+<pre><code>雷锋和雷峰塔
+</code></pre>
+<p>1.4 javascript 程序运行开发环境</p>
+<pre><code>1.NetScape.3.0 以上版本和IE3.0 以上版本
+2.用于编辑HTML的字符编辑器
+</code></pre>
+<p>1.5 javascript 优点与局限</p>
+<pre><code>1.5.1 优点
+    ①使用javascript在客户端进行验证，节省服务器资源  
+    ②方便的操控页面中的各个对象，使网页更加友好
+    ③使多种任务仅在客户端就可以完成而不需要网络和服务器的参与，从而支持分布式的运算和处理
+1.5.2 局限
+    ①兼容性
+    ②javascript不能打开，读写和保存计算机上的文件
+</code></pre>
+<h4 id="2-javascript基本语法"><a href="#2-javascript基本语法" class="headerlink" title="2. javascript基本语法"></a>2. javascript基本语法</h4><p>2.1 在HTML中使用javascript</p>
+<pre><code>① 写在header 中的 script标签内
+② 外部文件导入 script标签导入 &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt; 标签内不能写代码
+③ 通过事件 写在标签内 &lt;tag onclick=&quot;code....&quot;&gt;&lt;/tag&gt;
+</code></pre>
+<p>2.2 基本语法</p>
+<pre><code>2.2.1 区分大小写
+    一切都区分大小写
+
+2.2.2 标示符
+    不能一数字开头,可以由 数字/字母/下划线/$ 组成
+</code></pre>
+<p>2.3 注释</p>
+<pre><code>单行注释：  //
+多行注释：  /*  */
+</code></pre>
+<p>2.4 语句（指令结束符）<br>    ;   或者  换行</p>
+<p>2.5 关键字和保留字</p>
+<pre><code>break       else        new     var
+case        finally     return  void
+catch       for         switch  while
+abstract    enum        int     short
+······
+</code></pre>
+<p>2.4 变量</p>
+<p>2.5 数据类型 typeof()  返回一个值或变量 的数据类型</p>
+<pre><code>2.5.0 分类
+    基本类型
+        String(字串)  Number(数值)  Boolean(布尔)
+    复合类型
+        Object(对象)  Array(数组)
+    特殊类型
+        Null(空)  undefined(未定义)  function(函数)
+
+2.5.1 数据类型 typeof()返回变量的类型
+2.5.2 字符串类型
+    定义字符串  &quot;&quot;  &#39;&#39;
+    不论是单引号还是双引号 都可以解析 转义字符，都不能解析变量
+    字符串连接符 +
+2.5.2 数值类型
+    ① 整数类型   十进制   十六进制   八进制
+    ② 浮点型      科学计数法   浮点数的精度问题
+    ③ 数值范围 5e324 ~ 1.7976931348623157e+308  超过范围回自动转换成 infinity(正无穷) -infinity(负无穷)
+       可以使用 *isFinity() 验证是不是无穷  超出范围不能参与运算
+    ④ NaN类型  Not a Number
+        ① NaN与任何数字操作，结果都是NaN
+        ② NaN与任何数都不相等，包括自己
+        ③ 函数 isNaN() 判断是否是NaN
+    ⑤ Number类型转换
+        特点：  1.如果是布尔值，true和false分别转换为1和0
+                2.数字，本色演出
+                3. null  -&gt; 0
+                4. undifined  -&gt; NaN
+                5. 字符串：
+                    a.“11”会变成11，“011”会变成11
+                    b.“1.1”会变成1.1
+                    c.“0xf”会变成相同大小的十进制整数值
+                    d.  如果字符串是空的，则将其转换为0
+                    e.  如果字符串包含除上述格式之外的字符，则将其转换成NaN
+                    f. &#39;12e2&#39; =&gt; 1200
+    ⑥ ParseInt类型转换
+        特点：  1. 数字开头的字符串，忽略后面的字母
+                2. 0x开头回转换成十六进制， 0不可以
+                3. 科学计数法无法行,忽略后面的字母
+                4.空字符串 NaN
+                5. null true false NaN
+
+    ⑦ parseFloat类型转换
+        特点：1, 第一个小数点有效，第二个无效
+              2. 数字开头的字符串，忽略后面的字母
+              3, 科学计数法有效
+              4， 16进制转换为0
+              5 八进制 ，忽略前面的0， 无法换算八进制
+2.5.3 其他数据类型
+2.5.3 隐式数据类型转换
+    ①数字类型： 在字符串环境下 隐身转换为字符串 在布尔环境下
+    ②字符串类型 在数字环境下，可以隐式转换为字符串中的数字或NaN；在布尔环境下，可以隐式转换为true。
+    ③空字符串：在数字环境下可以隐式转换为0；在布尔环境下可以隐式转换为false;
+    ④字符串”true“：在数字环境下可以隐式转换位1；布尔为true
+    ⑤.字符串“false”：数字环境为0，布尔位false
+    ⑥null：在字符串环境下，转换为“null”；数字环境下，转换为0，布尔环境下，转为false
+    ⑦NaN：在字符串环境下可以隐式转换为“NaN”;布尔环境下，转换为false
+    ⑧undefined：字符串环境下，转换为“undefined”，数字环境下，转为NaN，布尔下，转为false
+    ⑨true：字符串转为“true”，数字环境下转为1
+    10false：字符串转为“false”，数字环境下转为0
+</code></pre>
+<p>2.6 运算符</p>
+<pre><code>2.6.1 算术运算符：
+    1.加法运算符     +
+    2.减法运算符     -
+    3.乘法运算符     *
+    4.除法运算符     /
+    5.模运算符        %
+    6.负号运算符     -
+    7.正号运算符     +
+    8.递增运算符     ++
+    9.递减运算符     --
+2.6.2  关系运算符
+    1.相等运算符     ==
+    2.等同运算符     ===
+    3.不等运算符     ！=
+    4.不等同运算符    ！==
+    5.小于运算符     &lt;
+    6.大于运算符     &gt;
+    7.小于或等于运算符  &lt;=
+    8.大于或等于运算符      &gt;=
+    9.in运算符
+    判断一个值是否属于某个数组或者一个属性是否属于一个对象
+    10.instanceof
+    判断一个对象的实例是否属于某个对象
+    11.字符串运算符   +连字符
+    12.赋值运算符    =
+2.6.3 逻辑运算符：
+    1.逻辑与   &amp;&amp;
+    2.逻辑或   ||
+    3.逻辑非   ！
+2.6.4 其他运算符：
+    1.条件运算符     ?:
+    2.new运算符        new 对象类型
+    3.void运算符   
+    void运算符可以让操作数进行运算，但是却舍弃运算之后的结果。
+    4.typeof运算符   说明操作数是什么类型。 typeof(a)
+2.6.5.对象属性存取运算符
+    我们使用.来调用和设置对象的属性或者方法 d.name  .
+2.6.6.delete运算符
+    delete运算符可以用来删除变量、对象的属性、或数组中的元素。delete运算符返回的是布尔值类型。
+    delete 对象名      delete 变量名
+    delete 对象名.属性
+    delete 数组[索引]   
+2.6.7.逗号运算符
+    var a = 1;
+    var b = 2;
+    c = a+b , d = a-b;
+    8.this运算符   
+    this代表的是当前对象。与php的$this的道理一样。
+</code></pre>
+<p>2.7 语句</p>
+<pre><code>1. while语句
+2. do…while语句
+3. for语句
+4. for…in语句
+5. break语句
+6. continue语句
+7. with语句
+</code></pre>
+<h2 id="JS第二天"><a href="#JS第二天" class="headerlink" title="JS第二天"></a>JS第二天</h2><h4 id="JS函数"><a href="#JS函数" class="headerlink" title="JS函数"></a>JS函数</h4><pre><code>1. 函数的声明
+    1.1. function  关键字方式
+        function 函数名([形参列表])&#123;
+            JS  code...
+        &#125;
+    1.2. 表达式方式
+        var 函数名 = function([形参列表])&#123;
+            JS  code...
+        &#125;
+    1.3. Function构造函数
+        var 函数名 = new Function(&#39;参数1&#39;, &#39;JScode&#39;);
+
+2. 调用函数
+    加括号 调用
+    不加括号 引用
+
+3. JS函数特点
+    JS的函数可以重复定义
+
+4. JS函数中的参数
+    4.1 形参和实参
+        实参个数 &gt; 形参个数 不受影响
+        实参个数 &lt; 形参个数 没有赋值的形参 会自动赋值为undefined
+    4.2 参数的默认值
+        在函数的内部 使用 判断是否为undefined的方式 来赋值默认值.
+    4.3 可变参数个数的函数
+        arguments  数组,内含所有实参
+
+
+5. JS中的变量作用域  全局和局部变量
+    在函数内 使用var 定义的是 局部变量
+    在函数外 使用var 定义的是 全局变量
+    在函数内 不使用var 定义的是 全局变量
+
+6. JS的作用域链
+
+    函数的执行 依赖于变量的作用域, 这个作用域是在 函数定义声明时决定的,而不是 函数调用时决定的!
+
+    如果当前作用域里 没有声明变量,则向上一层作用域里面找.
+    如果直到找到全局里 还都未找到 则在执行函数时 会报错.
+
+
+7. 自执行函数 与 闭包
+
+    自执行
+    ( function()&#123;console.log(1)&#125; )()
+    ( function()&#123;console.log(2)&#125; () )
+    这种写法的含义是 将函数声明 转换成 函数表达式，消除了JS引擎识别函数表达式 和 函数声明的歧义.
+    告诉JS引擎 这是一个函数表达式，不是函数声明，并且可以在后面 加括号，立即执行 函数的内的代码.
+
+
+    闭包
+    简单说,闭包就是 能够读取 其他函数内部变量的 函数。
+    由于在JS中，只有函数内部的 子函数 才能读取 局部变量，
+    因此可以把闭包 简单理解成 &quot;定义在一个 函数内部的 函数&quot;。
+    所以，在本质上，闭包就是将 函数内部 和 函数外部 连接起来的一座桥梁。
+    
+    闭包的最大用处有两个:
+        一个是可以读取 函数内部的变量，
+        另一个就是 让这些变量的值 始终保持在内存中。
+        
+</code></pre>
+<h2 id="JS第三天"><a href="#JS第三天" class="headerlink" title="JS第三天"></a>JS第三天</h2><h4 id="JS数组"><a href="#JS数组" class="headerlink" title="JS数组"></a>JS数组</h4><pre><code>1. 声明一个数组
+    1.1 Array
+        var list = new Array();
+        var list = new Array(length);
+        var list = new Array(v1,v2,v3....);
+    1.2 JSON
+        var list = [];
+        var list = [v1, v2....];
+
+2. 数组特点
+    1. JS数组不能使用 [] 追加元素,要使用 push()
+    2. JS数组的下标 是连续的,跳跃着赋值数组元素.数组的商都会有累加变化,中间的元素会自动赋值为undefined
+    3. JS没有关联数组
+
+3. 遍历
+    for
+    for in
+
+4. 数组 属性
+    length  长度
+
+5. 数组 方法
+</code></pre>
+<h2 id="JS第四天"><a href="#JS第四天" class="headerlink" title="JS第四天"></a>JS第四天</h2><h4 id="JS内置对象"><a href="#JS内置对象" class="headerlink" title="JS内置对象"></a>JS内置对象</h4><ol>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+<li>RegExp</li>
+<li>Date</li>
+<li>Math</li>
+<li>Array</li>
+</ol>
+<p>PS: JS随机数的产生.</p>
+<pre><code>Math.random()函数返回0和1之间的伪随机数,可能为0,但总是小于1,(0,1)
+
+生成n-m,包含n 但不包含m 的整数:
+1. 算出 m-n的值,假设等于w
+2. Math.random()*w
+3. Math.random()*w+n
+4. parseInt(Math.random()*w+n, 10)
+
+生成n-m,不包含n 但包含m 的整数:​
+1. 算出 m-n的值,假设等于w
+2. Math.random()*w
+3. Math.random()*w+n
+4. Math.floor(Math.random()*w+n) + 1
+
+生成n-m,不包含n和m的整数:
+1. 算出 m-n-2的值,假设等于w
+2. Math.random()*w
+3. Math.random()*w+n +1
+4. Math.round(Math.random()*w+n+1) 或者 Math.ceil(Math.random()*w+n+1)
+
+生成n-m,包含n和m的随机数:
+1. 算出 m-n的值,假设等于w
+2. Math.random()*w
+3. Math.random()*w+n
+4. Math.round(Math.random()*w+n) 或者 Math.ceil(Math.random()*w+n)
+</code></pre>
+<h2 id="JS第五天"><a href="#JS第五天" class="headerlink" title="JS第五天"></a>JS第五天</h2><h4 id="JavaScript-事件"><a href="#JavaScript-事件" class="headerlink" title="JavaScript 事件"></a>JavaScript 事件</h4><h3 id="1-事件的绑定"><a href="#1-事件的绑定" class="headerlink" title="1. 事件的绑定"></a>1. 事件的绑定</h3><ul>
+<li>事件作为 元素的属性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button event=<span class="string">&quot;JS CODE...&quot;</span>&gt;&lt;/button&gt;</span><br></pre></td></tr></table></figure></li>
+<li>事件作为 元素对象的属性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">element.event = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">element.event = funName;</span><br></pre></td></tr></table></figure></li>
+<li>事件监听(标准)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">非IE: element.addEventListener(<span class="string">&#x27;事件名字&#x27;</span>, funName, <span class="literal">false</span>);</span><br><span class="line">IE:   element.attachEvent(<span class="string">&#x27;事件名字&#x27;</span>, funName);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-解除绑定"><a href="#2-解除绑定" class="headerlink" title="2. 解除绑定"></a>2. 解除绑定</h3><ul>
+<li>第1种和第2种的绑定方式<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">重写覆盖事件属性为<span class="literal">null</span> 或 <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">element.event = <span class="literal">null</span>;</span><br><span class="line">element.event = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li>监听方式<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">&#x27;事件名字&#x27;</span>, funName, <span class="literal">false</span>);</span><br><span class="line">element.detachEvent(<span class="string">&#x27;事件名字&#x27;</span>, funName);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-给一组元素绑定事件和this的使用"><a href="#3-给一组元素绑定事件和this的使用" class="headerlink" title="3. 给一组元素绑定事件和this的使用"></a>3. 给一组元素绑定事件和this的使用</h3><ul>
+<li>循环绑定事件,获取触发事件的 元素对象时,需要使用this.</li>
+<li>元素标签内部 绑定事件时,可以传入this,表示  该元素对象自己.</li>
+</ul>
+<h3 id="4-闭包-closure"><a href="#4-闭包-closure" class="headerlink" title="4. 闭包 closure"></a>4. 闭包 closure</h3><ul>
+<li>在循环绑定事件时,将循环变量保留下来,就必须使用闭包.</li>
+<li>用一组元素去控制另一组元素时, 需要使用闭包.</li>
+<li>语法:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( ... ) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i,x,y</span>)</span>&#123;</span><br><span class="line">        element.event = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 使用 i,x,y</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i,x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-常用事件"><a href="#5-常用事件" class="headerlink" title="5. 常用事件"></a>5. 常用事件</h3><h4 id="5-1-鼠标事件"><a href="#5-1-鼠标事件" class="headerlink" title="5.1 鼠标事件"></a>5.1 鼠标事件</h4><ul>
+<li><p>onclick        鼠标单击事件</p>
+</li>
+<li><p>ondblclick     鼠标双击事件</p>
+</li>
+<li><p>oncontextmenu  鼠标右击事件</p>
+</li>
+<li><p>onmouseover    鼠标指向触发</p>
+</li>
+<li><p>onmouseout     鼠标移开触发</p>
+</li>
+<li><p>onmousedown    鼠标按下触发</p>
+</li>
+<li><p>onmouseup      鼠标松开触发</p>
+</li>
+<li><p>onmousemove    鼠标移动触发</p>
+</li>
+</ul>
+<h2 id="JS第六天"><a href="#JS第六天" class="headerlink" title="JS第六天"></a>JS第六天</h2><h4 id="JS事件"><a href="#JS事件" class="headerlink" title="JS事件"></a>JS事件</h4><h3 id="5-2-键盘事件"><a href="#5-2-键盘事件" class="headerlink" title="5.2 键盘事件"></a>5.2 键盘事件</h3><ul>
+<li>onkeydown   按下按键触发</li>
+<li>onkeyup     松开按键触发</li>
+<li>onkeypress  按下并松开按键触发(高级事件)<pre><code>        不是所有按键都能触发,非输出型按键都不能触发
+        方向键/tab/shift/大小写切换/ctrl/alt
+</code></pre>
+</li>
+</ul>
+<h3 id="5-3-表单事件"><a href="#5-3-表单事件" class="headerlink" title="5.3 表单事件"></a>5.3 表单事件</h3><ul>
+<li>onsubmit    表单被提交时触发</li>
+<li>onreset     表单被重置时触发</li>
+<li>onfocus     获取焦点时触发</li>
+<li>onblur      失去焦点时触发</li>
+<li>onchange    改变表单控件的内容或状态时就触发<pre><code>        `用户input元素时,value值变化且失焦才会触发`
+</code></pre>
+</li>
+<li>oninput     非IE: 输入时触发</li>
+<li>onpropertychange  IE8: 输入时触发</li>
+<li>onselect    选区文本时触发</li>
+</ul>
+<h3 id="5-4-框架-对象事件"><a href="#5-4-框架-对象事件" class="headerlink" title="5.4 框架/对象事件"></a>5.4 框架/对象事件</h3><ul>
+<li><p>onload    文档加载完触发/图片加载完触发</p>
+</li>
+<li><p>onunload  文档关闭时触发 IE</p>
+</li>
+<li><p>onbeforeunload  文档关闭时触发 非IE<br>  <code>浏览器阻止了关闭前的弹框 需要return &quot;string...&quot;</code></p>
+</li>
+<li><p>onabort   图片加载过程中中断触发<br>  <a target="_blank" rel="noopener" href="https://krpano.com/panos/tokyo45gp/">https://krpano.com/panos/tokyo45gp/</a></p>
+</li>
+<li><p>onerror   图片加载错误触发</p>
+</li>
+<li><p>onresize  窗口/框架大小变化时触发</p>
+</li>
+<li><p>onscroll  元素滚动条在滚动时触发</p>
+</li>
+</ul>
+<h3 id="5-5-其他事件"><a href="#5-5-其他事件" class="headerlink" title="5.5 其他事件"></a>5.5 其他事件</h3><ul>
+<li><p>oncopy   拷贝内容时触发</p>
+</li>
+<li><p>oncut    剪切内容时触发</p>
+</li>
+<li><p>onpaste  粘贴内容时触发</p>
+</li>
+<li><p>onplay   音/视频开始播放时触发(audio/video)</p>
+</li>
+<li><p>onpause  音/视频暂停时触发(audio/video)</p>
+</li>
+<li><p>onended  音/视频播放结束时触发(audio/video)</p>
+</li>
+</ul>
+<h3 id="6-Event事件对象"><a href="#6-Event事件对象" class="headerlink" title="6. Event事件对象"></a>6. Event事件对象</h3><ul>
+<li>6.1 获取<br><code>var e = en || window.event;</code></li>
+<li>6.2 属性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">e.clientX  鼠标x坐标</span><br><span class="line">e.clientY  鼠标y坐标</span><br><span class="line">e.keyCode  按键码</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="7-常用HTML元素属性"><a href="#7-常用HTML元素属性" class="headerlink" title="7. 常用HTML元素属性"></a>7. 常用HTML元素属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">innerHTML   双标签之间的文本</span><br><span class="line"></span><br><span class="line">当前元素 相对与body 或已定位的父元素的 偏移量</span><br><span class="line">offsetTop</span><br><span class="line">offsetLeft</span><br><span class="line"></span><br><span class="line">当前元素 左边缘或顶边缘 滚过的像素值</span><br><span class="line">scrollTop</span><br><span class="line">scrollLeft</span><br><span class="line"></span><br><span class="line">className   当前元素的<span class="class"><span class="keyword">class</span>属性值</span></span><br><span class="line"><span class="class"><span class="title">tagName</span>     当前元素的标签名</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><h3 id="1-什么是BOM"><a href="#1-什么是BOM" class="headerlink" title="1. 什么是BOM"></a>1. 什么是BOM</h3><pre><code>Browser Object Model  浏览器对象模型
+</code></pre>
+<h3 id="2-JavaScript-对象层次"><a href="#2-JavaScript-对象层次" class="headerlink" title="2. JavaScript 对象层次"></a>2. JavaScript 对象层次</h3><h4 id="2-1-对象种类"><a href="#2-1-对象种类" class="headerlink" title="2.1 对象种类"></a>2.1 对象种类</h4><pre><code>自定义对象 Object
+内置对象  A B N S R D M G
+BOM 浏览器对象模型
+DOM 文档对象模型
+</code></pre>
+<h4 id="2-2-对象树-倒树状结构"><a href="#2-2-对象树-倒树状结构" class="headerlink" title="2.2 对象树 (倒树状结构)"></a>2.2 对象树 (倒树状结构)</h4><pre><code>                window
+                   |
+history  location  document screen  navigator
+                    |
+            doc       html
+                        |
+                    head   body
+                            |
+                    h1  p  div a  i u b ...
+</code></pre>
+<h3 id="3-BOM-对象"><a href="#3-BOM-对象" class="headerlink" title="3. BOM 对象"></a>3. BOM 对象</h3><h4 id="3-1-window"><a href="#3-1-window" class="headerlink" title="3.1 window"></a>3.1 window</h4><pre><code>- 描述 整个浏览器窗口
+- 它是JS(web)中 所有对象的根对象
+- 使用window的属性和方法时, 省略window的调用
+- 自定义对象/变量/函数 都属于window
+
+属性:
+    见手册
+方法:
+    clearInterval() 取消由 setInterval() 设置的 timeout。 
+    clearTimeout() 取消由 setTimeout() 方法设置的 timeout。 
+    setInterval() 按照指定的周期（以毫秒计）来调用函数或计算表达式。 
+    setTimeout() 在指定的毫秒数后调用函数或计算表达式。 
+
+    alert()    警告框
+    confirm()  确认框
+    prompt()   输入框
+
+    open()   打开新窗口
+    close()  关闭自己打开过的窗口
+    print()  打印
+
+    scrollTo()  滚到哪去
+    scrollBy()  滚多少
+    
+</code></pre>
+<h4 id="3-2-HTML-DOM-对象参考"><a href="#3-2-HTML-DOM-对象参考" class="headerlink" title="3.2. HTML DOM 对象参考"></a>3.2. HTML DOM 对象参考</h4><pre><code>2.1 document 对象
+2.2 form 对象
+2.3 image 对象
+2.4 anchor 对象
+2.5 base 对象
+2.6 canvas 对象
+2.7 Event 对象
+2.8 input 系列对象
+    blur()    失去焦点
+    focus()   获取焦点
+    select()  选中
+2.9 select 对象
+2.10 option 对象
+2.11 style 对象
+2.11 table 对象
+2.12 tableRow 对象
+2.13 tableCell 对象
+</code></pre>
+<h2 id="JS第八天"><a href="#JS第八天" class="headerlink" title="JS第八天"></a>JS第八天</h2><h4 id="节点操作XMLDOM"><a href="#节点操作XMLDOM" class="headerlink" title="节点操作XMLDOM"></a>节点操作XMLDOM</h4><p>文档对象模型—节点操作 XML DOM  节点</p>
+<p>1.节点介绍</p>
+<pre><code>1.1 什么是节点 node
+    HTML文档中 所有的组成部分 都称之为节点
+
+    document   文档
+    element    元素标签
+    attr       属性 Attribute
+    text       文本
+    comment    注释
+
+1.2 节点树
+    子节点
+    父节点
+    同辈节点
+    后代节点
+    先辈节点
+
+1.3 节点的访问
+    得到节点
+        document   直接使用
+        element    使用方法 get...
+        attr       element.getAttributeNode(attrname)
+        text       子节点
+        comment    子节点
+    获取子节点
+        childNodes
+    获取子元素节点
+        children
+
+    获取第一个子节点
+        firstChild
+    获取最后一个子节点
+        lastChild
+
+    获取父节点
+        parentNode
+    获取父元素节点
+        parentElement
+
+    获取前一个节点
+        previousSibling
+    获取后一个节点
+        nextSibling
+
+1.4 节点属性
+    nodeName
+        document   #document
+        element    标签名
+        attr       属性名
+        text       #text
+        comment    #comment
+    nodeValue
+        document   null
+        element    null
+        attr       属性值
+        text       文本内容
+        comment    注释内容
+    nodeType
+        document   9
+        element    1
+        attr       2
+        text       3
+        comment    8
+</code></pre>
+<p>2.节点操作</p>
+<pre><code>2.1 获取节点
+    document    直接使用
+    element     使用方法 get.../子节点/父节点/同辈节点
+    attr        element.attr
+                element.getAttributeNode(attrname) 获取属性节点
+                element.getAttribute(attrname) 获取属性值
+
+2.2 改变节点(改变节点的值) nodeValue
+    element: 无意义
+    attr: 
+        element.setAttribute(attrnamem, value);
+        element.attr = value;
+2.3 删除节点
+    属性节点: 把值赋值为null 或 removeAttribute();
+    元素节点: removeChild(node) 需要找到父元素节点
+
+2.4 替换节点
+    属性节点: setAttribute(attrnamem, value);
+    元素节点: replaceChild(new_node, old_node) 需要找到父元素节点
+
+2.5 插入节点
+    属性节点: 
+        setAttribute(attrnamem, value);
+        setAttributeNode(attrnamem).nodeValue;
+    元素节点: 
+        appendChild(node)  追加
+        insertBefore(new_node, old_node)  指定位置之前
+
+2.6 创建节点
+    属性节点: document.createAttribute(attrname);
+    元素节点: document.createElement(&#39;tagName&#39;);
+
+2.7 克隆节点
+    cloneNode()   true / false(默认值)
+</code></pre>
+<ol start="3">
+<li>XML 对象</li>
+</ol>
+<pre><code>node
+nodeList
+document
+element
+attr
+text
+comment
+</code></pre>
+<ol start="4">
+<li>HTMLElement对象</li>
+</ol>
+<pre><code>innerHTML  
+innerText  
+outerHTML  
+
+盒子模型实际宽高: 宽 + 高 + 内边距 +边框
+    offsetWidth
+    offsetHeight
+宽高 + 内边距
+    clientWidth
+    clientHeight
+宽高 + 内边距 + 计算元素内部的大小
+    scrollWidth
+    scrollHeight
+
+
+视口高度
+    document.documentElement.clientHeight
+文档高度
+    document.documentElement.scrollHeight
+    
+</code></pre>
+<h2 id="JS第九天"><a href="#JS第九天" class="headerlink" title="JS第九天"></a>JS第九天</h2><h4 id="特效扩展"><a href="#特效扩展" class="headerlink" title="特效扩展"></a>特效扩展</h4><h3 id="银行卡自动截断"><a href="#银行卡自动截断" class="headerlink" title="银行卡自动截断"></a>银行卡自动截断</h3><h3 id="轮播图-Banner"><a href="#轮播图-Banner" class="headerlink" title="轮播图(Banner)"></a>轮播图(Banner)</h3><h3 id="图片无缝轮滚"><a href="#图片无缝轮滚" class="headerlink" title="图片无缝轮滚"></a>图片无缝轮滚</h3><h3 id="下滑加载图片"><a href="#下滑加载图片" class="headerlink" title="下滑加载图片"></a>下滑加载图片</h3><h3 id="模态框-Modal"><a href="#模态框-Modal" class="headerlink" title="模态框(Modal)"></a>模态框(Modal)</h3><h3 id="蛇形文字"><a href="#蛇形文字" class="headerlink" title="蛇形文字"></a>蛇形文字</h3><h3 id="自定义输出表格-节点方式"><a href="#自定义输出表格-节点方式" class="headerlink" title="自定义输出表格(节点方式)"></a>自定义输出表格(节点方式)</h3><h2 id="JS第十一天"><a href="#JS第十一天" class="headerlink" title="JS第十一天"></a>JS第十一天</h2><h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><ol>
+<li>Ajax</li>
+</ol>
+<pre><code>async javascript and xml  异步的JS和xml
+
+请求 客户端向服务器请求一个文件
+响应 服务器 把文件内容 返回给客户端, 一般服务端有输出才算真真的响应.
+传统的请求,通过地址栏刷新请求
+AJAX 通过技术 偷偷的请求
+</code></pre>
+<ol start="2">
+<li>XMLHttpRequest对象 XHR</li>
+</ol>
+<pre><code>2.1 概念
+    XMLHttpRequest 对象提供了对 HTTP 协议的完全的访问，包括做出 POST 和 HEAD 请求以及普通的 GET 请求的能力。XMLHttpRequest 可以同步或异步地返回 Web 服务器的响应，并且能够以文本或者一个 DOM 文档的形式返回内容。
+
+2.2 常用属性
+    readyState  请求响应的状态
+        0 Uninitialized 初始化状态。XMLHttpRequest 对象已创建或已被 abort() 方法重置。 
+        1 Open open() 方法已调用，但是 send() 方法未调用。请求还没有被发送。 
+        2 Sent Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应。 
+        3 Receiving 所有响应头部都已经接收到。响应体开始接收但未完成。 
+        4 Loaded HTTP 响应已经完全接收。 
+    
+    status   HTTP的响应状态码
+        200 响应成功
+        404 文件不存在
+        304 文件来自于缓存
+        500 服务器未知错误 
+        503 服务器宕机 或 服务不可用
+
+    responseText  获取服务器的响应返回文本
+
+2.3 常用方法
+    open()   初始化请求
+        参1 method POST/GET/HEAD
+        参2 url 请求主体
+        参3 是否同/异步 默认是true(异步)
+        参4,5 认证的用户名和密码,需要时填写
+    send()   发送请求
+        GET方式 无参
+        POST方式 有可选参数
+
+    xhr.setRequestHeader() 设置请求头
+    xhr.setRequestHeader(&#39;content-type&#39;, &#39;application/x-www-form-urlencoded&#39;);
+
+2.4 事件句柄    onreadystatechange
+    readyState的值一变化就触发
+    
+</code></pre>
+<h2 id="JS12天"><a href="#JS12天" class="headerlink" title="JS12天"></a>JS12天</h2><h4 id="继续AJAX"><a href="#继续AJAX" class="headerlink" title="继续AJAX"></a>继续AJAX</h4><ol start="3">
+<li>Ajax+php 请求流程</li>
+</ol>
+<ul>
+<li>创建XHR对象</li>
+<li>初始化请求</li>
+<li>发送请求</li>
+<li>接收 并处理响应</li>
+</ul>
+<ol start="4">
+<li>处理json数据</li>
+</ol>
+<pre><code>PHP: json_encode()
+JS:  eval() 或 JSON.parse()
+</code></pre>
+<ol start="5">
+<li>同步和异步</li>
+</ol>
+<pre><code>open()方法的参3,用于控制是否同异步
+默认参数为true,表示请求是异步的,AJAX不会影响到其他程序的运行.
+参数为false,表示请求是同步的.AJAX将阻塞之后的程序的继续运行,直到AJAX响应完全接收完毕为止
+</code></pre>
+<p>6 post 和 get</p>
+<pre><code>true
+false
+</code></pre>
+<p>7.Ajax 无法跨域 与 jsonp</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function makedata(obj) &#123;</span><br><span class="line">    // alert(obj);</span><br><span class="line">    console.log(obj);</span><br><span class="line">    for (var i in obj) &#123;</span><br><span class="line">        box.innerHTML += i + &#x27;:&#x27; + obj[i] + &#x27;&lt;br&gt;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// JSONP关键步骤</span><br><span class="line">// JS标签不受同源策略</span><br><span class="line">function loadHtml() &#123;</span><br><span class="line">    // 创建JS标签</span><br><span class="line">    var js = document.createElement(&#x27;script&#x27;);</span><br><span class="line">    // 设置JS标签的SRC值</span><br><span class="line">    js.src = &#x27;http://127.0.0.1/s76/JS12/php/jsonp.php&#x27;;</span><br><span class="line">    // 将JS标签添加到页面中</span><br><span class="line">    document.body.appendChild(js);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h2 id="JS第十三天"><a href="#JS第十三天" class="headerlink" title="JS第十三天"></a>JS第十三天</h2><h4 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h4><ol>
+<li>jQuery介绍</li>
+</ol>
+<pre><code>1.1 什么是jQuery
+    jQuery是 JavaScript 的类库
+
+1.2 jQuery特点
+    写得少 干得多
+
+1.3 jQuery优势
+    ① 开源
+    ② 便捷的 选择器
+    ③ 方便的dom操作
+    ④ 丰富的动画操作
+    ⑤ 简单的ajax操作
+    ⑥ 兼容性
+    ⑦ 方便的插件机制
+
+1.4 jQuery缺点
+    额外的 添加 jQuery文件，增加网络传输量
+
+1.5 jQuery版本
+    jQuery 1.X    支持IE
+    jQuery 2.X    IE9+  其他...
+</code></pre>
+<ol start="2">
+<li>jQuery的基本语法</li>
+</ol>
+<pre><code>https://www.jquery123.com/ [手册]
+
+2.1 jquery标准的使用方式
+    标准入口
+    $(document).ready(function()&#123;
+        JS ..
+    &#125;);
+    简写入口
+    $(function()&#123;
+        JS...
+    &#125;);
+
+2.2 ready和onload的区别
+    1). 触发点
+        ready 文档中的dom加载完就触发
+        onload 文档中的一切都加载完 才触发
+    2). 绑定逻辑
+        ready 可以绑定多个事件(事件监听)
+        onload 后面的绑定 会覆盖前面的代码
+
+2.3 链式操作风格
+    JQDOM.css().attr().css();
+
+2.4 jQueryDOM 与 JSDOM 的区别 以及相互转化
+    区别:
+        JQDOM 通过 $() 获取到的是一个数组对象
+        JSDOM 通过 GET... 获取到的是一个元素对象
+    互相转换:
+        JSDOM -&gt; JQDOM    $(JSDOM)
+        JQDOM -&gt; JSDOM    JQDOM[index]   JQDOM.get(index)
+
+2.5 jquery命名冲突
+    $
+</code></pre>
+<ol start="4">
+<li>jQuery的选择器  </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">4.1 基本选择器</span><br><span class="line">    *       通配符选择器</span><br><span class="line">    #id     ID选择器</span><br><span class="line">    .class  class选择器</span><br><span class="line">    tagName 标签选择器</span><br><span class="line">    s1,s2,s3 组合/分组选择器</span><br><span class="line"></span><br><span class="line">4.2 层级选择器</span><br><span class="line">    selecotor selecotor  所有的后代元素</span><br><span class="line">    selecotor&gt;selecotor  所有的子元素</span><br><span class="line">    selecotor+selecotor  紧邻着的下一个同辈元素</span><br><span class="line">    selecotor~selecotor  紧邻着的所有同辈元素</span><br><span class="line"></span><br><span class="line">4.3 过滤选择器</span><br><span class="line">    :first         首个</span><br><span class="line">    :last          最后一个</span><br><span class="line">    :eq(index)     指定第几个</span><br><span class="line">    :lt(index)     索引小于</span><br><span class="line">    :gt(index)     索引大于</span><br><span class="line">    :even          索引为偶数的,0索引算作为偶数</span><br><span class="line">    :odd           索引为奇数的</span><br><span class="line">    :header        所有的h标签</span><br><span class="line">    :not(selector) 排除指定选择器所选的元素</span><br><span class="line"></span><br><span class="line">4.4 内容选择器</span><br><span class="line">    :contains(text)  匹配包含指定文本的元素</span><br><span class="line">    :has(selector)   匹配含有选择器的所匹配的元素的元素</span><br><span class="line">    :parent          匹配含有子元素或文本的元素</span><br><span class="line">    :empty           匹配所有不含子元素 或文本的元素</span><br><span class="line"></span><br><span class="line">4.5 可见性选择器</span><br><span class="line">    :hidden       匹配所有不可见元素</span><br><span class="line">    :visible      匹配所有可见元素</span><br><span class="line"></span><br><span class="line">4.6 属性选择器</span><br><span class="line">    select[attrname]            选择有指定属性的元素</span><br><span class="line">    select[attrname=&#x27;value&#x27;]    选择值 等于value的元素</span><br><span class="line">    select[attrname!=&#x27;value&#x27;]   选择值 不等于value的元素</span><br><span class="line">    select[attrname^=&#x27;value&#x27;]   选择值 以value开头的元素</span><br><span class="line">    select[attrname$=&#x27;value&#x27;]   选择值 以value结尾的元素</span><br><span class="line">    select[attrname*=&#x27;value&#x27;]   选择值 包含value的元素</span><br><span class="line">    [][][][]....                多个属性选择器,进一步做筛选</span><br><span class="line"> </span><br><span class="line">4.7 子元素选择器</span><br><span class="line">    :first-child    是否为首个子元素</span><br><span class="line">    :last-child     是否为最后一个子元素</span><br><span class="line">    :nth-child(n)   是否为父元素的第N个子元素</span><br><span class="line">    :only-child     是否为父元素的唯一子元素(独苗)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4.8 表单选择器</span><br><span class="line">    :input </span><br><span class="line">    :text </span><br><span class="line">    :password </span><br><span class="line">    :radio </span><br><span class="line">    :checkbox </span><br><span class="line">    :submit </span><br><span class="line">    :image </span><br><span class="line">    :reset </span><br><span class="line">    :button </span><br><span class="line">    :file </span><br><span class="line">    :hidden </span><br><span class="line"></span><br><span class="line">4.9 表单对象选择器</span><br><span class="line">    :enabled    匹配所有可用元素</span><br><span class="line">    :disabled   匹配所有不可用元素</span><br><span class="line">    :checked    匹配所有被选中的元素</span><br><span class="line">    :selected   匹配所有被选中的select元素</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/projects/571402428/" rel="prev" title="hexo + hexo-next主题博客基本操作">
+      <i class="fa fa-chevron-left"></i> hexo + hexo-next主题博客基本操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/projects/3650482178/" rel="next" title="云之梦面试题">
+      云之梦面试题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">JS复习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%A4%A9"><span class="nav-number">1.1.</span> <span class="nav-text">第一天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-javascript-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. javascript 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-javascript%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. javascript基本语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E4%BA%8C%E5%A4%A9"><span class="nav-number">1.2.</span> <span class="nav-text">JS第二天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JS%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">JS函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E4%B8%89%E5%A4%A9"><span class="nav-number">1.3.</span> <span class="nav-text">JS第三天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JS%E6%95%B0%E7%BB%84"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">JS数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E5%9B%9B%E5%A4%A9"><span class="nav-number">1.4.</span> <span class="nav-text">JS第四天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JS%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">JS内置对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E4%BA%94%E5%A4%A9"><span class="nav-number">1.5.</span> <span class="nav-text">JS第五天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript-%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">JavaScript 事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 事件的绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A7%A3%E9%99%A4%E7%BB%91%E5%AE%9A"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 解除绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BB%99%E4%B8%80%E7%BB%84%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E5%92%8Cthis%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. 给一组元素绑定事件和this的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%97%AD%E5%8C%85-closure"><span class="nav-number">1.5.4.</span> <span class="nav-text">4. 闭包 closure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.5.</span> <span class="nav-text">5. 常用事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">5.1 鼠标事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E5%85%AD%E5%A4%A9"><span class="nav-number">1.6.</span> <span class="nav-text">JS第六天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JS%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">JS事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.2 键盘事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.3 表单事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E6%A1%86%E6%9E%B6-%E5%AF%B9%E8%B1%A1%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.4 框架&#x2F;对象事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E5%85%B6%E4%BB%96%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.6.4.</span> <span class="nav-text">5.5 其他事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Event%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.6.5.</span> <span class="nav-text">6. Event事件对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%B8%B8%E7%94%A8HTML%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="nav-number">1.6.6.</span> <span class="nav-text">7. 常用HTML元素属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BOM"><span class="nav-number">2.</span> <span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFBOM"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 什么是BOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JavaScript-%E5%AF%B9%E8%B1%A1%E5%B1%82%E6%AC%A1"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. JavaScript 对象层次</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%AF%B9%E8%B1%A1%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">2.1 对象种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%AF%B9%E8%B1%A1%E6%A0%91-%E5%80%92%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">2.2 对象树 (倒树状结构)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-BOM-%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. BOM 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-window"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">3.1 window</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-HTML-DOM-%E5%AF%B9%E8%B1%A1%E5%8F%82%E8%80%83"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">3.2. HTML DOM 对象参考</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E5%85%AB%E5%A4%A9"><span class="nav-number">2.1.</span> <span class="nav-text">JS第八天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E6%93%8D%E4%BD%9CXMLDOM"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">节点操作XMLDOM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E4%B9%9D%E5%A4%A9"><span class="nav-number">2.2.</span> <span class="nav-text">JS第九天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%95%88%E6%89%A9%E5%B1%95"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">特效扩展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1%E8%87%AA%E5%8A%A8%E6%88%AA%E6%96%AD"><span class="nav-number">2.2.1.</span> <span class="nav-text">银行卡自动截断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AE%E6%92%AD%E5%9B%BE-Banner"><span class="nav-number">2.2.2.</span> <span class="nav-text">轮播图(Banner)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%BB%9A"><span class="nav-number">2.2.3.</span> <span class="nav-text">图片无缝轮滚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%BB%91%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87"><span class="nav-number">2.2.4.</span> <span class="nav-text">下滑加载图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%80%81%E6%A1%86-Modal"><span class="nav-number">2.2.5.</span> <span class="nav-text">模态框(Modal)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%9B%87%E5%BD%A2%E6%96%87%E5%AD%97"><span class="nav-number">2.2.6.</span> <span class="nav-text">蛇形文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BE%93%E5%87%BA%E8%A1%A8%E6%A0%BC-%E8%8A%82%E7%82%B9%E6%96%B9%E5%BC%8F"><span class="nav-number">2.2.7.</span> <span class="nav-text">自定义输出表格(节点方式)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9"><span class="nav-number">2.3.</span> <span class="nav-text">JS第十一天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AJAX"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">AJAX</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS12%E5%A4%A9"><span class="nav-number">2.4.</span> <span class="nav-text">JS12天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E7%BB%ADAJAX"><span class="nav-number">2.4.0.1.</span> <span class="nav-text">继续AJAX</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%AC%AC%E5%8D%81%E4%B8%89%E5%A4%A9"><span class="nav-number">2.5.</span> <span class="nav-text">JS第十三天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">jQuery</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Walsh Su"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">Walsh Su</p>
+  <div class="site-description" itemprop="description">未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Walsh Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">123k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

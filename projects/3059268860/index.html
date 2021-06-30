@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.gif">
+  <link rel="mask-icon" href="/images/aaa.gif" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w2216.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="workerman学习笔记序言Workerman, 高性能socket框架. Workerman是一款纯PHP开发的开源高性能的PHP socket 服务框架。 Workerman每个进程能维持上万并发连接。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="workerman学习笔记">
+<meta property="og:url" content="http://w2216.github.io/projects/3059268860/index.html">
+<meta property="og:site_name" content="王站站">
+<meta property="og:description" content="workerman学习笔记序言Workerman, 高性能socket框架. Workerman是一款纯PHP开发的开源高性能的PHP socket 服务框架。 Workerman每个进程能维持上万并发连接。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-24T12:35:21.000Z">
+<meta property="article:modified_time" content="2021-06-27T05:02:17.228Z">
+<meta property="article:author" content="Walsh Su">
+<meta property="article:tag" content="boke,博客,php,linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://w2216.github.io/projects/3059268860/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>workerman学习笔记 | 王站站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王站站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w2216.github.io/projects/3059268860/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="Walsh Su">
+      <meta itemprop="description" content="未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王站站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          workerman学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-24 20:35:21" itemprop="dateCreated datePublished" datetime="2021-02-24T20:35:21+08:00">2021-02-24</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="workerman学习笔记"><a href="#workerman学习笔记" class="headerlink" title="workerman学习笔记"></a>workerman学习笔记</h1><h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>Workerman, 高性能socket框架.</p>
+<p>Workerman是一款纯PHP开发的开源高性能的PHP socket 服务框架。</p>
+<p>Workerman每个进程能维持上万并发连接。</p>
+<p>同时支持TCP、UDP、UNIXSOCKET，支持长连接，支持Websocket、HTTP、WSS、HTTPS等通讯协议以及各种自定义协议。拥有定时器、异步socket客户端、异步Mysql、异步Redis、异步Http、异步消息队列等众多高性能组件。</p>
+<h3 id="应用方向"><a href="#应用方向" class="headerlink" title="应用方向"></a>应用方向</h3><p>1、即时通讯类</p>
+<p>2、物联网类</p>
+<p>3、游戏服务器类</p>
+<p>4、HTTP服务</p>
+<p>5、SOA服务化</p>
+<p>6、其它服务器软件</p>
+<p>7、中间件</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Worker是WorkerMan中最基本容器, 采用Epoll(需要装event扩展)+非阻塞IO，每个Worker进程都能上万的客户端连接，并处理这些连接上发来的数据。</p>
+<p>主进程与worker子进程关系[<a target="_blank" rel="noopener" href="https://wenda.workerman.net/uploads/answer/20140815/5670ea17653a1a6e6811ed5148f77c96.png]">https://wenda.workerman.net/uploads/answer/20140815/5670ea17653a1a6e6811ed5148f77c96.png]</a></p>
+<h2 id="开发必读"><a href="#开发必读" class="headerlink" title="开发必读"></a>开发必读</h2><p><strong>1、windows环境限制</strong></p>
+<p><strong>2、workerman不依赖apache或者nginx</strong></p>
+<p><strong>3、workerman是命令行启动的</strong></p>
+<p><strong>4、长连接必须加心跳</strong></p>
+<p><strong>5、客户端和服务端协议一定要对应才能通讯</strong></p>
+<p><strong>6、连接失败可能的原因</strong></p>
+<p><strong>7、不要使用exit die sleep语句</strong></p>
+<p><strong>8、不要使用pcntl_fork函数</strong></p>
+<p><strong>9、业务代码里不要有死循环</strong></p>
+<p><strong>10、改代码要重启</strong></p>
+<p><strong>11、长连接应用建议用GatewayWorker框架</strong></p>
+<p><strong>12、支持更高并发</strong></p>
+<h2 id="入门指引"><a href="#入门指引" class="headerlink" title="入门指引"></a>入门指引</h2><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>1、纯PHP开发</p>
+<p>2、支持PHP多进程</p>
+<p>3、支持TCP、UDP</p>
+<p>4、支持长连接</p>
+<p>5、支持各种应用层协议</p>
+<p>6、支持高并发</p>
+<p>7、支持服务平滑重启</p>
+<p>8、支持文件更新检测及自动加载</p>
+<p>9、支持以指定用户运行子进程</p>
+<p>10、支持对象或者资源永久保持</p>
+<p>11、高性能</p>
+<p>12、支持HHVM</p>
+<p>13、支持分布式部署</p>
+<p>14、支持守护进程化</p>
+<p>15、支持多端口监听</p>
+<p>16、支持标准输入输出重定向</p>
+<h3 id="简单的开发示例"><a href="#简单的开发示例" class="headerlink" title="简单的开发示例"></a>简单的开发示例</h3><p><strong>创建http_test.php文件</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Worker</span>;</span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/Workerman/Autoloader.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个Worker监听2345端口，使用http协议通讯</span></span><br><span class="line"><span class="variable">$http_worker</span> = <span class="keyword">new</span> Worker(<span class="string">&quot;http://0.0.0.0:2345&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动4个进程对外提供服务</span></span><br><span class="line"><span class="variable">$http_worker</span>-&gt;count = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收到浏览器发送的数据时回复hello world给浏览器</span></span><br><span class="line"><span class="variable">$http_worker</span>-&gt;onMessage = <span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$connection</span>, <span class="variable">$data</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 向浏览器发送hello world</span></span><br><span class="line">    <span class="variable">$connection</span>-&gt;send(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行worker</span></span><br><span class="line">Worker::runAll();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php http_test.php start</span><br></pre></td></tr></table></figure>
+
+<p>…</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>Composer安装：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require workerman/workerman</span><br></pre></td></tr></table></figure>
+
+<p><strong>Git安装：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/walkor/Workerman</span><br></pre></td></tr></table></figure>
+
+<p>Linux系统环境检测</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -Ss http://www.workerman.net/check.php | php</span><br></pre></td></tr></table></figure>
+
+<p>安装pcntl和posix扩展：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-process</span><br></pre></td></tr></table></figure>
+
+<p>安装event扩展</p>
+<p>参考: <a target="_blank" rel="noopener" href="https://amon.org/php-sysvsem">https://amon.org/php-sysvsem</a></p>
+<h3 id="启动和停止"><a href="#启动和停止" class="headerlink" title="启动和停止"></a>启动和停止</h3><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>以debug（调试）方式启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php start</span><br></pre></td></tr></table></figure>
+
+<p>以daemon（守护进程）方式启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php start -d</span><br></pre></td></tr></table></figure>
+
+<h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php stop</span><br></pre></td></tr></table></figure>
+
+<h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="平滑重启"><a href="#平滑重启" class="headerlink" title="平滑重启"></a>平滑重启</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php reload</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php status</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看连接状态（需要Workerman版本-gt-3-5-0）"><a href="#查看连接状态（需要Workerman版本-gt-3-5-0）" class="headerlink" title="查看连接状态（需要Workerman版本&gt;=3.5.0）"></a>查看连接状态（需要Workerman版本&gt;=3.5.0）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php connections</span><br></pre></td></tr></table></figure>
+
+<h2 id="Worker类"><a href="#Worker类" class="headerlink" title="Worker类"></a>Worker类</h2><p>WorkerMan中有两个重要的类Worker与Connection。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Worker::__construct([<span class="keyword">string</span> <span class="variable">$listen</span> , <span class="keyword">array</span> <span class="variable">$context</span>])</span><br><span class="line"><span class="variable">$listen</span> （可选参数，不填写表示不监听任何端口）</span><br><span class="line">    &lt;协议&gt; 可以为以下格式：</span><br><span class="line">    tcp: 例如 tcp:<span class="comment">//0.0.0.0:8686</span></span><br><span class="line">	udp: 例如 udp:<span class="comment">//0.0.0.0:8686</span></span><br><span class="line">	unix: 例如 unix:<span class="comment">///tmp/my_file(需要Workerman&gt;=3.2.7)</span></span><br><span class="line">	http: 例如 http:<span class="comment">//0.0.0.0:80</span></span><br><span class="line">	websocket: 例如 websocket:<span class="comment">//0.0.0.0:8686</span></span><br><span class="line">	text: 例如 text:<span class="comment">//0.0.0.0:8686(text是Workerman内置的文本协议，兼容telnet，详情参见附录Text协议部分)</span></span><br><span class="line">	以及其他自定义协议，参见本手册定制通讯协议部分</span><br><span class="line">    &lt;监听地址&gt; 可以为以下格式：</span><br><span class="line">	如果是unix套接字，地址为本地一个磁盘路径</span><br><span class="line">	非unix套接字，地址格式为 &lt;本机ip&gt;:&lt;端口号&gt;</span><br><span class="line"><span class="variable">$context</span> 一个数组。用于传递socket的上下文选项，参见套接字上下文选项</span><br><span class="line">    http:<span class="comment">//php.net/manual/zh/context.socket.php</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>当前worker进程的id编号，范围为<code>0</code>到<code>$worker-&gt;count-1</code>。</p>
+<p>进程重启后id编号值是不变的。</p>
+<h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><p>设置当前Worker实例启动多少个进程，不设置时默认为1。</p>
+<h4 id="name"><a href="#name" class="headerlink" title="name"></a>name</h4><p>设置当前Worker实例的名称，方便运行status命令时识别进程。不设置时默认为none。</p>
+<h4 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h4><p>设置当前Worker实例的协议类。</p>
+<h4 id="transport"><a href="#transport" class="headerlink" title="transport"></a>transport</h4><p>设置当前Worker实例所使用的传输层协议，目前只支持3种(tcp、udp、ssl)。不设置默认为tcp。</p>
+<h4 id="reusePort"><a href="#reusePort" class="headerlink" title="reusePort"></a>reusePort</h4><p>设置当前worker是否开启监听端口复用(socket的SO_REUSEPORT选项)。</p>
+<p>开启监听端口复用后允许多个无亲缘关系的进程监听相同的端口，并且由系统内核做负载均衡，决定将socket连接交给哪个进程处理，避免了惊群效应，可以提升多进程短连接应用的性能。</p>
+<p>从workerman 3.5.21版本开始默认开启此选项。之前版本需要手动设置<code>Worker::$reusePort=true;</code>开启。</p>
+<h4 id="connections"><a href="#connections" class="headerlink" title="connections"></a>connections</h4><p>此属性中存储了<strong>当前进程</strong>的所有的客户端连接对象，其中id为connection的id编号，详情见手册<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315338">TcpConnection的id属性</a>。</p>
+<h4 id="stdoutFile"><a href="#stdoutFile" class="headerlink" title="stdoutFile"></a>stdoutFile</h4><p>此属性为全局静态属性，如果以守护进程方式(<code>-d</code>启动)运行，则所有向终端的输出(echo var_dump等)都会被重定向到stdoutFile指定的文件中。</p>
+<h4 id="user"><a href="#user" class="headerlink" title="user"></a>user</h4><p>设置当前Worker实例以哪个用户运行。此属性只有当前用户为root时才能生效。不设置时默认以当前用户运行。</p>
+<p>建议<code>$user</code>设置权限较低的用户，例如www-data、apache、nobody等。</p>
+<h4 id="reloadable"><a href="#reloadable" class="headerlink" title="reloadable"></a>reloadable</h4><p>设置当前Worker实例是否可以reload，即收到reload信号后是否退出重启。不设置默认为true，收到reload信号后自动重启进程。</p>
+<p>有些进程维持着客户端连接，例如Gateway/Worker模型中的gateway进程，当运行reload重新载入业务代码时，却又不想客户端连接断开，则设置gateway进程的reloadable属性为false</p>
+<h4 id="daemonize"><a href="#daemonize" class="headerlink" title="daemonize"></a>daemonize</h4><p>此属性为全局静态属性，表示是否以daemon(守护进程)方式运行。如果启动命令使用了 <code>-d</code>参数，则该属性会自动设置为true。也可以代码中手动设置。</p>
+<h3 id="回调属性"><a href="#回调属性" class="headerlink" title="回调属性"></a>回调属性</h3><h4 id="onWorkerStart"><a href="#onWorkerStart" class="headerlink" title="onWorkerStart"></a>onWorkerStart</h4><p>设置Worker子进程启动时的回调函数，每个子进程启动时都会执行。</p>
+<p>回调函数的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$worker</span><br></pre></td></tr></table></figure>
+
+<h4 id="onWorkerReload"><a href="#onWorkerReload" class="headerlink" title="onWorkerReload"></a>onWorkerReload</h4><p>此特性不常用到。</p>
+<p>设置Worker收到reload信号后执行的回调。</p>
+<p>可以利用onWorkerReload回调做很多事情，例如在不需要重启进程的情况下重新加载业务配置文件。</p>
+<p>回调函数的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$worker</span><br></pre></td></tr></table></figure>
+
+<h4 id="onConnect"><a href="#onConnect" class="headerlink" title="onConnect"></a>onConnect</h4><p>当客户端与Workerman建立连接时(TCP三次握手完成后)触发的回调函数。每个连接只会触发一次<code>onConnect</code>回调。</p>
+<p>回调函数的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$connection</span><br></pre></td></tr></table></figure>
+
+<p>连接对象，即<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315157">TcpConnection实例</a>，用于操作客户端连接，如<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315165">发送数据</a>，<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315168">关闭连接</a>等</p>
+<h4 id="onMessage"><a href="#onMessage" class="headerlink" title="onMessage"></a>onMessage</h4><p>当客户端通过连接发来数据时(Workerman收到数据时)触发的回调函数</p>
+<p>回调函数的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$connection</span><br></pre></td></tr></table></figure>
+
+<p>连接对象，即<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315157">TcpConnection实例</a>，用于操作客户端连接，如<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315165">发送数据</a>，<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315168">关闭连接</a>等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$data</span><br></pre></td></tr></table></figure>
+
+<p>客户端连接上发来的数据，如果Worker指定了协议，则$data是对应协议decode（解码）了的数据</p>
+<h4 id="onClose"><a href="#onClose" class="headerlink" title="onClose"></a>onClose</h4><p>当客户端连接与Workerman断开时触发的回调函数。不管连接是如何断开的，只要断开就会触发<code>onClose</code>。每个连接只会触发一次<code>onClose</code>。</p>
+<p>回调函数的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$connection</span><br></pre></td></tr></table></figure>
+
+<p>连接对象，即<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315157">TcpConnection实例</a>，用于操作客户端连接，如<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315165">发送数据</a>，<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315168">关闭连接</a>等</p>
+<h4 id="onError"><a href="#onError" class="headerlink" title="onError"></a>onError</h4><p>当客户端的连接上发生错误时触发。</p>
+<p>回调函数的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$connection</span><br></pre></td></tr></table></figure>
+
+<p>连接对象，即<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315157">TcpConnection实例</a>，用于操作客户端连接，如<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315165">发送数据</a>，<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315168">关闭连接</a>等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$code</span><br></pre></td></tr></table></figure>
+
+<p>错误码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$msg</span><br></pre></td></tr></table></figure>
+
+<p>错误消息</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h4 id="runAll"><a href="#runAll" class="headerlink" title="runAll"></a>runAll</h4><p>运行所有Worker实例。</p>
+<h4 id="stopAll"><a href="#stopAll" class="headerlink" title="stopAll"></a>stopAll</h4><p>停止当前进程（子进程）的所有Worker实例并退出。</p>
+<p>此方法用于安全退出当前子进程，作用相当于调用exit/die退出当前子进程。</p>
+<p>与直接调用exit/die区别是，直接调用exit或者die无法触发onWorkerStop回调，并且会导致一条WORKER EXIT UNEXPECTED错误日志。</p>
+<h4 id="listen"><a href="#listen" class="headerlink" title="listen"></a>listen</h4><p>用于实例化Worker后执行监听。</p>
+<p>此方法主要用于在Worker进程启动后动态创建新的Worker实例，能够实现同一个进程监听多个端口，支持多种协议。需要注意的是用这种方法只是在当前进程增加监听，并不会动态创建新的进程，也不会触发onWorkerStart方法。</p>
+<h2 id="TcpConnection类"><a href="#TcpConnection类" class="headerlink" title="TcpConnection类"></a>TcpConnection类</h2><h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><h4 id="id-1"><a href="#id-1" class="headerlink" title="id"></a>id</h4><p>连接的id。这是一个自增的整数。</p>
+<h4 id="protocol-1"><a href="#protocol-1" class="headerlink" title="protocol"></a>protocol</h4><p>设置当前连接的协议类</p>
+<h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>此属性为只读属性，即当前connection对象所属的worker实例</p>
+<h4 id="maxSendBufferSize"><a href="#maxSendBufferSize" class="headerlink" title="maxSendBufferSize"></a>maxSendBufferSize</h4><h4 id="defaultMaxSendBufferSize"><a href="#defaultMaxSendBufferSize" class="headerlink" title="defaultMaxSendBufferSize"></a>defaultMaxSendBufferSize</h4><h4 id="maxPackageSize"><a href="#maxPackageSize" class="headerlink" title="maxPackageSize"></a>maxPackageSize</h4><h3 id="回调属性-1"><a href="#回调属性-1" class="headerlink" title="回调属性"></a>回调属性</h3><h4 id="onMessage-1"><a href="#onMessage-1" class="headerlink" title="onMessage"></a>onMessage</h4><p>作用与<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315148">Worker::$onMessage</a>回调相同，区别是只针对当前连接有效，也就是可以针对某个连接的设置onMessage回调。</p>
+<h4 id="onClose-1"><a href="#onClose-1" class="headerlink" title="onClose"></a>onClose</h4><p>此回调与<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315149">Worker::$onClose</a>回调作用相同，区别是只针对当前连接有效,也就是可以针对某个连接的设置onClose回调。</p>
+<h4 id="onBufferFull"><a href="#onBufferFull" class="headerlink" title="onBufferFull"></a>onBufferFull</h4><p>作用与<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315150">Worker::$onBufferFull</a>回调相同，区别是只针对当前连接起作用，即可以单独设置某个连接的onBufferFull回调</p>
+<h4 id="onBufferDrain"><a href="#onBufferDrain" class="headerlink" title="onBufferDrain"></a>onBufferDrain</h4><p>作用与<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315151">Worker::$onBufferDrain</a>回调相同，区别是只针对当前连接起作用，即可以单独设置某个连接的onBufferDrain回调</p>
+<h4 id="onError-1"><a href="#onError-1" class="headerlink" title="onError"></a>onError</h4><p>作用与<a target="_blank" rel="noopener" href="http://doc3.workerman.net/315152">Worker::$onError</a>回调相同，区别是只针对当前连接起作用，即可以单独设置某个连接的onError回调</p>
+<h3 id="接口-1"><a href="#接口-1" class="headerlink" title="接口"></a>接口</h3><h4 id="send"><a href="#send" class="headerlink" title="send"></a>send</h4><p>向客户端发送数据</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$data</span><br></pre></td></tr></table></figure>
+
+<p>要发送的数据，如果在初始化Worker类时指定了协议，则会自动调用协议的encode方法,完成协议打包工作后发送给客户端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$raw</span><br></pre></td></tr></table></figure>
+
+<p>是否发送原始数据，即不调用协议的encode方法，默认是false，即自动调用协议的encode方法</p>
+<h4 id="getRemoteIp"><a href="#getRemoteIp" class="headerlink" title="getRemoteIp"></a>getRemoteIp</h4><p>获得该连接的客户端ip</p>
+<h4 id="getRemotePort"><a href="#getRemotePort" class="headerlink" title="getRemotePort"></a>getRemotePort</h4><p>获得该连接的客户端端口</p>
+<h4 id="close"><a href="#close" class="headerlink" title="close"></a>close</h4><p>安全的关闭连接.</p>
+<p>调用close会等待发送缓冲区的数据发送完毕后才关闭连接，并触发连接的<code>onClose</code>回调</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$data</span><br></pre></td></tr></table></figure>
+
+<p>可选参数，要发送的数据（如果有指定协议，则会自动调用协议的encode方法打包<code>$data</code>数据），当数据发送完毕后关闭连接，随后会触发onClose回调</p>
+<h4 id="destroy"><a href="#destroy" class="headerlink" title="destroy"></a>destroy</h4><p>立刻关闭连接。</p>
+<p>与close不同之处是，调用destroy后即使该连接的发送缓冲区还有数据未发送到对端，连接也会立刻被关闭，并立刻触发该连接的<code>onClose</code>回调。</p>
+<h4 id="pauseRecv"><a href="#pauseRecv" class="headerlink" title="pauseRecv"></a>pauseRecv</h4><p>使当前连接停止接收数据。该连接的onMessage回调将不会被触发。此方法对于上传流量控制非常有用</p>
+<h4 id="resumeRecv"><a href="#resumeRecv" class="headerlink" title="resumeRecv"></a>resumeRecv</h4><p>使当前连接继续接收数据。此方法与Connection::pauseRecv配合使用，对于上传流量控制非常有用</p>
+<h4 id="pipe"><a href="#pipe" class="headerlink" title="pipe"></a>pipe</h4><p>将当前连接的数据流导入到目标连接。内置了流量控制。此方法做TCP代理非常有用</p>
+<h2 id="AsyncTcpConnection类"><a href="#AsyncTcpConnection类" class="headerlink" title="AsyncTcpConnection类"></a>AsyncTcpConnection类</h2><p>异步</p>
+<h3 id="construct-方法"><a href="#construct-方法" class="headerlink" title="__construct 方法"></a>__construct 方法</h3><p>创建一个异步连接对象。</p>
+<p>目前AsyncTcpConnection支持的协议有<a target="_blank" rel="noopener" href="http://baike.baidu.com/subview/32754/8048820.htm">tcp</a>、<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/525499.htm">ssl</a>、<a target="_blank" rel="noopener" href="http://doc3.workerman.net/appendices/about-ws.md">ws</a>、<a target="_blank" rel="noopener" href="http://doc3.workerman.net/appendices/about-frame.md">frame</a>、<a target="_blank" rel="noopener" href="http://doc3.workerman.net/appendices/about-text.md">text</a>。</p>
+<h3 id="connect-方法"><a href="#connect-方法" class="headerlink" title="connect 方法"></a>connect 方法</h3><p>执行异步连接操作。此方法会立刻返回。</p>
+<h3 id="reConnect-方法"><a href="#reConnect-方法" class="headerlink" title="reConnect 方法"></a>reConnect 方法</h3><p>重连。一般在<code>onClose</code>回调中调用，实现断线重连。</p>
+<p>由于网络问题或者对方服务重启等原因导致连接断开，则可以通过调用此方法实现重连。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$delay</span><br></pre></td></tr></table></figure>
+
+<p>延迟多久后执行重连。单位为秒，支持小数，可精确到毫秒。</p>
+<p>如果不传或者值为0则代表立即重连。</p>
+<p>最好传递参数让重连延迟执行，避免因为对端服务问题一直不可连导致本机cpu消耗过高。</p>
+<h3 id="transport属性"><a href="#transport属性" class="headerlink" title="transport属性"></a>transport属性</h3><p>设置传输属性，可选值为 <a target="_blank" rel="noopener" href="http://baike.baidu.com/subview/32754/8048820.htm">tcp</a> 和 <a target="_blank" rel="noopener" href="http://baike.baidu.com/view/525499.htm">ssl</a>，默认是tcp。</p>
+<p>transport为 <a target="_blank" rel="noopener" href="http://baike.baidu.com/view/525499.htm">ssl</a> 时，要求PHP必须安装<a target="_blank" rel="noopener" href="http://php.net/manual/zh/book.openssl.php">openssl扩展</a>。</p>
+<p>当把Workerman作为客户端向服务端发起ssl加密连接(https连接、wss连接等)时请设置此选项为<code>ssl</code>，</p>
+<h2 id="AsyncUdpConnection类"><a href="#AsyncUdpConnection类" class="headerlink" title="AsyncUdpConnection类"></a>AsyncUdpConnection类</h2><p>AsyncUdpConnection可以作为udp客户端与远程udp服务端进行通讯。</p>
+<p>其实udp是无连接的，但是为了易用性，这里与AsyncTcpConnection命名规则和接口保持基本一致。</p>
+<p><strong>注意：与AsyncTcpConnection不同，AsyncUdpConnection不支持以下属性或者方法。</strong></p>
+<ol>
+<li>没有connection-&gt;id属性</li>
+<li>没有connection-&gt;worker属性</li>
+<li>没有connection-&gt;transport属性</li>
+<li>没有connection-&gt;maxSendBufferSize属性</li>
+<li>没有connection-&gt;defaultMaxSendBufferSize属性</li>
+<li>没有connection-&gt;maxPackageSize属性</li>
+<li>没有connection-&gt;onBufferFull回调</li>
+<li>没有connection-&gt;onBufferDrain回调</li>
+<li>没有connection-&gt;onError回调</li>
+<li>没有connection-&gt;destroy()接口</li>
+<li>没有connection-&gt;pauseRecv()接口</li>
+<li>没有connection-&gt;resumeRecv()接口</li>
+<li>没有connection-&gt;pipe()接口</li>
+<li>没有connection-&gt;reconnect()接口</li>
+</ol>
+<p><strong>AsyncUdpConnection支持的属性或者方法</strong><br>1.支持connection-&gt;protocol属性<br>2.支持connection-&gt;onMessage回调<br>3.支持connection-&gt;connect()方法<br>4.支持connection-&gt;send()方法<br>5.支持connection-&gt;getRemoteIp()方法<br>6.支持connection-&gt;getRemotePort()方法<br>7.支持connection-&gt;onClose回调。<br>注意：因为tcp是基于连接的，一般情况下，当任何一方调用close断开连接时双方都能触发onClose。但是udp是无连接的，调用connection-&gt;close()方法只能触发本地的onClose回调，无法触发对端的onClose回调。</p>
+<h3 id="construct-方法-1"><a href="#construct-方法-1" class="headerlink" title="__construct 方法"></a>__construct 方法</h3><p>创建一个udp连接对象。</p>
+<p>AsyncUdpConnection可以让Workerman作为客户端与远程服务端传输udp数据。</p>
+<h3 id="connect-方法-1"><a href="#connect-方法-1" class="headerlink" title="connect 方法"></a>connect 方法</h3><p>执行异步连接操作。此方法会立刻返回。</p>
+<h3 id="send-方法"><a href="#send-方法" class="headerlink" title="send 方法"></a>send 方法</h3><p>执行异步连接操作。此方法会立刻返回。</p>
+<p>参数</p>
+<p><code>$data</code><br>向服务端发送的数据，数据大小不能超过65507字节(udp单个数据包最大传输大小为65507字节)，否则会发送失败。</p>
+<h3 id="close-1"><a href="#close-1" class="headerlink" title="close"></a>close</h3><p>安全的关闭连接，并触发连接的<code>onClose</code>回调。</p>
+<p>虽然udp是无连接的，但是对应的AsyncUdpConnection对象却是一直保留在内存中，必须调用close方法才可以释放掉对应的udp连接对象，否则这个udp连接对象会一直存在于内存中，造成内存泄漏。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$data</span><br></pre></td></tr></table></figure>
+
+<p>可选参数，要发送的数据（如果有指定协议，则会自动调用协议的encode方法打包<code>$data</code>数据），当数据发送完毕后关闭连接，随后会触发onClose回调。</p>
+<p>数据大小不能超过65507字节，否则会发送失败。</p>
+<h2 id="Timer定时器类"><a href="#Timer定时器类" class="headerlink" title="Timer定时器类"></a>Timer定时器类</h2><h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>定时执行某个函数或者类方法。</p>
+<p>注意：定时器是在当前进程中运行的，workerman中不会创建新的进程或者线程去运行定时器。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time_interval</span><br></pre></td></tr></table></figure>
+
+<p>多长时间执行一次，单位秒，支持小数，可以精确到0.001，即精确到毫秒级别。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback</span><br></pre></td></tr></table></figure>
+
+<p>回调函数<code>注意：如果回调函数是类的方法，则方法必须是public属性</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">args</span><br></pre></td></tr></table></figure>
+
+<p>回调函数的参数，必须为数组，数组元素为参数值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">persistent</span><br></pre></td></tr></table></figure>
+
+<p>是否是持久的，如果只想定时执行一次，则传递false（只执行一次的任务在执行完毕后会自动销毁，不必调用<code>Timer::del()</code>）。默认是true，即一直定时执行。</p>
+<p>返回值</p>
+<p>返回一个整数，代表计时器的timerid，可以通过调用<code>Timer::del($timerid)</code>销毁这个计时器。</p>
+<h3 id="del"><a href="#del" class="headerlink" title="del"></a>del</h3><p>删除某个定时器</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer_id</span><br></pre></td></tr></table></figure>
+
+<p>定时器的id，即add接口返回的整型</p>
+<p>返回值</p>
+<p>boolean</p>
+<h3 id="定时器注意事项"><a href="#定时器注意事项" class="headerlink" title="定时器注意事项"></a>定时器注意事项</h3><p>1、只能在<code>onXXXX</code>回调中添加定时器。全局的定时器推荐在<code>onWorkerStart</code>回调中设置，针对某个连接的定时器推荐在<code>onConnect</code>中设置。</p>
+<p>2、添加的定时任务在当前进程执行(不会启动新的进程或者线程)，如果任务很重（特别是涉及到网络IO的任务），可能会导致该进程阻塞，暂时无法处理其它业务。所以最好将耗时的任务放到单独的进程运行，例如建立一个/多个Worker进程运行</p>
+<p>3、当前进程忙于其它业务时或者当一个任务没有在预期的时间运行完，这时又到了下一个运行周期，则会等待当前任务完成才会运行，这会导致定时器没有按照预期时间间隔运行。也就是说当前进程的业务都是串行执行的，如果是多进程则进程间的任务运行是并行的。</p>
+<p>4、需要注意多进程设置了定时任务造可能会造成并发问题，</p>
+<p>5、可能会有1毫秒左右的误差。</p>
+<p>6、定时器不能跨进程删除，例如a进程设置的定时器无法在b进程直接调用Timer::del接口删除</p>
+<p>7、不同进程间的定时器id可能会重复，但是同一个进程内产生的定时器id不会重复</p>
+<h3 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h3><p>除了定时器Timer，workerman提供了crontab组件，使用规则类似linux的crontab，支持秒级别定时。</p>
+<p>参见：<a target="_blank" rel="noopener" href="http://doc3.workerman.net/1993516">Crontab定时任务组件</a></p>
+<h2 id="Http服务"><a href="#Http服务" class="headerlink" title="Http服务"></a>Http服务</h2><p>workerman从4.x版本开始加强了HTTP服务的支持。引入了请求类、响应类、session类以及<a target="_blank" rel="noopener" href="http://doc3.workerman.net/1556733">SSE</a>。如果你想使用workerman的HTTP服务，强烈推荐使用workerman4.x或者以后的更高版本。</p>
+<h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><p>请求对象一律在onMessage回调函数中获取，框架会自动将Request对象通过回调函数第二个参数传递进来。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$worker</span>-&gt;onMessage = <span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$connection</span>, <span class="variable">$request</span></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://doc3.workerman.net/1547048">点击查看</a></p>
+<h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><h3 id="session会话"><a href="#session会话" class="headerlink" title="session会话"></a>session会话</h3><h3 id="session管理"><a href="#session管理" class="headerlink" title="session管理"></a>session管理</h3><h3 id="SSE"><a href="#SSE" class="headerlink" title="SSE"></a>SSE</h3>
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/projects/3123024552/" rel="prev" title="Vmware Workstation 16 + Centos 7.9">
+      <i class="fa fa-chevron-left"></i> Vmware Workstation 16 + Centos 7.9
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/projects/644540286/" rel="next" title="phalapi框架学习笔记">
+      phalapi框架学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#workerman%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">workerman学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">序言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E6%96%B9%E5%90%91"><span class="nav-number">1.1.1.</span> <span class="nav-text">应用方向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%BF%85%E8%AF%BB"><span class="nav-number">1.3.</span> <span class="nav-text">开发必读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E9%97%A8%E6%8C%87%E5%BC%95"><span class="nav-number">1.4.</span> <span class="nav-text">入门指引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%BC%80%E5%8F%91%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">简单的开发示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.5.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2"><span class="nav-number">1.5.1.</span> <span class="nav-text">启动和停止</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">停止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%90%AF"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E6%BB%91%E9%87%8D%E5%90%AF"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">平滑重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">查看状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%EF%BC%88%E9%9C%80%E8%A6%81Workerman%E7%89%88%E6%9C%AC-gt-3-5-0%EF%BC%89"><span class="nav-number">1.5.1.6.</span> <span class="nav-text">查看连接状态（需要Workerman版本&gt;&#x3D;3.5.0）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Worker%E7%B1%BB"><span class="nav-number">1.6.</span> <span class="nav-text">Worker类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-number">1.6.2.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#id"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#name"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protocol"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transport"><span class="nav-number">1.6.2.5.</span> <span class="nav-text">transport</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reusePort"><span class="nav-number">1.6.2.6.</span> <span class="nav-text">reusePort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connections"><span class="nav-number">1.6.2.7.</span> <span class="nav-text">connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stdoutFile"><span class="nav-number">1.6.2.8.</span> <span class="nav-text">stdoutFile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user"><span class="nav-number">1.6.2.9.</span> <span class="nav-text">user</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reloadable"><span class="nav-number">1.6.2.10.</span> <span class="nav-text">reloadable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#daemonize"><span class="nav-number">1.6.2.11.</span> <span class="nav-text">daemonize</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%B1%9E%E6%80%A7"><span class="nav-number">1.6.3.</span> <span class="nav-text">回调属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onWorkerStart"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">onWorkerStart</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onWorkerReload"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">onWorkerReload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onConnect"><span class="nav-number">1.6.3.3.</span> <span class="nav-text">onConnect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onMessage"><span class="nav-number">1.6.3.4.</span> <span class="nav-text">onMessage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onClose"><span class="nav-number">1.6.3.5.</span> <span class="nav-text">onClose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onError"><span class="nav-number">1.6.3.6.</span> <span class="nav-text">onError</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.6.4.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#runAll"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">runAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stopAll"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">stopAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#listen"><span class="nav-number">1.6.4.3.</span> <span class="nav-text">listen</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TcpConnection%E7%B1%BB"><span class="nav-number">1.7.</span> <span class="nav-text">TcpConnection类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7-1"><span class="nav-number">1.7.1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#id-1"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protocol-1"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#worker"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">worker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#maxSendBufferSize"><span class="nav-number">1.7.1.4.</span> <span class="nav-text">maxSendBufferSize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#defaultMaxSendBufferSize"><span class="nav-number">1.7.1.5.</span> <span class="nav-text">defaultMaxSendBufferSize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#maxPackageSize"><span class="nav-number">1.7.1.6.</span> <span class="nav-text">maxPackageSize</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%B1%9E%E6%80%A7-1"><span class="nav-number">1.7.2.</span> <span class="nav-text">回调属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onMessage-1"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">onMessage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onClose-1"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">onClose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onBufferFull"><span class="nav-number">1.7.2.3.</span> <span class="nav-text">onBufferFull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onBufferDrain"><span class="nav-number">1.7.2.4.</span> <span class="nav-text">onBufferDrain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onError-1"><span class="nav-number">1.7.2.5.</span> <span class="nav-text">onError</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3-1"><span class="nav-number">1.7.3.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#send"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">send</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getRemoteIp"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">getRemoteIp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getRemotePort"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">getRemotePort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#close"><span class="nav-number">1.7.3.4.</span> <span class="nav-text">close</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#destroy"><span class="nav-number">1.7.3.5.</span> <span class="nav-text">destroy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pauseRecv"><span class="nav-number">1.7.3.6.</span> <span class="nav-text">pauseRecv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resumeRecv"><span class="nav-number">1.7.3.7.</span> <span class="nav-text">resumeRecv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipe"><span class="nav-number">1.7.3.8.</span> <span class="nav-text">pipe</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncTcpConnection%E7%B1%BB"><span class="nav-number">1.8.</span> <span class="nav-text">AsyncTcpConnection类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#construct-%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.1.</span> <span class="nav-text">__construct 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#connect-%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.2.</span> <span class="nav-text">connect 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reConnect-%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.3.</span> <span class="nav-text">reConnect 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transport%E5%B1%9E%E6%80%A7"><span class="nav-number">1.8.4.</span> <span class="nav-text">transport属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncUdpConnection%E7%B1%BB"><span class="nav-number">1.9.</span> <span class="nav-text">AsyncUdpConnection类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#construct-%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.9.1.</span> <span class="nav-text">__construct 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#connect-%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.9.2.</span> <span class="nav-text">connect 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#send-%E6%96%B9%E6%B3%95"><span class="nav-number">1.9.3.</span> <span class="nav-text">send 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#close-1"><span class="nav-number">1.9.4.</span> <span class="nav-text">close</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Timer%E5%AE%9A%E6%97%B6%E5%99%A8%E7%B1%BB"><span class="nav-number">1.10.</span> <span class="nav-text">Timer定时器类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#add"><span class="nav-number">1.10.1.</span> <span class="nav-text">add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#del"><span class="nav-number">1.10.2.</span> <span class="nav-text">del</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.10.3.</span> <span class="nav-text">定时器注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crontab"><span class="nav-number">1.10.4.</span> <span class="nav-text">crontab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.11.</span> <span class="nav-text">Http服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82"><span class="nav-number">1.11.1.</span> <span class="nav-text">请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94"><span class="nav-number">1.11.2.</span> <span class="nav-text">响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.11.3.</span> <span class="nav-text">session会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session%E7%AE%A1%E7%90%86"><span class="nav-number">1.11.4.</span> <span class="nav-text">session管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSE"><span class="nav-number">1.11.5.</span> <span class="nav-text">SSE</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Walsh Su"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">Walsh Su</p>
+  <div class="site-description" itemprop="description">未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Walsh Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">123k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

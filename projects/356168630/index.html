@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.gif">
+  <link rel="mask-icon" href="/images/aaa.gif" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w2216.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="redis的三种集群方式redis有三种集群方式：主从复制，哨兵模式和集群。 from:  主从复制master-slave主从复制原理:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis的三种集群方式">
+<meta property="og:url" content="http://w2216.github.io/projects/356168630/index.html">
+<meta property="og:site_name" content="王站站">
+<meta property="og:description" content="redis的三种集群方式redis有三种集群方式：主从复制，哨兵模式和集群。 from:  主从复制master-slave主从复制原理:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-06T06:11:17.000Z">
+<meta property="article:modified_time" content="2021-06-27T05:02:17.212Z">
+<meta property="article:author" content="Walsh Su">
+<meta property="article:tag" content="boke,博客,php,linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://w2216.github.io/projects/356168630/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>redis的三种集群方式 | 王站站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王站站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w2216.github.io/projects/356168630/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="Walsh Su">
+      <meta itemprop="description" content="未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王站站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          redis的三种集群方式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-06 14:11:17" itemprop="dateCreated datePublished" datetime="2020-10-06T14:11:17+08:00">2020-10-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="redis的三种集群方式"><a href="#redis的三种集群方式" class="headerlink" title="redis的三种集群方式"></a>redis的三种集群方式</h1><p>redis有三种集群方式：主从复制，哨兵模式和集群。</p>
+<p>from: </p>
+<h2 id="主从复制master-slave"><a href="#主从复制master-slave" class="headerlink" title="主从复制master-slave"></a>主从复制master-slave</h2><h3 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理:"></a>主从复制原理:</h3><ul>
+<li>从服务器连接主服务器，发送SYNC命令； </li>
+<li>主服务器接收到SYNC命名后，开始执行BGSAVE命令生成RDB文件并使用缓冲区记录此后执行的所有写命令； </li>
+<li>主服务器BGSAVE执行完后，向所有从服务器发送快照文件，并在发送期间继续记录被执行的写命令； </li>
+<li>从服务器收到快照文件后丢弃所有旧数据，载入收到的快照； </li>
+<li>主服务器快照发送完毕后开始向从服务器发送缓冲区中的写命令； </li>
+<li>从服务器完成对快照的载入，开始接收命令请求，并执行来自主服务器缓冲区的写命令；（<strong>从服务器初始化完成</strong>）</li>
+<li>主服务器每执行一个写命令就会向从服务器发送相同的写命令，从服务器接收并执行收到的写命令（<strong>从服务器初始化完成后的操作</strong>）</li>
+</ul>
+<h3 id="主从复制优缺点"><a href="#主从复制优缺点" class="headerlink" title="主从复制优缺点:"></a>主从复制优缺点:</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点:"></a>优点:</h4><ul>
+<li>支持主从复制，主机会自动将数据同步到从机，可以进行读写分离</li>
+<li>为了分载Master的读操作压力，Slave服务器可以为客户端提供只读操作的服务，写服务仍然必须由Master来完成</li>
+<li>Slave同样可以接受其它Slaves的连接和同步请求，这样可以有效的分载Master的同步压力。</li>
+<li>Master Server是以非阻塞的方式为Slaves提供服务。所以在Master-Slave同步期间，客户端仍然可以提交查询或修改请求。</li>
+<li>Slave Server同样是以非阻塞的方式完成数据同步。在同步期间，如果有客户端提交查询请求，Redis则返回同步之前的数据</li>
+</ul>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><ul>
+<li><p>Redis不具备自动容错和恢复功能，主机从机的宕机都会导致前端部分读写请求失败，需要等待机器重启或者手动切换前端的IP才能恢复。</p>
+</li>
+<li><p>主机宕机，宕机前有部分数据未能及时同步到从机，切换IP后还会引入数据不一致的问题，降低了系统的可用性。</p>
+</li>
+<li><p>Redis较难支持在线扩容，在集群容量达到上限时在线扩容会变得很复杂。</p>
+</li>
+</ul>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><p>可以设置多个salve, 注意: slave不能set</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/redis</span><br><span class="line">mkdir m-s-model</span><br><span class="line">cd m-s-model</span><br><span class="line">cp ../etc/redis.conf ./master.conf</span><br><span class="line">cp ../etc/redis.conf ./slave.conf</span><br><span class="line">vim master.conf</span><br><span class="line">	port 6380</span><br><span class="line">vim slave.conf</span><br><span class="line">	port 6381</span><br><span class="line">	slaveof 127.0.0.1 6380</span><br><span class="line">redis-server ./master.conf</span><br><span class="line">redis-server ./slave.conf</span><br><span class="line">redis-cli -p 6380</span><br><span class="line">	info</span><br></pre></td></tr></table></figure>
+
+<h2 id="哨兵模式sentinel"><a href="#哨兵模式sentinel" class="headerlink" title="哨兵模式sentinel"></a>哨兵模式sentinel</h2><p>当主服务器中断服务后，可以将一个从服务器升级为主服务器，以便继续提供服务，但是这个过程需要人工手动来操作。 为此，Redis 2.8中提供了哨兵工具来实现自动化的系统监控和故障恢复功能。</p>
+<p>哨兵的作用就是监控Redis系统的运行状况。它的功能包括以下两个。</p>
+<p>  （1）监控主服务器和从服务器是否正常运行。<br>  （2）主服务器出现故障时自动将从服务器转换为主服务器。</p>
+<h3 id="哨兵的工作方式："><a href="#哨兵的工作方式：" class="headerlink" title="哨兵的工作方式："></a>哨兵的工作方式：</h3><ul>
+<li>每个Sentinel（哨兵）进程以每秒钟一次的频率向整个集群中的Master主服务器，Slave从服务器以及其他Sentinel（哨兵）进程发送一个 PING 命令。</li>
+<li>如果一个实例（instance）距离最后一次有效回复 PING 命令的时间超过 down-after-milliseconds 选项所指定的值， 则这个实例会被 Sentinel（哨兵）进程标记为主观下线（SDOWN）</li>
+<li>如果一个Master主服务器被标记为主观下线（SDOWN），则正在监视这个Master主服务器的所有 Sentinel（哨兵）进程要以每秒一次的频率确认Master主服务器的确进入了主观下线状态</li>
+<li>当有足够数量的 Sentinel（哨兵）进程（大于等于配置文件指定的值）在指定的时间范围内确认Master主服务器进入了主观下线状态（SDOWN）， 则Master主服务器会被标记为客观下线（ODOWN）</li>
+<li>在一般情况下， 每个 Sentinel（哨兵）进程会以每 10 秒一次的频率向集群中的所有Master主服务器、Slave从服务器发送 INFO 命令。</li>
+<li>当Master主服务器被 Sentinel（哨兵）进程标记为客观下线（ODOWN）时，Sentinel（哨兵）进程向下线的 Master主服务器的所有 Slave从服务器发送 INFO 命令的频率会从 10 秒一次改为每秒一次。</li>
+<li>若没有足够数量的 Sentinel（哨兵）进程同意 Master主服务器下线， Master主服务器的客观下线状态就会被移除。若 Master主服务器重新向 Sentinel（哨兵）进程发送 PING 命令返回有效回复，Master主服务器的主观下线状态就会被移除。</li>
+</ul>
+<h3 id="哨兵模式的优缺点"><a href="#哨兵模式的优缺点" class="headerlink" title="哨兵模式的优缺点"></a>哨兵模式的优缺点</h3><h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
+<li>哨兵模式是基于主从模式的，所有主从的优点，哨兵模式都具有。</li>
+<li>主从可以自动切换，系统更健壮，可用性更高。</li>
+</ul>
+<h4 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h4><ul>
+<li>Redis较难支持在线扩容，在集群容量达到上限时在线扩容会变得很复杂。</li>
+</ul>
+<h3 id="demo-1"><a href="#demo-1" class="headerlink" title="demo"></a>demo</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/redis</span><br><span class="line">mkdir sentinel-model</span><br><span class="line">cd sentinel-model</span><br><span class="line">cp ../etc/redis.conf ./redis01.conf</span><br><span class="line">cp ../etc/redis.conf ./redis02.conf</span><br><span class="line">cp ../etc/redis.conf ./redis03.conf</span><br><span class="line">cp ../etc/redis.conf ./redis04.conf</span><br><span class="line">cp ../etc/redis.conf ./sen01.conf</span><br><span class="line">cp ../etc/redis.conf ./sen02.conf</span><br><span class="line"></span><br><span class="line">vim redis01.conf</span><br><span class="line">	port 6382 </span><br><span class="line">vim redis02.conf</span><br><span class="line">	port 6383</span><br><span class="line">	slaveof 127.0.0.1 6382</span><br><span class="line">vim redis03.conf</span><br><span class="line">	port 6384</span><br><span class="line">	slaveof 127.0.0.1 6382</span><br><span class="line">vim redis04.conf</span><br><span class="line">	port 6385</span><br><span class="line">	slaveof 127.0.0.1 6382</span><br><span class="line">vim sent01.conf</span><br><span class="line">	daemonize yes</span><br><span class="line">	port 26379</span><br><span class="line">	sentinel  monitor mymaster 127.0.0.1 6382 1 #后面的数字 1 表示选举主节点的时候，投票数。1表示有一个sentinel同意即可升级为master</span><br><span class="line">vim sent02.conf</span><br><span class="line">	daemonize yes</span><br><span class="line">	port 26380</span><br><span class="line">	sentinel monitor mymaster 127.0.0.1 6382 1</span><br><span class="line">../src/redis-server ./redis01.conf</span><br><span class="line">../src/redis-server ./redis02.conf</span><br><span class="line">../src/redis-server ./redis03.conf</span><br><span class="line">../src/redis-server ./redis04.conf</span><br><span class="line">../src/redis-sentinel ./sen01.conf</span><br><span class="line">../src/redis-sentinel ./sen02.conf</span><br><span class="line">info</span><br><span class="line">kill 掉主进程</span><br><span class="line">info (查看master是否切换)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Redis-Cluster集群"><a href="#Redis-Cluster集群" class="headerlink" title="Redis-Cluster集群"></a>Redis-Cluster集群</h2><p>redis的哨兵模式基本已经可以实现高可用，读写分离 ，但是在这种模式下每台redis服务器都存储相同的数据，很浪费内存，所以在redis3.0上加入了cluster模式，实现的redis的分布式存储，也就是说每台redis节点上存储不同的内容。</p>
+<p> Redis-Cluster采用无中心结构,它的特点如下：</p>
+<ul>
+<li>所有的redis节点彼此互联(PING-PONG机制),内部使用二进制协议优化传输速度和带宽。</li>
+<li>节点的fail是通过集群中超过半数的节点检测失效时才生效。</li>
+<li>客户端与redis节点直连,不需要中间代理层.客户端不需要连接集群所有节点,连接集群中任何一个可用节点即可。</li>
+</ul>
+<h3 id="工作方式："><a href="#工作方式：" class="headerlink" title="工作方式："></a>工作方式：</h3><p>在redis的每一个节点上，都有这么两个东西，一个是插槽（slot），它的的取值范围是：0-16383。还有一个就是cluster，可以理解为是一个集群管理的插件。当我们的存取的key到达的时候，redis会根据crc16的算法得出一个结果，然后把结果对 16384 求余数，这样每个 key 都会对应一个编号在 0-16383 之间的哈希槽，通过这个值，去找到对应的插槽所对应的节点，然后直接自动跳转到这个对应的节点上进行存取操作。</p>
+<p>为了保证高可用，redis-cluster集群引入了主从模式，一个主节点对应一个或者多个从节点，当主节点宕机的时候，就会启用从节点。当其它主节点ping一个主节点A时，如果半数以上的主节点与A通信超时，那么认为主节点A宕机了。如果主节点A和它的从节点A1都宕机了，那么该集群就无法再提供服务了。</p>
+<h3 id="demo-2"><a href="#demo-2" class="headerlink" title="demo"></a>demo</h3><p>参考: <a target="_blank" rel="noopener" href="https://redis.io/topics/cluster-tutorial">https://redis.io/topics/cluster-tutorial</a></p>
+<h4 id="小呆毛"><a href="#小呆毛" class="headerlink" title="小呆毛"></a>小呆毛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/redis</span><br><span class="line">mkdir redis-cluster</span><br><span class="line">cd redis-cluster/</span><br><span class="line">mkdir redis01</span><br><span class="line">mkdir redis02</span><br><span class="line">mkdir redis03</span><br><span class="line">mkdir redis04</span><br><span class="line">mkdir redis05</span><br><span class="line">mkdir redis06</span><br><span class="line">cp /etc/redis/6379.conf redis01/master.conf</span><br><span class="line">cp /etc/redis/6379.conf redis03/master.conf</span><br><span class="line">cp /etc/redis/6379.conf redis05/master.conf</span><br><span class="line">cp /etc/redis/6379.conf redis02/slave.conf</span><br><span class="line">cp /etc/redis/6379.conf redis04/slave.conf</span><br><span class="line">cp /etc/redis/6379.conf redis06/slave.conf</span><br><span class="line">vim redis01/master.conf</span><br><span class="line">	port 6386</span><br><span class="line">	cluster-enabled yes</span><br><span class="line">	cluster-config-file nodes.conf</span><br><span class="line">	cluster-node-timeout 15000</span><br><span class="line">(其他5个目录参照上面修改, port要不同哦)</span><br><span class="line">vim start.sh</span><br><span class="line">	#!/bin/sh</span><br><span class="line">    cd redis01</span><br><span class="line">    ../../bin/redis-server ./master.conf</span><br><span class="line">    cd ../redis03</span><br><span class="line">    ../../bin/redis-server ./master.conf</span><br><span class="line">    cd ../redis05</span><br><span class="line">    ../../bin/redis-server ./master.conf</span><br><span class="line">    cd ../redis02</span><br><span class="line">    ../../bin/redis-server ./slave.conf</span><br><span class="line">    cd ../redis04</span><br><span class="line">    ../../bin/redis-server ./slave.conf</span><br><span class="line">    cd ../redis06</span><br><span class="line">    ../../bin/redis-server ./slave.conf</span><br><span class="line">    cd ../</span><br><span class="line">ps -ef|grep redis (查看是否正常启动)</span><br><span class="line">../bin/redis-cli --cluster create 127.0.0.1:6386 127.0.0.1:6388 127.0.0.1:6390 127.0.0.1:6387 127.0.0.1:6389 127.0.0.1:6391 --cluster-replicas 1</span><br><span class="line">../bin/redis-cli -p  6386 -c</span><br><span class="line">	-&gt;CLUSTER nodes</span><br><span class="line">    (set get 不同会自动切换不同master节点)</span><br></pre></td></tr></table></figure>
+
+<h4 id="一些骚操作"><a href="#一些骚操作" class="headerlink" title="一些骚操作"></a>一些骚操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">添加/删除节点</span><br><span class="line">cp -r redis06/ redis07/</span><br><span class="line">vim redis07/slave.conf</span><br><span class="line">	(改port 6392)</span><br><span class="line">三种方式添加节点</span><br><span class="line">../bin/redis-cli --cluster add-node 127.0.0.1:6392 127.0.0.1 6386 // 添加的为主节点, 但是没有分配插槽(slots),需要手动分配</span><br><span class="line">../bin/redis-cli --cluster add-node 127.0.0.1:6392 127.0.0.1 6388 --cluster-slave</span><br><span class="line">../bin/redis-cli --cluster add-node 127.0.0.1:6392 127.0.0.1 6388 --cluster-slave --cluster-master-id 70fd5e1b24aa154e54ef8165ebdc27e879dbafa1</span><br><span class="line">删除节点(删除slave节点或无数据的master节点)</span><br><span class="line">../bin/redis-cli --cluster del-node 127.0.0.1:6386 &#x27;d5290030565a902cc986add97761fe548cbe850d&#x27;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/projects/251151276/" rel="prev" title="x96max+ armbian frp内网穿透 linux">
+      <i class="fa fa-chevron-left"></i> x96max+ armbian frp内网穿透 linux
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/projects/3980074042/" rel="next" title="Redis常用命令">
+      Redis常用命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis%E7%9A%84%E4%B8%89%E7%A7%8D%E9%9B%86%E7%BE%A4%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">redis的三种集群方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6master-slave"><span class="nav-number">1.1.</span> <span class="nav-text">主从复制master-slave</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">主从复制原理:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">主从复制优缺点:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">优点:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-number">1.1.3.</span> <span class="nav-text">demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8Fsentinel"><span class="nav-number">1.2.</span> <span class="nav-text">哨兵模式sentinel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">哨兵的工作方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">哨兵模式的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-Cluster%E9%9B%86%E7%BE%A4"><span class="nav-number">1.3.</span> <span class="nav-text">Redis-Cluster集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">工作方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">demo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E5%91%86%E6%AF%9B"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">小呆毛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%AA%9A%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">一些骚操作</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Walsh Su"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">Walsh Su</p>
+  <div class="site-description" itemprop="description">未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Walsh Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">123k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

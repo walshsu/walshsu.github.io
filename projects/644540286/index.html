@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.gif">
+  <link rel="mask-icon" href="/images/aaa.gif" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w2216.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 快速开发1.1 安装composer一键安装composer create-project phalapi&#x2F;phalapi 手动下载安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="phalapi框架学习笔记">
+<meta property="og:url" content="http://w2216.github.io/projects/644540286/index.html">
+<meta property="og:site_name" content="王站站">
+<meta property="og:description" content="1 快速开发1.1 安装composer一键安装composer create-project phalapi&#x2F;phalapi 手动下载安装">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-19T12:56:53.000Z">
+<meta property="article:modified_time" content="2021-06-27T05:02:17.228Z">
+<meta property="article:author" content="Walsh Su">
+<meta property="article:tag" content="boke,博客,php,linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://w2216.github.io/projects/644540286/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>phalapi框架学习笔记 | 王站站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王站站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w2216.github.io/projects/644540286/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="Walsh Su">
+      <meta itemprop="description" content="未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王站站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          phalapi框架学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-19 20:56:53" itemprop="dateCreated datePublished" datetime="2021-03-19T20:56:53+08:00">2021-03-19</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>14 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-快速开发"><a href="#1-快速开发" class="headerlink" title="1 快速开发"></a>1 快速开发</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><h3 id="composer一键安装"><a href="#composer一键安装" class="headerlink" title="composer一键安装"></a>composer一键安装</h3><p><code>composer create-project phalapi/phalapi</code></p>
+<h3 id="手动下载安装"><a href="#手动下载安装" class="headerlink" title="手动下载安装"></a>手动下载安装</h3><p>下载 <a target="_blank" rel="noopener" href="https://github.com/phalapi/phalapi/tree/master-2x">phalapi</a> 项目<strong>master-2x分支</strong></p>
+<p><code>composer update</code></p>
+<h3 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">index</span> index.php;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 开启URI路由匹配</span></span><br><span class="line">    <span class="comment"># location / &#123;</span></span><br><span class="line">    <span class="comment">#       try_files $uri $uri/ /?$args;</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">    <span class="comment"># if (!-e $request_filename) &#123;</span></span><br><span class="line">    <span class="comment">#        rewrite ^/(.*)$ /index.php last;</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-运行Hello-world"><a href="#1-2-运行Hello-world" class="headerlink" title="1.2 运行Hello world"></a>1.2 运行Hello world</h2><p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/hello-world">点击此处</a></p>
+<h2 id="1-3-如何请求接口服务"><a href="#1-3-如何请求接口服务" class="headerlink" title="1.3 如何请求接口服务"></a>1.3 如何请求接口服务</h2><p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/how-to-request?id=%e5%bc%80%e5%90%afuri%e8%b7%af%e7%94%b1%e5%8c%b9%e9%85%8d">开启url匹配</a></p>
+<p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/how-to-request?id=%E6%89%A9%E5%B1%95%EF%BC%9A%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%E6%8E%A5%E5%8F%A3%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%EF%BC%9F">扩展：如何定制接口服务的传递方式？</a></p>
+<h2 id="1-4-接口响应与在线调试"><a href="#1-4-接口响应与在线调试" class="headerlink" title="1.4 接口响应与在线调试"></a>1.4 接口响应与在线调试</h2><h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>在<code>./config/di.php</code>后面的位置添加</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 允许跨域</span></span><br><span class="line"><span class="variable">$response</span> = \PhalApi\DI()-&gt;response;</span><br><span class="line"><span class="variable">$response</span>-&gt;addHeaders(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="string">&#x27;*&#x27;</span>); <span class="comment">// *代表允许任何网址请求</span></span><br><span class="line"><span class="comment">// $response-&gt;addHeaders(&#x27;Access-Control-Allow-Origin&#x27;, &#x27;www.phalapi.net&#x27;); // 推荐指定网站</span></span><br><span class="line"><span class="variable">$response</span>-&gt;addHeaders(<span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>, <span class="string">&#x27;POST,GET,OPTIONS,DELETE&#x27;</span>); <span class="comment">// 允许请求的类型</span></span><br><span class="line"><span class="variable">$response</span>-&gt;addHeaders(<span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span>, <span class="string">&#x27;true&#x27;</span>); <span class="comment">// 设置是否允许发送 cookies</span></span><br><span class="line"><span class="variable">$response</span>-&gt;addHeaders(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;Content-Type,Content-Length,Accept-Encoding,X-Requested-with, Origin&#x27;</span>); <span class="comment">// 设置允许自定义请求头的字段</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="在线调试"><a href="#在线调试" class="headerlink" title="在线调试"></a>在线调试</h3><ul>
+<li><strong>单次请求开启调试</strong>：默认添加请求参数<code>&amp;__debug__=1</code></li>
+<li><strong>全部请求开启调试</strong>：把配置文件<code>./config/sys.php</code>文件中的配置改成<code>&#39;debug&#39; =&gt; true,</code></li>
+</ul>
+<h3 id="自定义埋点"><a href="#自定义埋点" class="headerlink" title="自定义埋点"></a>自定义埋点</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加纪录埋点，并指定节点标识</span></span><br><span class="line">PhalApi\DI()-&gt;tracer-&gt;mark(<span class="string">&#x27;DO_SOMETHING&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义调试信息"><a href="#自定义调试信息" class="headerlink" title="自定义调试信息"></a>自定义调试信息</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$x</span> = <span class="string">&#x27;this is x&#x27;</span>;</span><br><span class="line"><span class="variable">$y</span> = <span class="keyword">array</span>(<span class="string">&#x27;this is y&#x27;</span>);</span><br><span class="line">\PhalApi\DI()-&gt;response-&gt;setDebug(<span class="string">&#x27;XXX_x&#x27;</span>, <span class="variable">$x</span>); <span class="comment">// XXX扩展</span></span><br><span class="line">\PhalApi\DI()-&gt;response-&gt;setDebug(<span class="string">&#x27;XXX_y&#x27;</span>, <span class="variable">$y</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-Api接口层"><a href="#1-5-Api接口层" class="headerlink" title="1.5 Api接口层"></a>1.5 Api接口层</h2><h3 id="异常抛出"><a href="#异常抛出" class="headerlink" title="异常抛出"></a>异常抛出</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Common</span>\<span class="title">AppException</span>;</span><br><span class="line">......</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> AppException(<span class="string">&#x27;提示消息&#x27;</span>, <span class="number">1000</span>);</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h3 id="手动指定ret状态码"><a href="#手动指定ret状态码" class="headerlink" title="手动指定ret状态码"></a>手动指定ret状态码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手动设置ret为1000</span></span><br><span class="line"><span class="comment">// ret=200时表示正常返回，ret=4xx表示额端非法请求，ret=500表示服务器内部错误，手动设置时应设置成其他整数范围，避免语义冲突</span></span><br><span class="line">\PhalApi\DI()-&gt;response-&gt;setRet(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手动设置提示消息</span></span><br><span class="line">\PhalApi\DI()-&gt;response-&gt;setMsg(<span class="string">&#x27;手动设置提示消息&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/phalapi/kernal/blob/master/src/Api.php">PhalApi\Api::getRules()</a>，获取参数设置的规则，可由开发人员根据需要重载</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/phalapi/kernal/blob/master/src/Api.php">PhalApi\Api::userCheck()</a>，用户身份验证，可由开发人员根据需要重载，此通用操作一般可以使用委托或者放置在应用接口基类</li>
+</ul>
+<h2 id="1-6-DataApi通用数据接口"><a href="#1-6-DataApi通用数据接口" class="headerlink" title="1.6 DataApi通用数据接口"></a>1.6 DataApi通用数据接口</h2><h3 id="DataApi有哪些接口？"><a href="#DataApi有哪些接口？" class="headerlink" title="DataApi有哪些接口？"></a>DataApi有哪些接口？</h3><p><code>PhalApi\Api\DataApi</code>目前有5个数据接口（后面会进一步扩展）：</p>
+<ul>
+<li>创建新数据，<code>&#123;命名空间&#125;.&#123;接口类名&#125;.CreateData</code></li>
+<li>批量删除，<code>&#123;命名空间&#125;.&#123;接口类名&#125;.DeleteDataIDs</code></li>
+<li>获取一条数据，<code>&#123;命名空间&#125;.&#123;接口类名&#125;.GetData</code></li>
+<li>获取表格列表数据，<code>&#123;命名空间&#125;.&#123;接口类名&#125;.TableList</code></li>
+<li>更新数据，<code>&#123;命名空间&#125;.&#123;接口类名&#125;.UpdateData</code></li>
+</ul>
+<h3 id="如何屏蔽不需要的接口？"><a href="#如何屏蔽不需要的接口？" class="headerlink" title="如何屏蔽不需要的接口？"></a>如何屏蔽不需要的接口？</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ignore</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> \PhalApi\<span class="built_in">Exception</span>\BadRequestException(<span class="string">&#x27;此接口已关闭&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何修改接口文档？"><a href="#如何修改接口文档？" class="headerlink" title="如何修改接口文档？"></a>如何修改接口文档？</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发布一篇新的博客文章</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@desc</span> 进行博客文章的发布，发布后内容进入待审状态</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> int id 新博客文章的ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parent</span>::createData();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-7-Domain领域业务层与ADM模式"><a href="#1-7-Domain领域业务层与ADM模式" class="headerlink" title="1.7 Domain领域业务层与ADM模式"></a>1.7 Domain领域业务层与ADM模式</h2><h3 id="ADM调用关系"><a href="#ADM调用关系" class="headerlink" title="ADM调用关系"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/domain?id=adm%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB">ADM调用关系</a></h3><p>需要注意不能<strong>越层调用</strong>也不能<strong>逆向调用</strong>，即不能Api调用Model。而应该是<strong>上层调用下层，或者同层级调用</strong>，也就是说，我们应该：</p>
+<ul>
+<li>Api层调用Domain层</li>
+<li>Domain层调用Domain层</li>
+<li>Domain层调用Model层</li>
+<li>Model层调用Model层</li>
+</ul>
+<h2 id="1-8-Model数据模型层与数据库操作"><a href="#1-8-Model数据模型层与数据库操作" class="headerlink" title="1.8 Model数据模型层与数据库操作"></a>1.8 Model数据模型层与数据库操作</h2><h3 id="一个简单的Model例子"><a href="#一个简单的Model例子" class="headerlink" title="一个简单的Model例子"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/model?id=%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84model%E4%BE%8B%E5%AD%90">一个简单的Model例子</a></h3><h2 id="1-9-DataModel数据模型"><a href="#1-9-DataModel数据模型" class="headerlink" title="1.9 DataModel数据模型"></a>1.9 DataModel数据模型</h2><h3 id="简单：4个CURD基本操作"><a href="#简单：4个CURD基本操作" class="headerlink" title="简单：4个CURD基本操作"></a>简单：4个CURD基本操作</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$model</span> = <span class="keyword">new</span> App\Model\User();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询</span></span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$model</span>-&gt;get(<span class="number">1</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$model</span>-&gt;get(<span class="number">1</span>, <span class="string">&#x27;id, name&#x27;</span>); <span class="comment">//取指定的字段</span></span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$model</span>-&gt;get(<span class="number">1</span>, <span class="keyword">array</span>(<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;name&#x27;</span>)); <span class="comment">//可以数组取指定要获取的字段</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新</span></span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;update_time&#x27;</span> =&gt; time());</span><br><span class="line"><span class="variable">$model</span>-&gt;update(<span class="number">1</span>, <span class="variable">$data</span>); <span class="comment">//基于主键的快速更新</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入</span></span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;phalapi&#x27;</span>);</span><br><span class="line"><span class="variable">$id</span> = <span class="variable">$model</span>-&gt;insert(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">//$id = $model-&gt;insert($data, 5); //如果是分表，可以通过第二个参数指定分表的参考ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="variable">$model</span>-&gt;delete(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="总数"><a href="#总数" class="headerlink" title="总数"></a>总数</h3><p>接口：<code>PhalApi\Model\DataModel::count($where = NULL, $countBy = &#39;*&#39;)</code></p>
+<h3 id="最小值"><a href="#最小值" class="headerlink" title="最小值"></a>最小值</h3><p>接口：<code>PhalApi\Model\DataModel::min($where, $minBy)</code></p>
+<h3 id="最大值"><a href="#最大值" class="headerlink" title="最大值"></a>最大值</h3><p>接口：<code>PhalApi\Model\DataModel::max($where, $maxBy)</code></p>
+<h3 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h3><p>接口：<code>PhalApi\Model\DataModel::sum($where, $sumBy)</code></p>
+<h3 id="获取字段值"><a href="#获取字段值" class="headerlink" title="获取字段值"></a>获取字段值</h3><p>接口：<code>PhalApi\Model\DataModel::getValueBy($field, $value, $selectFiled, $default = FALSE)</code></p>
+<h3 id="获取字段值（多个）"><a href="#获取字段值（多个）" class="headerlink" title="获取字段值（多个）"></a>获取字段值（多个）</h3><p>接口：<code>PhalApi\Model\DataModel::getValueMoreBy($field, $value, $selectFiled, $limit = 0, $isDistinct = FALSE)</code></p>
+<h3 id="获取一条纪录"><a href="#获取一条纪录" class="headerlink" title="获取一条纪录"></a>获取一条纪录</h3><p>接口：<code>PhalApi\Model\DataModel::getDataBy($field, $value, $select = &#39;*&#39;, $default = FALSE)</code></p>
+<h3 id="获取多条纪录"><a href="#获取多条纪录" class="headerlink" title="获取多条纪录"></a>获取多条纪录</h3><p>接口：<code>PhalApi\Model\DataModel::getDataMoreBy($field, $value, $limit = 0, $select = &#39;*&#39;)</code></p>
+<p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-datamodel?id=%e8%8e%b7%e5%8f%96%e5%a4%9a%e6%9d%a1%e7%ba%aa%e5%bd%95">点击查看更多</a></p>
+<h3 id="执行SQL查询语句"><a href="#执行SQL查询语句" class="headerlink" title="执行SQL查询语句"></a>执行SQL查询语句</h3><p>接口：<code>PhalApi\Model\DataModel::queryAll($sql, $parmas = array())</code></p>
+<h3 id="执行SQL变更语句"><a href="#执行SQL变更语句" class="headerlink" title="执行SQL变更语句"></a>执行SQL变更语句</h3><p>接口：<code>PhalApi\Model\DataModel::executeSql($sql, $params = array())</code></p>
+<h3 id="第三种获取NotORM的方式"><a href="#第三种获取NotORM的方式" class="headerlink" title="第三种获取NotORM的方式"></a>第三种获取NotORM的方式</h3><ul>
+<li>全局获取方式，通过<code>\PhalApi\DI()-&gt;notorm-&gt;表名</code>方式获取，可以用于任何地方。<ul>
+<li>局部获取方式，通过在继承<code>PhalApi\Model\NotORMModel</code>的子类中使用<code>$this-&gt;getORM()</code>获取当前<code>Model</code>对应的<code>NotORM</code>，仅限用于<code>Model</code>子类内部。</li>
+</ul>
+</li>
+<li>使用<code>PhalApi\Model\DataModel::notorm()</code>静态方法获取。</li>
+</ul>
+<h3 id="DataModel与NotORMModel的区别"><a href="#DataModel与NotORMModel的区别" class="headerlink" title="DataModel与NotORMModel的区别"></a>DataModel与NotORMModel的区别</h3><p>DataModel是比NotORMModel更新推出的数据基类，比NotORMModel功能更强大，并且开发使用更友好。推荐从PhalApi 2.12.0 及以上版本改用DataModel。</p>
+<p>使用DataModel前后的继承关系对比<a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-datamodel?id=datamodel%e4%b8%8enotormmodel%e7%9a%84%e5%8c%ba%e5%88%ab">如下</a>：</p>
+<h2 id="1-10-单元测试"><a href="#1-10-单元测试" class="headerlink" title="1.10 单元测试"></a>1.10 单元测试</h2><h3 id="PHPUnit"><a href="#PHPUnit" class="headerlink" title="PHPUnit"></a>PHPUnit</h3><p>PHPUnit官网：<a target="_blank" rel="noopener" href="https://phpunit.de/">https://phpunit.de</a>，如需进行单元测试，请先安装PHPUnit。</p>
+<p>拓展: phpstorm使用单元测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">composer require phpunit/phpunit</span><br><span class="line">Run-&gt;......</span><br><span class="line">(后续我会单独做单元测试的笔记!!!)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-11-自动加载和PSR-4"><a href="#1-11-自动加载和PSR-4" class="headerlink" title="1.11 自动加载和PSR-4"></a>1.11 自动加载和PSR-4</h2><h3 id="如何增加一个顶级的命名空间"><a href="#如何增加一个顶级的命名空间" class="headerlink" title="如何增加一个顶级的命名空间?"></a>如何增加一个顶级的命名空间?</h3><p>注册顶级命名空间需要在<code>composer.json</code>的<code>autoload</code>里注册, 如:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;autoload&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;psr-4&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;App\\&quot;</span>: <span class="string">&quot;src/app&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Foo\\&quot;</span>: <span class="string">&quot;src/foo&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">更新</span><br><span class="line">composer update</span><br><span class="line">或(只更新命名空间的映射关系)</span><br><span class="line">composer dumpautoload</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加全局函数"><a href="#添加全局函数" class="headerlink" title="添加全局函数"></a>添加全局函数</h3><p>放置到<code>./src/app/functions.php</code>文件内, 如:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Hey, man~&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo \App\hello();</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-12-接口文档"><a href="#1-12-接口文档" class="headerlink" title="1.12 接口文档"></a>1.12 接口文档</h2><h3 id="在线接口文档"><a href="#在线接口文档" class="headerlink" title="在线接口文档"></a>在线接口文档</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://dev.phalapi.net/docs.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>接口服务名称通常为接口类成员函数的第一行注释</p>
+<p>接口说明对应接口类成员函数的<code>@desc</code>注释，支持HTML格式</p>
+<p><code>@method POST</code>指定了当前接口，只允许POST请求</p>
+<p>接口参数在当前接口类<code>getRules()</code>方法中的返回</p>
+<p>如:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> <span class="keyword">extends</span> <span class="title">Api</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 默认接口服务</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@desc</span> 默认接口服务，当未指定接口服务时执行此接口服务</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string title 标题</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string content 内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string version 版本，格式：X.X.X</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> int time 当前时间戳</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐藏接口"><a href="#隐藏接口" class="headerlink" title="隐藏接口"></a>隐藏接口</h3><p>类注释添加<code>@ignore</code></p>
+<h3 id="生成离线文档"><a href="#生成离线文档" class="headerlink" title="生成离线文档"></a>生成离线文档</h3><p><code>php ./public/docs.php</code></p>
+<h2 id="1-13-初始化"><a href="#1-13-初始化" class="headerlink" title="1.13 初始化"></a>1.13 初始化</h2><h3 id="框架初始化"><a href="#框架初始化" class="headerlink" title="框架初始化"></a>框架初始化</h3><p>public/init.php</p>
+<h1 id="2-数据库"><a href="#2-数据库" class="headerlink" title="2 数据库"></a>2 数据库</h1><h2 id="2-1-数据库连接"><a href="#2-1-数据库连接" class="headerlink" title="2.1 数据库连接"></a>2.1 数据库连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MySQL (PDO)</span><br><span class="line">MS SQL Server (PDO)</span><br><span class="line">PostgreSQL (PDO)</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库基本配置"><a href="#数据库基本配置" class="headerlink" title="数据库基本配置"></a>数据库基本配置</h3><p><code>./config/dbs.php</code></p>
+<p>主要有两部分配置：<code>servers</code>和<code>tables</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">servers，针对数据库的配置，可以配置多个数据库</span><br><span class="line">tables，针对表的配置，支持配置分表（不需要分表可不配置分表）</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何排查数据库连接错误"><a href="#如何排查数据库连接错误" class="headerlink" title="如何排查数据库连接错误?"></a>如何排查数据库连接错误?</h3><p><code>?__debug__=1</code></p>
+<h3 id="如何断开数据库连接"><a href="#如何断开数据库连接" class="headerlink" title="如何断开数据库连接?"></a>如何断开数据库连接?</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\PhalApi\DI()-&gt;notorm-&gt;disconnect();</span><br></pre></td></tr></table></figure>
+
+<p>在./public/index.php文件最后进行手动断开</p>
+<h2 id="2-2-数据库于NotORM"><a href="#2-2-数据库于NotORM" class="headerlink" title="2.2 数据库于NotORM"></a>2.2 数据库于NotORM</h2><p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-notorm?id=phalapi%E7%9A%84model%E5%92%8Cnotorm%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84">PhalApi的Model和NotORM整体架构</a></p>
+<p>当我们需要操作数据库时，主要分为三个步骤：连接数据库、实现数据库表操作、调用。</p>
+<h3 id="如何指定表名"><a href="#如何指定表名" class="headerlink" title="如何指定表名?"></a>如何指定表名?</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">PhalApi</span>\<span class="title">Model</span>\<span class="title">NotORMModel</span> <span class="title">as</span> <span class="title">NotORM</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">NotORM</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">getTableName</span>(<span class="params"><span class="variable">$id</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;my_user&#x27;</span>;  <span class="comment">// 手动设置表名为 my_user</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4个CURD基本操作"><a href="#4个CURD基本操作" class="headerlink" title="4个CURD基本操作"></a>4个CURD基本操作</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$model</span> = <span class="keyword">new</span> App\Model\User();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询</span></span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$model</span>-&gt;get(<span class="number">1</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$model</span>-&gt;get(<span class="number">1</span>, <span class="string">&#x27;id, name&#x27;</span>); <span class="comment">//取指定的字段</span></span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$model</span>-&gt;get(<span class="number">1</span>, <span class="keyword">array</span>(<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;name&#x27;</span>)); <span class="comment">//可以数组取指定要获取的字段</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新</span></span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;update_time&#x27;</span> =&gt; time());</span><br><span class="line"><span class="variable">$model</span>-&gt;update(<span class="number">1</span>, <span class="variable">$data</span>); <span class="comment">//基于主键的快速更新</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入</span></span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;phalapi&#x27;</span>);</span><br><span class="line"><span class="variable">$id</span> = <span class="variable">$model</span>-&gt;insert(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">//$id = $model-&gt;insert($data, 5); //如果是分表，可以通过第二个参数指定分表的参考ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="variable">$model</span>-&gt;delete(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="附录：PhalApi对NotORM的优化"><a href="#附录：PhalApi对NotORM的优化" class="headerlink" title="附录：PhalApi对NotORM的优化"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-notorm?id=%E9%99%84%E5%BD%95%EF%BC%9Aphalapi%E5%AF%B9notorm%E7%9A%84%E4%BC%98%E5%8C%96">附录：PhalApi对NotORM的优化</a></h3><p>如果了解NotORM的使用，自然而然对PhalApi中的数据库操作也就一目了然了。但为了更符合接口类项目的开发，PhalApi对NotORM的底层进行优化和调整。以下改动点包括但不限于：</p>
+<ul>
+<li>将原来返回的结果全部从对象类型改成数组类型，便于数据流通</li>
+<li>添加查询多条纪录的接口：<code>NotORM_Result::fetchAll()</code>和<code>NotORM_Result::fetchRows()</code></li>
+<li>添加支持原生SQL语句查询的接口：<code>NotORM_Result::queryAll()</code>和<code>NotORM_Result::queryRows()</code></li>
+<li>limit 操作的调整，取消原来OFFSET关键字的使用</li>
+<li>当数据库操作失败时，抛出PDOException异常</li>
+<li>将结果集中以主键作为下标改为以顺序索引作为下标</li>
+<li>禁止全表删除，防止误删</li>
+<li>调整调试模式</li>
+</ul>
+<h2 id="2-3-数据库使用和查询"><a href="#2-3-数据库使用和查询" class="headerlink" title="2.3 数据库使用和查询"></a>2.3 数据库使用和查询</h2><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Step 1: 开启事务</span></span><br><span class="line">\PhalApi\DI()-&gt;notorm-&gt;beginTransaction(<span class="string">&#x27;db_master&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Step 2: 数据库操作</span></span><br><span class="line">\PhalApi\DI()-&gt;notorm-&gt;user-&gt;insert(<span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;test1&#x27;</span>));</span><br><span class="line">\PhalApi\DI()-&gt;notorm-&gt;user-&gt;insert(<span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;test2&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Step 3: 提交事务/回滚</span></span><br><span class="line">\PhalApi\DI()-&gt;notorm-&gt;commit(<span class="string">&#x27;db_master&#x27;</span>);</span><br><span class="line"><span class="comment">//\PhalApi\DI()-&gt;notorm-&gt;rollback(&#x27;db_master&#x27;);</span></span><br></pre></td></tr></table></figure>
+
+<p>在Model子类内，可以：</p>
+<ul>
+<li>开启事务：<code>$this-&gt;getORM()-&gt;transaction(&#39;BEGIN&#39;)</code>;</li>
+<li>提交事务：<code>$this-&gt;getORM()-&gt;transaction(&#39;COMMIT&#39;)</code>;</li>
+<li>回滚事务：<code>$this-&gt;getORM()-&gt;transaction(&#39;ROLLBACK&#39;)</code>;</li>
+</ul>
+<p>可以使用更底层更通用的接口，即：<code>\NotORM_Result::query($query, $parameters)</code>。</p>
+<p>如，删除一张表</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DROP TABLE tbl_user</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;getORM()-&gt;query(<span class="string">&#x27;DROP TABLE tbl_user&#x27;</span>, <span class="keyword">array</span>());</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-数据库分库分表策略"><a href="#2-4-数据库分库分表策略" class="headerlink" title="2.4 数据库分库分表策略"></a>2.4 <a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-multi?id=%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%AD%96%E7%95%A5">数据库分库分表策略</a></h2><h2 id="2-5-连接多个数据库"><a href="#2-5-连接多个数据库" class="headerlink" title="2.5 连接多个数据库"></a>2.5 <a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-other?id=%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93">连接多个数据库</a></h2><h2 id="2-6-打印和保存SQL语句"><a href="#2-6-打印和保存SQL语句" class="headerlink" title="2.6 打印和保存SQL语句"></a>2.6 <a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/database-sql-debug?id=%E6%89%93%E5%8D%B0%E5%92%8C%E4%BF%9D%E5%AD%98sql%E8%AF%AD%E5%8F%A5">打印和保存SQL语句</a></h2><ul>
+<li>sys.debug：是否开启接口调试模式，开启后在客户端可以直接看到更多调试信息</li>
+<li>sys.notorm_debug，是否开启NotORM调试模式，开启后仅针对NotORM服务开启调试模式</li>
+<li>sys.enable_sql_log，是否纪录SQL到日志，需要同时开启notorm_debug方可写入日志</li>
+</ul>
+<h1 id="3-高级专题"><a href="#3-高级专题" class="headerlink" title="3 高级专题"></a>3 高级专题</h1><h2 id="3-1-接口参数"><a href="#3-1-接口参数" class="headerlink" title="3.1 接口参数"></a>3.1 接口参数</h2><h3 id="参数规则格式"><a href="#参数规则格式" class="headerlink" title="参数规则格式"></a>参数规则格式</h3><p>参数规则是针对各个接口服务而配置的多维规则数组，由接口类的<code>getRules()</code>方法返回。其中，</p>
+<ul>
+<li>一维下标是接口类的方法名，对应接口服务的<code>Action</code>；</li>
+<li>二维下标是类属性名称，对应在服务端获取通过验证和转换化的最终客户端参数；</li>
+<li>三维下标<code>name</code>是接口参数名称，对应外部客户端请求时需要提供的参数名称。</li>
+</ul>
+<h3 id="三级参数规则配置"><a href="#三级参数规则配置" class="headerlink" title="三级参数规则配置"></a>三级参数规则配置</h3><p>参数规则主要有三种，分别是：系统参数规则、应用参数规则、接口参数规则。</p>
+<h3 id="多个参数规则优先级"><a href="#多个参数规则优先级" class="headerlink" title="多个参数规则优先级"></a>多个参数规则优先级</h3><p>简而言之，多个参数规则的优先级从高到下，分别是（正如你想到的那样）：</p>
+<ul>
+<li>1、指定接口参数规则</li>
+<li>2、通用接口参数规则</li>
+<li>3、应用参数规则</li>
+<li>4、系统参数规则</li>
+</ul>
+<p>对于重叠的接口参数，若指定接口不需要某个接口参数，可以通过将参数规则配置置为NULL或FALSE，从而取消此参数。例如取消sign全局参数；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;sign&#x27; =&gt; NULL,</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数规则配置详细说明"><a href="#参数规则配置详细说明" class="headerlink" title="参数规则配置详细说明"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/api-params?id=%E5%8F%82%E6%95%B0%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E">参数规则配置详细说明</a></h3><p>主要的类型有：字符串、整数、浮点数、布尔值、时间戳/日期、数组、枚举类型、文件上传和回调函数</p>
+<h2 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2 配置"></a>3.2 配置</h2><h3 id="配置文件简单读取"><a href="#配置文件简单读取" class="headerlink" title="配置文件简单读取"></a>配置文件简单读取</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置</span></span><br><span class="line"><span class="variable">$di</span>-&gt;config = <span class="keyword">new</span> FileConfig(API_ROOT . <span class="string">&#x27;/config&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.php里面的全部配置</span></span><br><span class="line">\PhalApi\DI()-&gt;config-&gt;get(<span class="string">&#x27;app&#x27;</span>);<span class="comment">//返回：array( ... ... )</span></span><br><span class="line">\PhalApi\DI()-&gt;config-&gt;get(<span class="string">&#x27;app.not_found&#x27;</span>, <span class="number">404</span>); <span class="comment">//返回：404</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="当前环境配置文件"><a href="#当前环境配置文件" class="headerlink" title="当前环境配置文件"></a>当前环境配置文件</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 运行模式，可以是：dev, test, prod// 运行模式，可以是：dev, test, prod</span></span><br><span class="line">defined(<span class="string">&#x27;API_MODE&#x27;</span>) || define(<span class="string">&#x27;API_MODE&#x27;</span>, <span class="string">&#x27;prod&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>API_MODE有三个值，分别是：</p>
+<ul>
+<li>dev表示开发模式，此时如果./config/sys_dev.php、./config/app_dev.php、./config/dbs_dev.php配置文件若存在，则会优先加载<code>*_dev.php</code>系列配置文件。</li>
+<li>test表示测试模式，此时如果./config/sys_test.php、./config/app_test.php、./config/dbs_test.php配置文件若存在，则会优先加载<code>*_test.php</code>系列配置文件。</li>
+<li>prod表示生产模式，则加载./config/sys.php、./config/app.php、./config/dbs.php配置文件。</li>
+</ul>
+<h2 id="3-3-日志"><a href="#3-3-日志" class="headerlink" title="3.3 日志"></a>3.3 日志</h2><p>7种级别:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> EMERGENCY = <span class="string">&#x27;energency&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> ALERT		= <span class="string">&#x27;alert&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> CRITICAL	= <span class="string">&#x27;critical&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">ERROR</span> 	= <span class="string">&#x27;error&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> WARNING	= <span class="string">&#x27;warning&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> NOTICE	= <span class="string">&#x27;notice&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> INFO		= <span class="string">&#x27;info&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> DEBUG		= <span class="string">&#x27;debug&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="简化版日记接口"><a href="#简化版日记接口" class="headerlink" title="简化版日记接口"></a>简化版日记接口</h3><p>只有三种</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">error： 系统异常类日记</span><br><span class="line">info： 业务纪录类日记</span><br><span class="line">debug： 开发调试类日记</span><br></pre></td></tr></table></figure>
+
+<p>error</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只有描述</span></span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;error(<span class="string">&#x27;fail to insert DB&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 描述 + 简单的信息</span></span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;error(<span class="string">&#x27;fail to insert DB&#x27;</span>, <span class="string">&#x27;try to register user dogstar&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 描述 + 当时的上下文数据</span></span><br><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;dogstar&#x27;</span>, <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;123456&#x27;</span>);</span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;error(<span class="string">&#x27;fail to insert DB&#x27;</span>, <span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+
+<p>info</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设：10 + 2 = 12</span></span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;info(<span class="string">&#x27;add user exp&#x27;</span>, <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;dogstar&#x27;</span>, <span class="string">&#x27;before&#x27;</span> =&gt; <span class="number">10</span>, <span class="string">&#x27;addExp&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;after&#x27;</span> =&gt; <span class="number">12</span>, <span class="string">&#x27;reason&#x27;</span> =&gt; <span class="string">&#x27;help one more phper&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>debug</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只有描述</span></span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;debug(<span class="string">&#x27;just for test&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 描述 + 简单的信息</span></span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;debug(<span class="string">&#x27;just for test&#x27;</span>, <span class="string">&#x27;一些其他的描述 ...&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 描述 + 当时的上下文数据</span></span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;debug(<span class="string">&#x27;just for test&#x27;</span>, <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;dogstar&#x27;</span>, <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;******&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>更灵活的记录:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\PhalApi\DI()-&gt;logger-&gt;log(<span class="string">&#x27;demo&#x27;</span>, <span class="string">&#x27;add user exp&#x27;</span>, <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;dogstar&#x27;</span>, <span class="string">&#x27;after&#x27;</span> =&gt; <span class="number">12</span>));</span><br><span class="line">\PhalApi\DI()-&gt;logger-&gt;log(<span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;add user exp&#x27;</span>, <span class="keyword">array</span>(<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;dogstar&#x27;</span>, <span class="string">&#x27;after&#x27;</span> =&gt; <span class="number">12</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展：定制你的日志"><a href="#扩展：定制你的日志" class="headerlink" title="扩展：定制你的日志"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/logger?id=%E6%89%A9%E5%B1%95%EF%BC%9A%E5%AE%9A%E5%88%B6%E4%BD%A0%E7%9A%84%E6%97%A5%E5%BF%97">扩展：定制你的日志</a></h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Common</span>\<span class="title">Logger</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">PhalApi</span>\<span class="title">Logger</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBLogger</span> <span class="keyword">extends</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"><span class="variable">$type</span>, <span class="variable">$msg</span>, <span class="variable">$data</span></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// TODO 数据库的日记写入 ...</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-缓存"><a href="#3-4-缓存" class="headerlink" title="3.4 缓存"></a>3.4 缓存</h2><h3 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h3><p>这里所指的简单缓存，主要是存储在单台服务器上的缓存，例如使用系统文件的文件缓存，PHP语言提供的APCU缓存。因为实现简单，且部署方便。但其缺点也是明显的，如文件I/O读写导致性能低，不能支持分布式。所以在没有集群服务器下是适用的。</p>
+<h3 id="文件缓存"><a href="#文件缓存" class="headerlink" title="文件缓存"></a>文件缓存</h3><p>例如，当需要使用文件缓存时，先在DI容器中注册对文件缓存到<code>\PhalApi\DI()-&gt;cache</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$di</span>-&gt;cache = <span class="keyword">new</span> PhalApi\Cache\FileCache(<span class="keyword">array</span>(<span class="string">&#x27;path&#x27;</span> =&gt; API_ROOT . <span class="string">&#x27;/runtime&#x27;</span>, <span class="string">&#x27;prefix&#x27;</span> =&gt; <span class="string">&#x27;demo&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>初始化文件缓存时，需要传入配置数组，其中path为缓存数据的目录，可选的前缀prefix，用于区别不同的项目。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用方法</span></span><br><span class="line"><span class="comment">// 设置</span></span><br><span class="line">PhalApi\DI()-&gt;cache-&gt;set(<span class="string">&#x27;thisYear&#x27;</span>, <span class="number">2015</span>, <span class="number">600</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取，输出：2015</span></span><br><span class="line"><span class="keyword">echo</span> PhalApi\DI()-&gt;cache-&gt;get(<span class="string">&#x27;thisYear&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line">PhalApi\DI()-&gt;cache-&gt;delete(<span class="string">&#x27;thisYear&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="APCU缓存"><a href="#APCU缓存" class="headerlink" title="APCU缓存"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/cache?id=apcu%E7%BC%93%E5%AD%98">APCU缓存</a></h3><p>安装好APCU扩展和设置相关配置并重启PHP后，便可开始使用APCU缓存。APCU缓存的初始化比较简单，只需要简单创建实例即可，不需要任何配置。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$di</span>-&gt;cache = <span class="keyword">new</span> PhalApi\Cache\APCUCache();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Memcache-Memcached缓存"><a href="#Memcache-Memcached缓存" class="headerlink" title="Memcache/Memcached缓存"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/cache?id=memcachememcached%E7%BC%93%E5%AD%98">Memcache/Memcached缓存</a></h3><p>若需要使用Memcache/Memcached缓存，则需要安装相应的PHP扩展。PHP 7中已经逐渐不支持Memcache，因此建议尽量使用Memcached扩展。</p>
+<p>如使用Memcached：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$di</span>-&gt;cache = <span class="keyword">new</span> PhalApi\Cache\MemcachedCache(<span class="keyword">array</span>(<span class="string">&#x27;host&#x27;</span> =&gt; <span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="string">&#x27;port&#x27;</span> =&gt; <span class="number">11211</span>, <span class="string">&#x27;prefix&#x27;</span> =&gt; <span class="string">&#x27;demo_&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>初始化Memcached时，需要传递一个配置数组，其中host为缓存服务器，port为缓存端口，prefix为可选的前缀，用于区别不同的项目。配置前缀，可以防止同一台MC服务器同一端口下key名冲突。对于缓存的配置，更好的建议是使用配置文件来统一管理配置。例如调整成：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$di</span>-&gt;cache = <span class="keyword">new</span> PhalApi\Cache\MemcachedCache(DI()-&gt;config-&gt;get(<span class="string">&#x27;sys.mc&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>相应的配置，则在./config/sys.php中的mc选项中统一维护。</p>
+<h3 id="Redis缓存"><a href="#Redis缓存" class="headerlink" title="Redis缓存"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/cache?id=redis%E7%BC%93%E5%AD%98">Redis缓存</a></h3><p>当需要使用Redis缓存时，需要先安装对应的Redis扩展。</p>
+<p>简单的Redis缓存的初始化如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$config</span> = <span class="keyword">array</span>(<span class="string">&#x27;host&#x27;</span> =&gt; <span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="string">&#x27;port&#x27;</span> =&gt; <span class="number">6379</span>);</span><br><span class="line"><span class="variable">$di</span>-&gt;cache = <span class="keyword">new</span> PhalApi\Cache\RedisCache(<span class="variable">$config</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-过滤器-签名"><a href="#3-5-过滤器-签名" class="headerlink" title="3.5 过滤器(签名)"></a>3.5 过滤器(签名)</h2><h3 id="默认可用的MD5签名"><a href="#默认可用的MD5签名" class="headerlink" title="默认可用的MD5签名"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/filter?id=%E9%BB%98%E8%AE%A4%E5%8F%AF%E7%94%A8%E7%9A%84md5%E7%AD%BE%E5%90%8D">默认可用的MD5签名</a></h3><h3 id="白名单配置"><a href="#白名单配置" class="headerlink" title="白名单配置"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/filter?id=%E7%99%BD%E5%90%8D%E5%8D%95%E9%85%8D%E7%BD%AE">白名单配置</a></h3><h3 id="实现过滤器接口"><a href="#实现过滤器接口" class="headerlink" title="实现过滤器接口"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/filter?id=%E5%AE%9E%E7%8E%B0%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8E%A5%E5%8F%A3">实现过滤器接口</a></h3><p>微信验签</p>
+<h3 id="注册过滤器服务"><a href="#注册过滤器服务" class="headerlink" title="注册过滤器服务"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/filter?id=%E6%B3%A8%E5%86%8C%E8%BF%87%E6%BB%A4%E5%99%A8%E6%9C%8D%E5%8A%A1">注册过滤器服务</a></h3><p>随后，我们只需要再简单地注册一下过滤器服务即可，在<code>./config/di.php</code>文件最后追加：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 签名验证服务</span></span><br><span class="line"><span class="variable">$di</span>-&gt;filter = <span class="keyword">new</span> App\Common\SignFilter();</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6-cookie"><a href="#3-6-cookie" class="headerlink" title="3.6 cookie"></a>3.6 cookie</h2><p>如同其他的服务一样，我们在使用前需要对COOKIE进行注册。COOKIE服务注册在<code>\PhalApi\DI()-&gt;cookie</code>中，可以使用<a target="_blank" rel="noopener" href="https://github.com/phalapi/kernal/blob/master/src/Cookie.php">PhalApi\Cookie</a>实例进行初始化，如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$config</span> = <span class="keyword">array</span>(<span class="string">&#x27;domain&#x27;</span> =&gt; <span class="string">&#x27;.phalapi.net&#x27;</span>);</span><br><span class="line">\PhalApi\DI()-&gt;cookie = <span class="keyword">new</span> PhalApi\Cookie(<span class="variable">$config</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置COOKIE</span></span><br><span class="line"><span class="comment">// Set-Cookie:&quot;name=phalapi; expires=Sun, 07-May-2017 03:26:45 GMT; domain=.phalapi.net&quot;</span></span><br><span class="line">\PhalApi\DI()-&gt;cookie-&gt;set(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;phalapi&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_TIME&#x27;</span>] + <span class="number">600</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取COOKIE，输出：phalapi</span></span><br><span class="line"><span class="keyword">echo</span> \PhalApi\DI()-&gt;cookie-&gt;get(<span class="string">&#x27;name&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除COOKIE</span></span><br><span class="line">\PhalApi\DI()-&gt;cookie-&gt;delete(<span class="string">&#x27;name&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展：定制专属的COOKIE"><a href="#扩展：定制专属的COOKIE" class="headerlink" title="扩展：定制专属的COOKIE"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/cookie?id=%E6%89%A9%E5%B1%95%EF%BC%9A%E5%AE%9A%E5%88%B6%E4%B8%93%E5%B1%9E%E7%9A%84cookie">扩展：定制专属的COOKIE</a></h3><p>当项目中需要定制专属的COOKIE服务时，可以继承<a target="_blank" rel="noopener" href="https://github.com/phalapi/kernal/blob/master/src/Cookie.php">PhalApi\Cookie</a>基类，并按需要重写对应的接口。主要的接口有三个：</p>
+<ul>
+<li>设置COOKIE：<code>PhalApi\Cookie::set($name, $value, $expire = NULL)</code></li>
+<li>获取COOKIE：<code>PhalApi\Cookie::get($name = NULL)</code></li>
+<li>删除COOKIE：<code>PhalApi\Cookie::delete($name)</code></li>
+</ul>
+<h2 id="3-7-加密"><a href="#3-7-加密" class="headerlink" title="3.7 加密"></a>3.7 加密</h2><h3 id="PHP的mcrypt加密扩展"><a href="#PHP的mcrypt加密扩展" class="headerlink" title="PHP的mcrypt加密扩展"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/crypt?id=php%E7%9A%84mcrypt%E5%8A%A0%E5%AF%86%E6%89%A9%E5%B1%95">PHP的mcrypt加密扩展</a></h3><h2 id="3-8-国际化"><a href="#3-8-国际化" class="headerlink" title="3.8 国际化"></a>3.8 国际化</h2><h3 id="语言设定"><a href="#语言设定" class="headerlink" title="语言设定"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/i18n?id=%E8%AF%AD%E8%A8%80%E8%AE%BE%E5%AE%9A">语言设定</a></h3><p>在初始化文件<code>./public/init.php</code>中，通过快速函数<code>\PhalApi\SL($language)</code>可以设定当前所使用的语言。例如设置语言为简体中文，可以：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 翻译语言包设定</span></span><br><span class="line">\PhalApi\SL(<span class="string">&#x27;zh_cn&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译包"><a href="#翻译包" class="headerlink" title="翻译包"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/i18n?id=%E7%BF%BB%E8%AF%91%E5%8C%85">翻译包</a></h3><p>翻译包的文件路径为：<code>./language/语言/common.php</code>，例如简体中文zh_cn对应的翻译包文件为：<code>./Language/zh_cn/common.php</code>。此翻译包文件返回的是一个数组，其中键为待翻译的内容，值为翻译后的内容.</p>
+<h2 id="3-9-CURL请求"><a href="#3-9-CURL请求" class="headerlink" title="3.9 CURL请求"></a>3.9 CURL请求</h2><p>当需要进行curl请求时，可使用PhalApi封装的CURL请求类<a target="_blank" rel="noopener" href="https://github.com/phalapi/kernal/blob/master/src/CUrl.php">PhalApi\CUrl</a>，从而实现快捷方便的请求。</p>
+<h2 id="3-10-工具和杂项"><a href="#3-10-工具和杂项" class="headerlink" title="3.10 工具和杂项"></a>3.10 工具和杂项</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ip = \PhalApi\Tool::getClientIp();</span><br><span class="line"></span><br><span class="line">// 指定使用字符集，如6位数字验证码</span><br><span class="line">$len = 6;</span><br><span class="line">$str = \PhalApi\Tool::createRandStr($len, &#x27;0123456789&#x27;);</span><br><span class="line"></span><br><span class="line">$arr = array(&#x27;name&#x27; =&gt; &#x27;PhalApi&#x27;);</span><br><span class="line">$xml = \PhalApi\Tool::arrayToXml($arr);</span><br><span class="line"></span><br><span class="line">$xml = &#x27;&lt;xml&gt;&lt;name&gt;PhalApi&lt;/name&gt;&lt;/xml&gt;&#x27;;</span><br><span class="line">$arr = \PhalApi\Tool::xmlToArray($xml);</span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-11-DI服务汇总"><a href="#3-11-DI服务汇总" class="headerlink" title="3.11 DI服务汇总"></a>3.11 DI服务汇总</h2><h3 id="基本注册"><a href="#基本注册" class="headerlink" title="基本注册"></a>基本注册</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$di</span> = \PhalApi\DI();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置</span></span><br><span class="line"><span class="variable">$di</span>-&gt;config = <span class="keyword">new</span> FileConfig(API_ROOT . <span class="string">&#x27;/config&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调试模式，$_GET[&#x27;__debug__&#x27;]可自行改名</span></span><br><span class="line"><span class="variable">$di</span>-&gt;debug = !<span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;__debug__&#x27;</span>]) ? <span class="literal">true</span> : <span class="variable">$di</span>-&gt;config-&gt;get(<span class="string">&#x27;sys.debug&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 日记纪录</span></span><br><span class="line"><span class="variable">$di</span>-&gt;logger = <span class="keyword">new</span> FileLogger(API_ROOT . <span class="string">&#x27;/runtime&#x27;</span>, Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据操作 - 基于NotORM</span></span><br><span class="line"><span class="variable">$di</span>-&gt;notorm = <span class="keyword">new</span> NotORMDatabase(<span class="variable">$di</span>-&gt;config-&gt;get(<span class="string">&#x27;dbs&#x27;</span>), <span class="variable">$di</span>-&gt;debug);</span><br></pre></td></tr></table></figure>
+
+<h3 id="定制注册"><a href="#定制注册" class="headerlink" title="定制注册"></a>定制注册</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 签名验证服务</span></span><br><span class="line"><span class="comment">// $di-&gt;filter = new \PhalApi\Filter\SimpleMD5Filter();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 缓存 - Memcache/Memcached</span></span><br><span class="line"><span class="comment">// $di-&gt;cache = function () &#123;</span></span><br><span class="line"><span class="comment">//     return new \PhalApi\Cache\MemcacheCache(DI()-&gt;config-&gt;get(&#x27;sys.mc&#x27;));</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 支持JsonP的返回</span></span><br><span class="line"><span class="comment">// if (!empty($_GET[&#x27;callback&#x27;])) &#123;</span></span><br><span class="line"><span class="comment">//     $di-&gt;response = new \PhalApi\Response\JsonpResponse($_GET[&#x27;callback&#x27;]);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="DI服务资源一览表"><a href="#DI服务资源一览表" class="headerlink" title="DI服务资源一览表"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/di?id=di%E6%9C%8D%E5%8A%A1%E8%B5%84%E6%BA%90%E4%B8%80%E8%A7%88%E8%A1%A8">DI服务资源一览表</a></h3><p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/di?id=_2%E6%AD%A3%E7%A1%AE%E5%88%A4%E6%96%AD%E7%9A%84%E5%86%99%E6%B3%95%EF%BC%9A%E5%85%88%E8%8E%B7%E5%8F%96%EF%BC%8C%E5%86%8D%E5%88%A4%E6%96%AD">正确判断的写法：先获取，再判断</a></p>
+<p>正确的用法应该是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先获取，再判断</span></span><br><span class="line"><span class="variable">$XXX</span> = <span class="variable">$di</span>-&gt;XXX;</span><br><span class="line">var_dump(<span class="keyword">isset</span>(<span class="variable">$XXX</span>));</span><br><span class="line">var_dump(!<span class="keyword">empty</span>(<span class="variable">$XXX</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-12-扩展类库"><a href="#3-12-扩展类库" class="headerlink" title="3.12 扩展类库"></a>3.12 扩展类库</h2><h3 id="扩展类库列表"><a href="#扩展类库列表" class="headerlink" title="扩展类库列表"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/library?id=%E6%89%A9%E5%B1%95%E7%B1%BB%E5%BA%93%E5%88%97%E8%A1%A8">扩展类库列表</a></h3><h2 id="3-13-SDK包的使用"><a href="#3-13-SDK包的使用" class="headerlink" title="3.13 SDK包的使用"></a>3.13 SDK包的使用</h2><h3 id="SDK包列表"><a href="#SDK包列表" class="headerlink" title="SDK包列表"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/sdk?id=sdk%E5%8C%85%E5%88%97%E8%A1%A8">SDK包列表</a></h3><h2 id="3-14-脚本命令"><a href="#3-14-脚本命令" class="headerlink" title="3.14 脚本命令"></a>3.14 脚本命令</h2><h3 id="phalapi-buildtest命令"><a href="#phalapi-buildtest命令" class="headerlink" title="phalapi-buildtest命令"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/shell?id=phalapi-buildtest%E5%91%BD%E4%BB%A4">phalapi-buildtest命令</a></h3><h3 id="phalapi-buildsqls命令"><a href="#phalapi-buildsqls命令" class="headerlink" title="phalapi-buildsqls命令"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/shell?id=phalapi-buildsqls%E5%91%BD%E4%BB%A4">phalapi-buildsqls命令</a></h3><h3 id="phalapi-cli命令"><a href="#phalapi-cli命令" class="headerlink" title="phalapi-cli命令"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/shell?id=phalapi-cli%E5%91%BD%E4%BB%A4">phalapi-cli命令</a></h3><h2 id="3-15-MQ队列"><a href="#3-15-MQ队列" class="headerlink" title="3.15 MQ队列"></a>3.15 MQ队列</h2><h3 id="Gearman整合"><a href="#Gearman整合" class="headerlink" title="Gearman整合"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/mq-gearman?id=gearman%E6%95%B4%E5%90%88">Gearman整合</a></h3><h3 id="RabbitMQ整合"><a href="#RabbitMQ整合" class="headerlink" title="RabbitMQ整合"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/mq-gearman?id=rabbitmq%E6%95%B4%E5%90%88">RabbitMQ整合</a></h3><h3 id="NSQ整合"><a href="#NSQ整合" class="headerlink" title="NSQ整合"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/mq-gearman?id=nsq%E6%95%B4%E5%90%88">NSQ整合</a></h3><h2 id="3-16-错误处理"><a href="#3-16-错误处理" class="headerlink" title="3.16 错误处理"></a>3.16 错误处理</h2><h3 id="PhalApi的错误处理"><a href="#PhalApi的错误处理" class="headerlink" title="PhalApi的错误处理"></a><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/error?id=phalapi%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86">PhalApi的错误处理</a></h3><p>在./config/di.php文件注册：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$di</span>-&gt;error = <span class="keyword">new</span> \PhalApi\<span class="built_in">Error</span>\ApiError();</span><br></pre></td></tr></table></figure>
+
+<p>在这背后，会：</p>
+<ul>
+<li>1、通过set_error_handler()注册用户错误处理函数</li>
+<li>2、通过register_shutdown_function()处理PHP致命错误</li>
+</ul>
+<p>主要处理方式，是将相关的警告、错误、和提醒信息纪录到文件日志。</p>
+<h1 id="4-运营平台"><a href="#4-运营平台" class="headerlink" title="4 运营平台"></a>4 运营平台</h1><p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/portal-usage?id=%E8%BF%90%E8%90%A5%E5%B9%B3%E5%8F%B0">运营平台</a></p>
+<h1 id="6-视频教程"><a href="#6-视频教程" class="headerlink" title="6 视频教程"></a>6 视频教程</h1><p><a target="_blank" rel="noopener" href="http://docs.phalapi.net/#/v2.0/video_1?id=phalapi-2x-%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91-2020%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%E5%BC%80%E8%AE%B2%E5%95%A6%EF%BC%81">PhalApi 2.x 接口开发 - 2020视频教程开讲啦！</a></p>
+<p>后记: 20200315</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/projects/3059268860/" rel="prev" title="workerman学习笔记">
+      <i class="fa fa-chevron-left"></i> workerman学习笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/projects/2070615891/" rel="next" title="screen命令">
+      screen命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">1 快速开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#composer%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.1.</span> <span class="nav-text">composer一键安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.2.</span> <span class="nav-text">手动下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.3.</span> <span class="nav-text">Nginx配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%BF%90%E8%A1%8CHello-world"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 运行Hello world</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%A6%82%E4%BD%95%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 如何请求接口服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E4%B8%8E%E5%9C%A8%E7%BA%BF%E8%B0%83%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 接口响应与在线调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E8%B0%83%E8%AF%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">在线调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%8B%E7%82%B9"><span class="nav-number">1.4.3.</span> <span class="nav-text">自定义埋点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.4.</span> <span class="nav-text">自定义调试信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Api%E6%8E%A5%E5%8F%A3%E5%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Api接口层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA"><span class="nav-number">1.5.1.</span> <span class="nav-text">异常抛出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%8C%87%E5%AE%9Aret%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.5.2.</span> <span class="nav-text">手动指定ret状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.3.</span> <span class="nav-text">钩子函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-DataApi%E9%80%9A%E7%94%A8%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 DataApi通用数据接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataApi%E6%9C%89%E5%93%AA%E4%BA%9B%E6%8E%A5%E5%8F%A3%EF%BC%9F"><span class="nav-number">1.6.1.</span> <span class="nav-text">DataApi有哪些接口？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B1%8F%E8%94%BD%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9F"><span class="nav-number">1.6.2.</span> <span class="nav-text">如何屏蔽不需要的接口？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%EF%BC%9F"><span class="nav-number">1.6.3.</span> <span class="nav-text">如何修改接口文档？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Domain%E9%A2%86%E5%9F%9F%E4%B8%9A%E5%8A%A1%E5%B1%82%E4%B8%8EADM%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Domain领域业务层与ADM模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADM%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">1.7.1.</span> <span class="nav-text">ADM调用关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-Model%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E5%B1%82%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 Model数据模型层与数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Model%E4%BE%8B%E5%AD%90"><span class="nav-number">1.8.1.</span> <span class="nav-text">一个简单的Model例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-DataModel%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 DataModel数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%EF%BC%9A4%E4%B8%AACURD%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.9.1.</span> <span class="nav-text">简单：4个CURD基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E6%95%B0"><span class="nav-number">1.9.2.</span> <span class="nav-text">总数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">1.9.3.</span> <span class="nav-text">最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-number">1.9.4.</span> <span class="nav-text">最大值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%92%8C"><span class="nav-number">1.9.5.</span> <span class="nav-text">求和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E5%80%BC"><span class="nav-number">1.9.6.</span> <span class="nav-text">获取字段值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E5%80%BC%EF%BC%88%E5%A4%9A%E4%B8%AA%EF%BC%89"><span class="nav-number">1.9.7.</span> <span class="nav-text">获取字段值（多个）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E4%B8%80%E6%9D%A1%E7%BA%AA%E5%BD%95"><span class="nav-number">1.9.8.</span> <span class="nav-text">获取一条纪录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%A4%9A%E6%9D%A1%E7%BA%AA%E5%BD%95"><span class="nav-number">1.9.9.</span> <span class="nav-text">获取多条纪录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.9.10.</span> <span class="nav-text">执行SQL查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSQL%E5%8F%98%E6%9B%B4%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.9.11.</span> <span class="nav-text">执行SQL变更语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D%E8%8E%B7%E5%8F%96NotORM%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.9.12.</span> <span class="nav-text">第三种获取NotORM的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataModel%E4%B8%8ENotORMModel%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.9.13.</span> <span class="nav-text">DataModel与NotORMModel的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHPUnit"><span class="nav-number">1.10.1.</span> <span class="nav-text">PHPUnit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-11-%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD%E5%92%8CPSR-4"><span class="nav-number">1.11.</span> <span class="nav-text">1.11 自动加载和PSR-4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%A2%9E%E5%8A%A0%E4%B8%80%E4%B8%AA%E9%A1%B6%E7%BA%A7%E7%9A%84%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">1.11.1.</span> <span class="nav-text">如何增加一个顶级的命名空间?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0"><span class="nav-number">1.11.2.</span> <span class="nav-text">添加全局函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-12-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3"><span class="nav-number">1.12.</span> <span class="nav-text">1.12 接口文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3"><span class="nav-number">1.12.1.</span> <span class="nav-text">在线接口文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">1.12.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.12.3.</span> <span class="nav-text">隐藏接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%A6%BB%E7%BA%BF%E6%96%87%E6%A1%A3"><span class="nav-number">1.12.4.</span> <span class="nav-text">生成离线文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-13-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.13.</span> <span class="nav-text">1.13 初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.13.1.</span> <span class="nav-text">框架初始化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">2 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 数据库连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据库基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E9%94%99%E8%AF%AF"><span class="nav-number">2.1.2.</span> <span class="nav-text">如何排查数据库连接错误?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%96%AD%E5%BC%80%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.1.3.</span> <span class="nav-text">如何断开数据库连接?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8ENotORM"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 数据库于NotORM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9A%E8%A1%A8%E5%90%8D"><span class="nav-number">2.2.1.</span> <span class="nav-text">如何指定表名?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E4%B8%AACURD%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">4个CURD基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%95%EF%BC%9APhalApi%E5%AF%B9NotORM%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.3.</span> <span class="nav-text">附录：PhalApi对NotORM的优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E5%92%8C%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 数据库使用和查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.3.1.</span> <span class="nav-text">事务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%AD%96%E7%95%A5"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 数据库分库分表策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 连接多个数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E6%89%93%E5%8D%B0%E5%92%8C%E4%BF%9D%E5%AD%98SQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 打印和保存SQL语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E9%AB%98%E7%BA%A7%E4%B8%93%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">3 高级专题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%8E%A5%E5%8F%A3%E5%8F%82%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 接口参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%A7%84%E5%88%99%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.1.1.</span> <span class="nav-text">参数规则格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BA%A7%E5%8F%82%E6%95%B0%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">三级参数规则配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E8%A7%84%E5%88%99%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">3.1.3.</span> <span class="nav-text">多个参数规则优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E"><span class="nav-number">3.1.4.</span> <span class="nav-text">参数规则配置详细说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E9%85%8D%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%AE%80%E5%8D%95%E8%AF%BB%E5%8F%96"><span class="nav-number">3.2.1.</span> <span class="nav-text">配置文件简单读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">当前环境配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%97%A5%E5%BF%97"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E7%89%88%E6%97%A5%E8%AE%B0%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.3.1.</span> <span class="nav-text">简化版日记接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9A%E5%AE%9A%E5%88%B6%E4%BD%A0%E7%9A%84%E6%97%A5%E5%BF%97"><span class="nav-number">3.3.2.</span> <span class="nav-text">扩展：定制你的日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E7%BC%93%E5%AD%98"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98"><span class="nav-number">3.4.1.</span> <span class="nav-text">本地缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BC%93%E5%AD%98"><span class="nav-number">3.4.2.</span> <span class="nav-text">文件缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APCU%E7%BC%93%E5%AD%98"><span class="nav-number">3.4.3.</span> <span class="nav-text">APCU缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memcache-Memcached%E7%BC%93%E5%AD%98"><span class="nav-number">3.4.4.</span> <span class="nav-text">Memcache&#x2F;Memcached缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%BC%93%E5%AD%98"><span class="nav-number">3.4.5.</span> <span class="nav-text">Redis缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E8%BF%87%E6%BB%A4%E5%99%A8-%E7%AD%BE%E5%90%8D"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 过滤器(签名)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%AF%E7%94%A8%E7%9A%84MD5%E7%AD%BE%E5%90%8D"><span class="nav-number">3.5.1.</span> <span class="nav-text">默认可用的MD5签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BD%E5%90%8D%E5%8D%95%E9%85%8D%E7%BD%AE"><span class="nav-number">3.5.2.</span> <span class="nav-text">白名单配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.5.3.</span> <span class="nav-text">实现过滤器接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E8%BF%87%E6%BB%A4%E5%99%A8%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.5.4.</span> <span class="nav-text">注册过滤器服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-cookie"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9A%E5%AE%9A%E5%88%B6%E4%B8%93%E5%B1%9E%E7%9A%84COOKIE"><span class="nav-number">3.6.1.</span> <span class="nav-text">扩展：定制专属的COOKIE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-%E5%8A%A0%E5%AF%86"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 加密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP%E7%9A%84mcrypt%E5%8A%A0%E5%AF%86%E6%89%A9%E5%B1%95"><span class="nav-number">3.7.1.</span> <span class="nav-text">PHP的mcrypt加密扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-%E5%9B%BD%E9%99%85%E5%8C%96"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 国际化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E8%AE%BE%E5%AE%9A"><span class="nav-number">3.8.1.</span> <span class="nav-text">语言设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91%E5%8C%85"><span class="nav-number">3.8.2.</span> <span class="nav-text">翻译包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-CURL%E8%AF%B7%E6%B1%82"><span class="nav-number">3.9.</span> <span class="nav-text">3.9 CURL请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-10-%E5%B7%A5%E5%85%B7%E5%92%8C%E6%9D%82%E9%A1%B9"><span class="nav-number">3.10.</span> <span class="nav-text">3.10 工具和杂项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-DI%E6%9C%8D%E5%8A%A1%E6%B1%87%E6%80%BB"><span class="nav-number">3.11.</span> <span class="nav-text">3.11 DI服务汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%B3%A8%E5%86%8C"><span class="nav-number">3.11.1.</span> <span class="nav-text">基本注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%B3%A8%E5%86%8C"><span class="nav-number">3.11.2.</span> <span class="nav-text">定制注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DI%E6%9C%8D%E5%8A%A1%E8%B5%84%E6%BA%90%E4%B8%80%E8%A7%88%E8%A1%A8"><span class="nav-number">3.11.3.</span> <span class="nav-text">DI服务资源一览表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-12-%E6%89%A9%E5%B1%95%E7%B1%BB%E5%BA%93"><span class="nav-number">3.12.</span> <span class="nav-text">3.12 扩展类库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E7%B1%BB%E5%BA%93%E5%88%97%E8%A1%A8"><span class="nav-number">3.12.1.</span> <span class="nav-text">扩展类库列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-13-SDK%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.13.</span> <span class="nav-text">3.13 SDK包的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SDK%E5%8C%85%E5%88%97%E8%A1%A8"><span class="nav-number">3.13.1.</span> <span class="nav-text">SDK包列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-14-%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">3.14.</span> <span class="nav-text">3.14 脚本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#phalapi-buildtest%E5%91%BD%E4%BB%A4"><span class="nav-number">3.14.1.</span> <span class="nav-text">phalapi-buildtest命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#phalapi-buildsqls%E5%91%BD%E4%BB%A4"><span class="nav-number">3.14.2.</span> <span class="nav-text">phalapi-buildsqls命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#phalapi-cli%E5%91%BD%E4%BB%A4"><span class="nav-number">3.14.3.</span> <span class="nav-text">phalapi-cli命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-15-MQ%E9%98%9F%E5%88%97"><span class="nav-number">3.15.</span> <span class="nav-text">3.15 MQ队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gearman%E6%95%B4%E5%90%88"><span class="nav-number">3.15.1.</span> <span class="nav-text">Gearman整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ%E6%95%B4%E5%90%88"><span class="nav-number">3.15.2.</span> <span class="nav-text">RabbitMQ整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSQ%E6%95%B4%E5%90%88"><span class="nav-number">3.15.3.</span> <span class="nav-text">NSQ整合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-16-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">3.16.</span> <span class="nav-text">3.16 错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PhalApi%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">3.16.1.</span> <span class="nav-text">PhalApi的错误处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E8%BF%90%E8%90%A5%E5%B9%B3%E5%8F%B0"><span class="nav-number">4.</span> <span class="nav-text">4 运营平台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">6 视频教程</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Walsh Su"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">Walsh Su</p>
+  <div class="site-description" itemprop="description">未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Walsh Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">123k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

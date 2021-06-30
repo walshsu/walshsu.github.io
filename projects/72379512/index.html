@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.gif">
+  <link rel="mask-icon" href="/images/aaa.gif" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w2216.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="第零章 计算器概论123456789101112131415161718192021222324252627282930总结:1. 计算器的定义为：『接受用户输入指令与数据，经由中央处理器的数学与逻辑单元运算处理后，以产生或储存成有用的信息』；2. 计算机的五大单元包括：输入单元、输出单元、控制单元、算数逻辑单元、记忆单元五大部分。其中 CPU占有控制、算术逻辑单元，记忆单元又包含主存储器与辅助内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="鸟哥的linux私房菜1">
+<meta property="og:url" content="http://w2216.github.io/projects/72379512/index.html">
+<meta property="og:site_name" content="王站站">
+<meta property="og:description" content="第零章 计算器概论123456789101112131415161718192021222324252627282930总结:1. 计算器的定义为：『接受用户输入指令与数据，经由中央处理器的数学与逻辑单元运算处理后，以产生或储存成有用的信息』；2. 计算机的五大单元包括：输入单元、输出单元、控制单元、算数逻辑单元、记忆单元五大部分。其中 CPU占有控制、算术逻辑单元，记忆单元又包含主存储器与辅助内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-26T02:45:15.000Z">
+<meta property="article:modified_time" content="2021-06-27T05:02:17.181Z">
+<meta property="article:author" content="Walsh Su">
+<meta property="article:tag" content="boke,博客,php,linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://w2216.github.io/projects/72379512/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>鸟哥的linux私房菜1 | 王站站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">王站站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w2216.github.io/projects/72379512/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="Walsh Su">
+      <meta itemprop="description" content="未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王站站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          鸟哥的linux私房菜1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-26 10:45:15" itemprop="dateCreated datePublished" datetime="2019-10-26T10:45:15+08:00">2019-10-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="第零章-计算器概论"><a href="#第零章-计算器概论" class="headerlink" title="第零章 计算器概论"></a>第零章 计算器概论</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">总结:</span><br><span class="line">1. 计算器的定义为：『接受用户输入指令与数据，经由中央处理器的数学与逻辑单元运算处理后，以产生或储</span><br><span class="line">存成有用的信息』；</span><br><span class="line">2. 计算机的五大单元包括：输入单元、输出单元、控制单元、算数逻辑单元、记忆单元五大部分。其中 CPU</span><br><span class="line">占有控制、算术逻辑单元，记忆单元又包含主存储器与辅助内存；</span><br><span class="line">3. 数据会流进/流出内存是 CPU 所发布的控制命令，而 CPU 实际要处理的数据则完全来自于主存储器；</span><br><span class="line">4. CPU 依设计理念主要分为：精简指令集(RISC)与复杂指令集(CISC)系统；</span><br><span class="line">5. 关于 CPU 的频率部分：外频指的是 CPU 与外部组件进行数据传输时的速度，倍频则是 CPU 内部用来加速</span><br><span class="line">工作效能的一个倍数， 两者相乘才是 CPU 的频率速度；</span><br><span class="line">6. 新的 CPU 设计中，已经将北桥的内存控制芯片整合到 CPU 内，而 CPU 与主存储器、显示适配器沟通的</span><br><span class="line">总线通常称为系统总线。 南桥就是所谓的输入输出(I/O)总线，主要在联系硬盘、USB、网络卡等接口设备；</span><br><span class="line">7. CPU 每次能够处理的数据量称为字组大小(word size)，字组大小依据 CPU 的设计而有 32 位与 64 位。 我们</span><br><span class="line">现在所称的计算机是 32 或 64 位主要是依据这个 CPU 解析的字组大小而来的！</span><br><span class="line">8. 个人计算机的主存储器主要组件为动态随机存取内存(Dynamic Random Access Memory, DRAM)，至于 CPU</span><br><span class="line">内部的第二层快取则使用静态随机存取内存(Static Random Access Memory, SRAM)；</span><br><span class="line">9. BIOS(Basic Input Output System)是一套程序，这套程序是写死到主板上面的一个内存芯片中， 这个内存芯</span><br><span class="line">片在没有通电时也能够将数据记录下来，那就是只读存储器(Read Only Memory, ROM)；</span><br><span class="line">10. 目前主流的外接卡界面大多为 PCIe 界面，且最新为 PCIe 3.0，单信道速度高达 1GBytes/s</span><br><span class="line">11. 常见的显示适配器连接到屏幕的界面有 HDMI/DVI/D-Sub/Display port 等等。HDMI 可同时传送影像与声</span><br><span class="line">音。</span><br><span class="line">12. 传统硬盘的组成为：圆形磁盘盘、机械手臂、 磁盘读取头与主轴马达所组成的，其中磁盘盘的组成为扇区、</span><br><span class="line">磁道与磁柱；</span><br><span class="line">13. 磁盘连接到主板的界面大多为 SATA 或 SAS，目前桌机主流为 SATA 3.0，理论极速可达 600Mbytes/s。</span><br><span class="line">14. 常见的文字编码为 ASCII，繁体中文编码主要有 Big5 及 UTF8 两种，目前主流为 UTF8</span><br><span class="line">15. 操作系统(Operating System, OS)其实也是一组程序， 这组程序的重点在于管理计算机的所有活动以及驱动</span><br><span class="line">系统中的所有硬件。</span><br><span class="line">16. 计算机主要以二进制作为单位，常用的磁盘容量单位为 bytes，其单位换算为 1 Byte = 8bits。</span><br><span class="line">17. 最阳春的操作系统仅在驱动与管理硬件，而要使用硬件时，就得需要透过应用软件或者是壳程序(shell)的功</span><br><span class="line">能， 来呼叫操作系统操纵硬件工作。目前称为操作系统的，除了上述功能外，通常已经包含了日常工作所</span><br><span class="line">需要的应用软件在内了。</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一章-Linux-是什么与如何学习"><a href="#第一章-Linux-是什么与如何学习" class="headerlink" title="第一章 Linux 是什么与如何学习"></a>第一章 Linux 是什么与如何学习</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">总结:</span><br><span class="line">1. 操作系统(Operation System)主要在管理与驱动硬件，因此必须要能够管理内存、管理装置、 负责行程管理</span><br><span class="line">以及系统呼叫等等。因此，只要能够让硬件准备妥当(Ready)的情况， 就是一个阳春的操作系统了。</span><br><span class="line">2. Unix 的前身是由贝尔实验室(Bell lab.)的 Ken Thompson 利用汇编语言写成的， 后来在 1971-1973 年间由</span><br><span class="line">Dennis Ritchie 以 C 程序语言进行改写，才称为 Unix。</span><br><span class="line">3. 1977 年由 Bill Joy 释出 BSD (Berkeley Software Distribution)，这些称为 Unix-like 的操作系统。</span><br><span class="line">4. 1984 年由 Andrew Tanenbaum 开始制作 Minix 操作系统，该系统可以提供原始码以及软件；</span><br><span class="line">5. 1984 年由 Richard Stallman 提倡 GNU 计划，倡导自由软件(Free software)， 强调其软件可以『自由的取得、</span><br><span class="line">复制、修改与再发行』，并规范出 GPL 授权模式， 任何 GPL(General Public License)软件均不可单纯仅贩卖</span><br><span class="line">其软件，也不可修改软件授权。</span><br><span class="line">6. 1991 年由芬兰人 Linus Torvalds 开发出 Linux 操作系统。简而言之，Linux 成功的地方主要在于：Minix(Unix), </span><br><span class="line">GNU, Internet, POSIX 及虚拟团队的产生。</span><br><span class="line">7. 符合 Open source 理念的授权相当多，比较知名的如 Apache / BSD / GPL / MIT 等。</span><br><span class="line">8. Linux 本身就是个最阳春的操作系统，其开发网站设立在 http://www.kernel.org，我们亦称 Linux 操作系统最</span><br><span class="line">底层的数据为『核心(Kernel)』。</span><br><span class="line">9. 从 Linux kernel 3.0 开始，已经舍弃奇数、偶数的核心版本规划，新的规划使用主线版本 (MainLine) 为依</span><br><span class="line">据， 并提供长期支持版本 (longterm) 来加强某些功能的持续维护。</span><br><span class="line">10. Linux distributions 的组成含有：『Linux Kernel + Free Software + Documentations(Tools) + 可完全安装的程序』</span><br><span class="line">所制成的一套完整的系统。</span><br><span class="line">11. 常见的 Linux distributions 分类有『商业、社群』分类法，或『RPM、DPKG』分类法</span><br><span class="line">12. 学习 Linux 最好从头由基础开始学习，找到一本适合自己的书籍，加强实作才能学会</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二章-主机规划与磁盘分区"><a href="#第二章-主机规划与磁盘分区" class="headerlink" title="第二章 主机规划与磁盘分区"></a>第二章 主机规划与磁盘分区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">总结:</span><br><span class="line">1. 新添购计算机硬件配备时，需要考虑的角度有『游戏机/工作机』、『效能/价格比』、『效能/消耗瓦数』、『支持</span><br><span class="line">度』等；</span><br><span class="line">2. 旧的硬件配备可能由于保存的问题或者是电子零件老化的问题，导致计算机系统非常容易在运作过程中出</span><br><span class="line">现不明的当机情况</span><br><span class="line">3. Red Hat 的硬件支持：https://hardware.redhat.com/?pagename=hcl</span><br><span class="line">4. 在 Linux 系统中，每个装置都被当成一个文件来对待，每个装置都会有装置文件名。</span><br><span class="line">5. 磁盘装置文件名通常分为两种，实际 SATA/USB 装置文件名为/dev/sd[a-p]，而虚拟机的装置可能为</span><br><span class="line">/dev/vd[a-p]</span><br><span class="line">6. 磁盘的第一个扇区主要记录了两个重要的信息，分别是： (1)主要启动记录区(Master Boot Record, MBR)：</span><br><span class="line">可以安装开机管理程序的地方，有 446 bytes (1)分区表(partition table)：记录整颗硬盘分区的状态，有 64 bytes；</span><br><span class="line">7. 磁盘的 MBR 分区方式中，主要与延伸分区最多可以有四个，逻辑分区的装置文件名号码，一定由 5 号开</span><br><span class="line">始；</span><br><span class="line">8. 如果磁盘容量大于 2TB 以上时，系统会自动使用 GPT 分区方式来处理磁盘分区。</span><br><span class="line">9. GPT 分区已经没有延伸与逻辑分区槽的概念，你可以想象成所有的分区都是主分区！</span><br><span class="line">10. 某些操作系统要使用 GPT 分区时，必须要搭配 UEFI 的新型 BIOS 格式才可安装使用。</span><br><span class="line">11. 开机的流程由：BIOS--&gt;MBR--&gt;--&gt;boot loader--&gt;核心文件；</span><br><span class="line">12. boot loader 的功能主要有：提供选单、加载核心、转交控制权给其他 loader</span><br><span class="line">13. boot loader 可以安装的地点有两个，分别是 MBR 与 boot sector</span><br><span class="line">14. Linux 操作系统的文件使用目录树系统，与磁盘的对应需要有『挂载』的动作才行；</span><br><span class="line">15. 新手的简单分区，建议只要有/及 swap 两个分区槽即可</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三章-安装-CentOS7-x"><a href="#第三章-安装-CentOS7-x" class="headerlink" title="第三章 安装 CentOS7.x"></a>第三章 安装 CentOS7.x</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">总结:</span><br><span class="line">1. 不论你要安装什么样的 Linux 操作系统角色，都应该要事先规划例如分区、开机管理程序等；</span><br><span class="line">2. 建议练习机安装时的磁盘分区能有/, /boot, /home, swap 四个分区槽；</span><br><span class="line">3. 安装 CentOS 7.x 的模式至少有两种，分别是图形接口与文字接口；</span><br><span class="line">4. CentOS 7 会主动依据你的磁盘容量判断要用 MBR 或 GPT 分区方式，你也可以强迫使用 GPT；</span><br><span class="line">5. 若安装笔记本电脑时失败，可尝试在开机时加入『linux nofb apm=off acpi=off』来关闭省电功能；</span><br><span class="line">6. 安装过程进入分区后，请以『自定义的分区模式』来处理自己规划的分区方式；</span><br><span class="line">7. 在安装的过程中，可以建立逻辑滚动条管理员 (LVM)；</span><br><span class="line">8. 一般要求 swap 应该要是 1.5~2倍的物理内存量，但即使没有 swap 依旧能够安装与运作 Linux 操作系统；</span><br><span class="line">9. CentOS 7 预设使用 xfs 作为文件系统</span><br><span class="line">10. 没有连上 Internet 时，可尝试关闭防火墙，但 SELinux 最好选择『强制』状态；</span><br><span class="line">11. 设定时不要选择启动 kdump，因为那是给核心开发者查阅当机数据的；</span><br><span class="line">12. 可加入时间服务器来同步化时间，台湾可选择 tock.stdtime.gov.tw 这一部；</span><br><span class="line">13. 尽量使用一般用户来操作 Linux，有必要再转身份成为 root 即可。</span><br><span class="line">14. 即使是练习机，在建置 root 密码时，建议依旧能够保持良好的密码规则，不要随便设定！</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四章-首次登入与在线求助"><a href="#第四章-首次登入与在线求助" class="headerlink" title="第四章 首次登入与在线求助"></a>第四章 首次登入与在线求助</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 显示日期的指令： date</span><br><span class="line">2. 显示日历的指令： cal</span><br><span class="line">3. 简单好用的计算器： bc</span><br><span class="line"></span><br><span class="line">总结:</span><br><span class="line">1. 为了避免瞬间断电造成的 Linux 系统危害，建议做为服务器的 Linux 主机应该加上不断电系统来持续提供稳</span><br><span class="line">定的电力；</span><br><span class="line">2. 养成良好的操作习惯，尽量不要使用 root 直接登入系统，应使用一般账号登入系统，有需要再转换身份</span><br><span class="line">3. 可以透过『活动总览』查看系统所有使用的软件及快速启用惯用软件</span><br><span class="line">4. 在 X 的环境下想要『强制』重新启动 X 的组合按键为：『[alt]+[ctrl]+[backspace]』；</span><br><span class="line">5. 预设情况下，Linux 提供 tty1~tty6 的终端机界面；</span><br><span class="line">6. 在终端机环境中，可依据提示字符为$或#判断为一般账号或 root 账号；</span><br><span class="line">7. 取得终端机支持的语系数据可下达『echo $LANG』或『locale』指令；</span><br><span class="line">8. date 可显示日期、cal 可显示日历、bc 可以做为计算器软件；</span><br><span class="line">9. 组合按键中，[tab]按键可做为(1)命令补齐或(2)档名补齐或(3)参数选项补齐，[crtl]-[c]可以中断目前正在运作</span><br><span class="line">中的程序；</span><br><span class="line">10. Linux 系统上的英文大小写为不同的资料</span><br><span class="line">11. 联机帮助系统有 man 及 info 两个常见的指令；</span><br><span class="line">12. man page 说明后面的数字中，1 代表一般账号可用指令，8 代表系统管理员常用指令，5 代表系统配置文件</span><br><span class="line">格式；</span><br><span class="line">13. info page 可将一份说明文件拆成多个节点(node)显示，并具有类似超链接的功能，增加易读性；</span><br><span class="line">14. 系统需正确的关机比较不容易损坏，可使用 shutdown, poweroff 等指令关机。</span><br></pre></td></tr></table></figure>
+
+<h3 id="第五章-Linux-的文件权限与目录配置"><a href="#第五章-Linux-的文件权限与目录配置" class="headerlink" title="第五章 Linux 的文件权限与目录配置"></a>第五章 Linux 的文件权限与目录配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">1. ls -al ( ll --full-time )</span><br><span class="line">2. chgrp ：改变文件所属群组 [-R]</span><br><span class="line">3. chown ：改变文件拥有者 [-R] </span><br><span class="line">    eg: chown [-R] 账号名称:组名 文件或目录</span><br><span class="line">4. chmod ：改变文件的权限, SUID, SGID, SBIT 等等的特性</span><br><span class="line">    eg: chmod u=rwx,go=rx .bashrc</span><br><span class="line">5. cp 来源文件 目标文件</span><br><span class="line">6. 文件种类： -rwxrwxrwx</span><br><span class="line">    正规文件(regular file )：- 纯文本档(ASCII)/二进制文件(binary)/数据格式文件(data)</span><br><span class="line">    目录(directory)：d</span><br><span class="line">    连结档(link): l</span><br><span class="line">    设备与装置文件(device)：区块(block)设备档 b</span><br><span class="line">                            字符(character)设备文件 c</span><br><span class="line">    资料接口文件(sockets)：s</span><br><span class="line">    数据输送文件(FIFO, pipe)：p</span><br><span class="line">7. uname -r # 查看核心版本</span><br><span class="line">   uname -m # 查看操作系统的位版本</span><br><span class="line">8. yum install redhat-lsb</span><br><span class="line">    lsb_release -a</span><br><span class="line"></span><br><span class="line">总结:</span><br><span class="line">1. Linux 的每个文件中，可分别给予使用者、群组与其他人三种身份个别的 rwx 权限；</span><br><span class="line">2. 群组最有用的功能之一，就是当你在团队开发资源的时候，且每个账号都可以有多个群组的支持；</span><br><span class="line">3. 利用 ls -l 显示的文件属性中，第一个字段是文件的权限，共有十个位，第一个位是文件类型， 接下来三个</span><br><span class="line">为一组共三组，为使用者、群组、其他人的权限，权限有 r,w,x 三种；</span><br><span class="line">4. 如果档名之前多一个『 . 』，则代表这个文件为『隐藏档』；</span><br><span class="line">5. 若需要 root 的权限时，可以使用 su - 这个指令来切换身份。处理完毕则使用 exit 离开 su 的指令环境。</span><br><span class="line">6. 更改文件的群组支持可用 chgrp，修改文件的拥有者可用 chown，修改文件的权限可用 chmod</span><br><span class="line">7. chmod 修改权限的方法有两种，分别是符号法与数字法，数字法中 r,w,x 分数为 4,2,1；</span><br><span class="line">8. 对文件来讲，权限的效能为：</span><br><span class="line">     r：可读取此一文件的实际内容，如读取文本文件的文字内容等；</span><br><span class="line">     w：可以编辑、新增或者是修改该文件的内容(但不含删除该文件)；</span><br><span class="line">     x：该文件具有可以被系统执行的权限。</span><br><span class="line">9. 对目录来说，权限的效能为：</span><br><span class="line">     r (read contents in directory)</span><br><span class="line">     w (modify contents of directory)</span><br><span class="line">     x (access directory)</span><br><span class="line">10. 要开放目录给任何人浏览时，应该至少也要给予 r 及 x 的权限，但 w 权限不可随便给；</span><br><span class="line">11. 能否读取到某个文件内容，跟该文件所在的目录权限也有关系 (目录至少需要有 x 的权限)。</span><br><span class="line">12. Linux 档名的限制为：单一文件或目录的最大容许文件名为 255 个英文字符或 128 个汉字字符；</span><br><span class="line">13. 根据 FHS 的官方文件指出，他们的主要目的是希望让使用者可以了解到已安装软件通常放置于那个目录下</span><br><span class="line">14. FHS 订定出来的四种目录特色为：shareable, unshareable, static, variable 等四类；</span><br><span class="line">15. FHS 所定义的三层主目录为：/, /var, /usr 三层而已；</span><br><span class="line">16. 绝对路径文件名为从根目录 / 开始写起，否则都是相对路径的文件名。</span><br></pre></td></tr></table></figure>
+
+<h3 id="第六章-Linux-文件与目录管理"><a href="#第六章-Linux-文件与目录管理" class="headerlink" title="第六章 Linux 文件与目录管理"></a>第六章 Linux 文件与目录管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">1. pwd [-P] 显示真实路径, 非link路径</span><br><span class="line">2. mkdir [-mp] m:忽略umask的作用 eg:mkdir -m 777 a</span><br><span class="line">3. rmdir [-p] 目录名称 ps: 只能删除空目录</span><br><span class="line">4. cat  由第一行开始显示文件内容</span><br><span class="line">5. tac  从最后一行开始显示，可以看出 tac 是 cat 的倒着写！</span><br><span class="line">6. nl   显示的时候，顺道输出行号！</span><br><span class="line">7. more 一页一页的显示文件内容</span><br><span class="line">8. less 与 more 类似，但是比 more 更好的是，他可以往前翻页！</span><br><span class="line">9. head 只看头几行</span><br><span class="line">10. tail 只看尾巴几行</span><br><span class="line">11. od   以二进制的方式读取文件内容！</span><br><span class="line"></span><br><span class="line">总结:</span><br><span class="line">1. 绝对路径：『一定由根目录 / 写起』；相对路径：『不由 / 写起，而是由相对当前目录写起』</span><br><span class="line">2. 特殊目录有：., .., -, ~, ~account 需要注意；</span><br><span class="line">3. 与目录相关的指令有：cd, mkdir, rmdir, pwd 等重要指令；</span><br><span class="line">4. rmdir 仅能删除空目录，要删除非空目录需使用『 rm -r 』指令；</span><br><span class="line">5. 用户能使用的指令是依据 PATH 变量所规定的目录去搜寻的；</span><br><span class="line">6. ls 可以检视文件的属性，尤其 -d, -a, -l 等选项特别重要！</span><br><span class="line">7. 文件的复制、删除、移动可以分别使用：cp, rm , mv 等指令来操作；</span><br><span class="line">8. 检查文件的内容(读文件)可使用的指令包括有：cat, tac, nl, more, less, head, tail, od 等</span><br><span class="line">9. cat -n 与 nl 均可显示行号，但默认的情况下，空白行会不会编号并不相同；</span><br><span class="line">10. touch 的目的在修改文件的时间参数，但亦可用来建立空文件；</span><br><span class="line">11. 一个文件记录的时间参数有三种，分别是 access time(atime), status time (ctime), modification time(mtime)，ls </span><br><span class="line">默认显示的是 mtime。</span><br><span class="line">12. 除了传统的 rwx 权限之外，在 Ext2/Ext3/Ext4/xfs 文件系统中，还可以使用 chattr 与 lsattr 设定及观察隐藏属</span><br><span class="line">性。 常见的包括只能新增数据的 +a 与完全不能更动文件的 +i 属性。</span><br><span class="line">13. 新建文件/目录时，新文件的预设权限使用 umask 来规范。默认目录完全权限为 drwxrwxrwx， 文件则为</span><br><span class="line">-rw-rw-rw-。</span><br><span class="line">14. 文件具有 SUID 的特殊权限时，代表当用户执行此一 binary 程序时，在执行过程中用户会暂时具有程序拥有</span><br><span class="line">者的权限</span><br><span class="line">15. 目录具有 SGID 的特殊权限时，代表用户在这个目录底下新建的文件之群组都会与该目录的组名相同。</span><br><span class="line">16. 目录具有 SBIT 的特殊权限时，代表在该目录下用户建立的文件只有自己与 root 能够删除！</span><br><span class="line">17. 观察文件的类型可以使用 file 指令来观察；</span><br><span class="line">18. 搜寻指令的完整文件名可用 which 或 type ，这两个指令都是透过 PATH 变量来搜寻文件名；</span><br><span class="line">19. 搜寻文件的完整档名可以使用 whereis 找特定目录或 locate 到数据库去搜寻，而不实际搜寻文件系统；</span><br><span class="line">20. 利用 find 可以加入许多选项来直接查询文件系统，以获得自己想要知道的档名。</span><br></pre></td></tr></table></figure>
+
+<h3 id="第七章-Linux-磁盘与文件系统管理"><a href="#第七章-Linux-磁盘与文件系统管理" class="headerlink" title="第七章 Linux 磁盘与文件系统管理"></a>第七章 Linux 磁盘与文件系统管理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1.  dumpe2fs [-bh] 装置文件名</span><br><span class="line">2. blkid &lt;==这个指令可以叫出目前系统有被格式化的装置</span><br><span class="line"></span><br><span class="line">总结:</span><br><span class="line"> 一个可以被挂载的数据通常称为『文件系统, filesystem』而不是分区槽 (partition) 喔！</span><br><span class="line"> 基本上 Linux 的传统文件系统为 Ext2 ，该文件系统内的信息主要有：</span><br><span class="line">o superblock：记录此 filesystem 的整体信息，包括 inode/block 的总量、使用量、剩余量， 以及文件</span><br><span class="line">系统的格式与相关信息等；</span><br><span class="line">o inode：记录文件的属性，一个文件占用一个 inode，同时记录此文件的数据所在的 block 号码；</span><br><span class="line">o block：实际记录文件的内容，若文件太大时，会占用多个 block 。</span><br><span class="line"> Ext2 文件系统的数据存取为索引式文件系统(indexed allocation)</span><br><span class="line"> 需要碎片整理的原因就是文件写入的 block 太过于离散了，此时文件读取的效能将会变的很差所致。 这个</span><br><span class="line">时候可以透过碎片整理将同一个文件所属的 blocks 汇整在一起。</span><br><span class="line"> Ext2 文件系统主要有：boot sector, superblock, inode bitmap, block bitmap, inode table, data block 等六大部分。</span><br><span class="line"> data block 是用来放置文件内容数据地方，在 Ext2 文件系统中所支持的 block 大小有 1K, 2K 及 4K 三</span><br><span class="line">种而已</span><br><span class="line"> inode 记录文件的属性/权限等数据，其他重要项目为： 每个 inode 大小均为固定，有 128/256bytes 两种</span><br><span class="line">基本容量。每个文件都仅会占用一个 inode 而已； 因此文件系统能够建立的文件数量与 inode 的数量有</span><br><span class="line">关；</span><br><span class="line"> 文件的 block 在记录文件的实际数据，目录的 block 则在记录该目录底下文件名与其 inode 号码的对照表；</span><br><span class="line"> 日志式文件系统 (journal) 会多出一块记录区，随时记载文件系统的主要活动，可加快系统复原时间；</span><br><span class="line"> Linux 文件系统为增加效能，会让主存储器作为大量的磁盘高速缓存；</span><br><span class="line"> 实体链接只是多了一个文件名对该 inode 号码的链接而已；</span><br><span class="line"> 符号链接就类似 Windows 的快捷方式功能。</span><br><span class="line"> 磁盘的使用必需要经过：分区、格式化与挂载，分别惯用的指令为：gdisk, mkfs, mount 三个指令</span><br><span class="line"> 分区时，应使用 parted 检查分区表格式，再判断使用 fdisk/gdisk 来分区，或直接使用 parted 分区</span><br><span class="line"> 为了考虑效能，XFS 文件系统格式化时，可以考虑加上 agcount/su/sw/extsize 等参数较佳</span><br><span class="line"> 如果磁盘已无未分区的容量，可以考虑使用大型文件取代磁盘装置的处理方式，透过 dd 与格式化功能。</span><br><span class="line"> 开机自动挂载可参考/etc/fstab 之设定，设定完毕务必使用 mount -a 测试语法正确否；</span><br></pre></td></tr></table></figure>
+
+<h3 id="第八章-文件与文件系统的压缩-打包与备份"><a href="#第八章-文件与文件系统的压缩-打包与备份" class="headerlink" title="第八章 文件与文件系统的压缩,打包与备份"></a>第八章 文件与文件系统的压缩,打包与备份</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">总结:</span><br><span class="line">1. 压缩指令为透过一些运算方法去将原本的文件进行压缩，以减少文件所占用的磁盘容量。 压缩前与压缩后</span><br><span class="line">的文件所占用的磁盘容量比值， 就可以被称为是『压缩比』</span><br><span class="line"> 压缩的好处是可以减少磁盘容量的浪费，在 WWW 网站也可以利用文件压缩的技术来进行数据的传送，好</span><br><span class="line">让网站带宽的可利用率上升喔</span><br><span class="line"> 压缩文件案的扩展名大多是：『*.gz, *.bz2, *.xz, *.tar, *.tar.gz, *.tar.bz2, *.tar.xz』</span><br><span class="line"> 常见的压缩指令有 gzip, bzip2, xz。压缩率最佳的是 xz，若可以不计时间成本，建议使用 xz 进行压缩。</span><br><span class="line"> tar 可以用来进行文件打包，并可支持 gzip, bzip2, xz 的压缩。</span><br><span class="line"> 压 缩：tar -Jcv -f filename.tar.xz 要被压缩的文件或目录名称</span><br><span class="line"> 查 询：tar -Jtv -f filename.tar.xz</span><br><span class="line"> 解压缩：tar -Jxv -f filename.tar.xz -C 欲解压缩的目录</span><br><span class="line"> xfsdump 指令可备份文件系统或单一目录</span><br><span class="line"> xfsdump 的备份若针对文件系统时，可进行 0-9 的 level 差异备份！其中 level 0 为完整备份；</span><br><span class="line"> xfsrestore 指令可还原被 xfsdump 建置的备份档；</span><br><span class="line"> 要建立光盘刻录数据时，可透过 mkisofs 指令来建置；</span><br><span class="line"> 可透过 wodim 来写入 CD 或 DVD 刻录机</span><br><span class="line"> dd 可备份完整的 partition 或 disk ，因为 dd 可读取磁盘的 sector 表面数据</span><br><span class="line"> cpio 为相当优秀的备份指令，不过必须要搭配类似 find 指令来读入欲备份的文件名数据，方可进行备份动</span><br><span class="line">作。</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/projects/4025408325/" rel="prev" title="搭梯子一系列操作">
+      <i class="fa fa-chevron-left"></i> 搭梯子一系列操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/projects/3177898254/" rel="next" title="鸟哥的linux私房菜2">
+      鸟哥的linux私房菜2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E9%9B%B6%E7%AB%A0-%E8%AE%A1%E7%AE%97%E5%99%A8%E6%A6%82%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第零章 计算器概论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-Linux-%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%8E%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">第一章 Linux 是什么与如何学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="nav-number">3.</span> <span class="nav-text">第二章 主机规划与磁盘分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85-CentOS7-x"><span class="nav-number">4.</span> <span class="nav-text">第三章 安装 CentOS7.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E9%A6%96%E6%AC%A1%E7%99%BB%E5%85%A5%E4%B8%8E%E5%9C%A8%E7%BA%BF%E6%B1%82%E5%8A%A9"><span class="nav-number">5.</span> <span class="nav-text">第四章 首次登入与在线求助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-Linux-%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">第五章 Linux 的文件权限与目录配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">第六章 Linux 文件与目录管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-Linux-%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="nav-number">8.</span> <span class="nav-text">第七章 Linux 磁盘与文件系统管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8E%8B%E7%BC%A9-%E6%89%93%E5%8C%85%E4%B8%8E%E5%A4%87%E4%BB%BD"><span class="nav-number">9.</span> <span class="nav-text">第八章 文件与文件系统的压缩,打包与备份</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Walsh Su"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">Walsh Su</p>
+  <div class="site-description" itemprop="description">未来，“翻墙”可能是一种手艺，如何传承，任重道远。2018.08.24</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Walsh Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">123k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
