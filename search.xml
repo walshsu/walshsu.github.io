@@ -59,13 +59,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>搭梯子一系列操作</title>
-    <url>/projects/4025408325/</url>
-    <content><![CDATA[<p>搭梯子一系列操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 香港服务器, 开通1120端口</span><br><span class="line">2. 安装lnmp(无所谓, 可跳过)</span><br><span class="line">3. xshell登录远程服务器, cd ~</span><br><span class="line">4. wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh  (网上寻找shadowsocks文件, 只要有就可以安装)</span><br><span class="line">5. chmod +x shadowsocks.sh</span><br><span class="line">6. ./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br><span class="line">7. 输入密码</span><br><span class="line">8. 输入aes-256-cfb (数字7)</span><br><span class="line">9. 等待...完成后会提示</span><br><span class="line">10. 一些客户端: </span><br><span class="line">   windows: https://github.com/shadowsocks/shadowsocks-windows/releases/download/4.1.7.1/Shadowsocks-4.1.7.1.zip</span><br><span class="line">   Android: https://github.com/shadowsocks/shadowsocks-android/releases/download/v4.8.4/shadowsocks--universal-4.8.4.apk</span><br><span class="line">11. 输入账号,密码,端口,加密方式就可以啦</span><br></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>面试题目</title>
     <url>/projects/312099341/</url>
     <content><![CDATA[<h5 id="1-什么是引用变量？在PHP中，用什么符号定义引用变量？"><a href="#1-什么是引用变量？在PHP中，用什么符号定义引用变量？" class="headerlink" title="1.什么是引用变量？在PHP中，用什么符号定义引用变量？"></a>1.什么是引用变量？在PHP中，用什么符号定义引用变量？</h5><p>在PHP中引用意味着用不同的名字访问同一个变量内容。使用&amp;符号。</p>
@@ -134,6 +127,13 @@
 
 <h5 id="浏览器缓存和数据压缩"><a href="#浏览器缓存和数据压缩" class="headerlink" title="浏览器缓存和数据压缩"></a>浏览器缓存和数据压缩</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTTP缓存机制</span><br><span class="line">缓存分类:</span><br><span class="line">200 from cache:直接从本地获取缓存</span><br><span class="line">304 not modified:协商缓存</span><br><span class="line">200 ok:没有用到缓存,最慢</span><br><span class="line">相关Header:</span><br><span class="line">1.Pragma:该字段设为no-cache时,告知浏览器禁用本地缓存</span><br><span class="line">2.Expires:启用本地缓存的字段,thu,31 Dec 2037 22:55:55 GMT的格林威治时间</span><br><span class="line">3.Cache-Control:no-store,no-cache,max-age=delta-seconds</span><br><span class="line">优先级:1&gt;3&gt;2</span><br><span class="line"></span><br><span class="line">Nginx配置缓存策略</span><br><span class="line">expries , etag , add_header</span><br><span class="line"></span><br><span class="line">前端代码和资源的压缩</span><br><span class="line">js,css,图片,HTTP都可以压缩</span><br><span class="line">Nginx下的gzip</span><br></pre></td></tr></table></figure>
 <h5 id="cdn加速"><a href="#cdn加速" class="headerlink" title="cdn加速"></a>cdn加速</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">内容分发网络,更快,更稳定</span><br><span class="line">实现:</span><br><span class="line">bat等都有提供cdn加速</span><br><span class="line">可用lvs做4层负载均衡</span><br><span class="line">squid做反向代理,Nginx也可以</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>搭梯子一系列操作</title>
+    <url>/projects/4025408325/</url>
+    <content><![CDATA[<p>搭梯子一系列操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 香港服务器, 开通1120端口</span><br><span class="line">2. 安装lnmp(无所谓, 可跳过)</span><br><span class="line">3. xshell登录远程服务器, cd ~</span><br><span class="line">4. wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh  (网上寻找shadowsocks文件, 只要有就可以安装)</span><br><span class="line">5. chmod +x shadowsocks.sh</span><br><span class="line">6. ./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br><span class="line">7. 输入密码</span><br><span class="line">8. 输入aes-256-cfb (数字7)</span><br><span class="line">9. 等待...完成后会提示</span><br><span class="line">10. 一些客户端: </span><br><span class="line">   windows: https://github.com/shadowsocks/shadowsocks-windows/releases/download/4.1.7.1/Shadowsocks-4.1.7.1.zip</span><br><span class="line">   Android: https://github.com/shadowsocks/shadowsocks-android/releases/download/v4.8.4/shadowsocks--universal-4.8.4.apk</span><br><span class="line">11. 输入账号,密码,端口,加密方式就可以啦</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
@@ -392,18 +392,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>下载音乐流文件教程</title>
-    <url>/projects/2121618436/</url>
-    <content><![CDATA[<h1 id="下载音乐流文件教程"><a href="#下载音乐流文件教程" class="headerlink" title="下载音乐流文件教程"></a>下载音乐流文件教程</h1><p><code>.ts</code>文件流</p>
-<h2 id="下载IDM下载器"><a href="#下载IDM下载器" class="headerlink" title="下载IDM下载器"></a>下载<code>IDM</code>下载器</h2><p>把你的浏览器添加到<code>IDM</code>监测内</p>
-<h2 id="打开音乐网站"><a href="#打开音乐网站" class="headerlink" title="打开音乐网站"></a>打开音乐网站</h2><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>进度条旁边有下载按钮, 下载下来是<code>.ts</code>文件</p>
-<blockquote>
-<p>结束, 如果需要转成<code>MP3</code> , 需要转换格式</p>
-</blockquote>
-<h2 id="免费转换格式网站"><a href="#免费转换格式网站" class="headerlink" title="免费转换格式网站"></a>免费转换格式网站</h2><p><code>https://cdkm.com/cn/</code></p>
-]]></content>
-  </entry>
-  <entry>
     <title>phpstorm常用命令</title>
     <url>/projects/391340896/</url>
     <content><![CDATA[<h1 id="phpstorm常用命令"><a href="#phpstorm常用命令" class="headerlink" title="phpstorm常用命令"></a>phpstorm常用命令</h1><p>Ctrl + K 显示git commit界面</p>
@@ -413,6 +401,18 @@
 <p>Ctrl + G 定位行, 跳转行</p>
 <p>Ctrl + D 复制一行</p>
 <p>Ctrl + Shift + Alt + X 上传至云</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>下载音乐流文件教程</title>
+    <url>/projects/2121618436/</url>
+    <content><![CDATA[<h1 id="下载音乐流文件教程"><a href="#下载音乐流文件教程" class="headerlink" title="下载音乐流文件教程"></a>下载音乐流文件教程</h1><p><code>.ts</code>文件流</p>
+<h2 id="下载IDM下载器"><a href="#下载IDM下载器" class="headerlink" title="下载IDM下载器"></a>下载<code>IDM</code>下载器</h2><p>把你的浏览器添加到<code>IDM</code>监测内</p>
+<h2 id="打开音乐网站"><a href="#打开音乐网站" class="headerlink" title="打开音乐网站"></a>打开音乐网站</h2><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>进度条旁边有下载按钮, 下载下来是<code>.ts</code>文件</p>
+<blockquote>
+<p>结束, 如果需要转成<code>MP3</code> , 需要转换格式</p>
+</blockquote>
+<h2 id="免费转换格式网站"><a href="#免费转换格式网站" class="headerlink" title="免费转换格式网站"></a>免费转换格式网站</h2><p><code>https://cdkm.com/cn/</code></p>
 ]]></content>
   </entry>
   <entry>
@@ -524,6 +524,51 @@
 <p><a href="https://github.com/docker-mailserver/docker-mailserver/issues/1405">https://github.com/docker-mailserver/docker-mailserver/issues/1405</a></p>
 <h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker logs -f mailserver</span><br><span class="line">tail -f /var/lib/docker/volumes/mail_maillogs/_data/mail.log</span><br></pre></td></tr></table></figure>
 
+]]></content>
+  </entry>
+  <entry>
+    <title>我的联想G400安装黑苹果</title>
+    <url>/projects/4356835383/</url>
+    <content><![CDATA[<h1 id="我的联想G400安装黑苹果"><a href="#我的联想G400安装黑苹果" class="headerlink" title="我的联想G400安装黑苹果"></a>我的联想G400安装黑苹果</h1><p>参考：</p>
+<p>1黑果小兵的部落阁 <a href="https://blog.daliansky.net/MacOS-installation-tutorial-XiaoMi-Pro-installation-process-records.html">https://blog.daliansky.net/MacOS-installation-tutorial-XiaoMi-Pro-installation-process-records.html</a></p>
+<p>2哔哩哔哩 <strong>青莲剑仙2333333</strong> <a href="https://www.bilibili.com/video/BV1sX4y1M7RM">https://www.bilibili.com/video/BV1sX4y1M7RM</a></p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>熟读1，可能的话背诵</p>
+<p>2主要是用里面的<code>EFI</code>文件, 如果你是<code>联想G400</code>的话</p>
+<p>系统版本是<code>10.15.7</code>卡特琳娜</p>
+<h2 id="制作安装镜像"><a href="#制作安装镜像" class="headerlink" title="制作安装镜像"></a>制作安装镜像</h2><p>win10下制作启动盘</p>
+<p>镜像制作：下载<a href="https://etcher.io/">etcher</a>，打开镜像，选择U盘，点击Flash即可</p>
+<p>安装镜像的制作到这里就完成了,下一步,我们需要将EFI复制进刚制作好的USB磁盘的EFI分区里</p>
+<h3 id="EFI配置"><a href="#EFI配置" class="headerlink" title="EFI配置"></a>EFI配置</h3><p>将从链接2下载的<code>opencore EFI</code>解压, 用<code>DiskGenius</code>删除原先的<code>EFI</code>文件夹, 把解压的<code>opencore EFI</code>复制到原来<code>EFI</code>位置</p>
+<h3 id="BIOS设置"><a href="#BIOS设置" class="headerlink" title="BIOS设置"></a>BIOS设置</h3><p>开机按<code>F2</code>进入<code>BIOS</code>设置,光标移动到<code>Security</code>,点击<code>Secure Boot</code>,设置为<code>Disabled</code>关闭安全启动</p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>关机</p>
+<p>开机 按<code>f12</code></p>
+<p>选择启动项, 有三个, 一个是自带<code>win10</code>, 一个是<code>opencore</code>, 一个是<code>wipe</code>后缀带<code>1</code>, 选择<code>opencore</code>那个</p>
+<p>进入后选择磁盘工具, 抹掉要安装系统的盘, 名称填<code>Macintosh HD</code>格式选择<code>apfs</code></p>
+<p>叉掉, 选择安装<code>mac OS</code></p>
+<p>(如果提示损坏, 需要修改时间: </p>
+<p><code>终端-&gt;date</code>查看时间, 改为当前时间 <code>date 0101000021</code> 月日时分年</p>
+<p>退出终端, 继续安装 <code>mac OS</code>)</p>
+<p>机器会重启几次, 重启需要按<code>f12</code>, 选<code>opencore</code>启动项引导, 安装完成后, <code>opencore</code>启动项会有<code>Macintosh HD</code>, 代表<code>mac</code>系统安装完成</p>
+<h3 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h3><p>登录后, 发现连不上网, 网卡驱动不了, 目前解决方案就是买网卡或<code>USB</code>外接, 看了看自己的钱包, 最终选择了<code>USB共享网络</code>…</p>
+<p>需要安装一个驱动<code>HoRNDIS-9.2.pkg</code>, 网上下载的可能安装不上, 据说因为mac系统是只读系统, 我找了老半天才找到能安装的包…</p>
+<p><a href="http://xiazai.sddphp.cn/mac/HoRNDIS-9.2.pkg">点击下载</a></p>
+<p>安装后重启, 开启手机USB共享, 即可愉快上网了</p>
+<h3 id="U盘启动改为BIOS启动"><a href="#U盘启动改为BIOS启动" class="headerlink" title="U盘启动改为BIOS启动"></a>U盘启动改为BIOS启动</h3><p>目前开机需要用U盘的<code>opencore</code>引导, U盘拔掉就不能启动了, 怎么办呢?</p>
+<p>把U盘的<code>EFI</code>复制到<code>win10</code>的<code>EFI</code>里</p>
+<p>操作步骤:</p>
+<p>用<code>DiskGenius</code>, 先查看原先系统盘引导有没有<code>EFI</code>文件</p>
+<ul>
+<li><p>如果没有, 直接把<code>U盘</code>的<code>EFI</code>复制进去即可</p>
+</li>
+<li><p>如果有, 把<code>U盘</code>的<code>EFI</code>下的<code>OC</code>复制到<code>win10</code>下<code>EFI</code>文件夹下</p>
+</li>
+</ul>
+<p>最后, 把U盘的<code>boot</code>文件夹放到<code>win10</code>下对应位置</p>
+<p>开机, F2, 配置第一启动项为<code>opencore</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前体验没啥问题, 还在摸索中…之前安装过一次黑苹果, 这次花了2天</p>
+<p>小问题: </p>
+<p>内存8g, 剩余200多MB</p>
+<p>平均温度至少60℃</p>
 ]]></content>
   </entry>
   <entry>
